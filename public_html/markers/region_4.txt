@@ -1,0 +1,18 @@
+// Google Map Custom Marker Maker 2009
+// Please include the following credit in your code
+
+// Sample custom marker code created with Google Map Custom Marker Maker
+// http://www.powerhut.co.uk/googlemaps/custom_markers.php
+
+var myIcon = new GIcon();
+myIcon.image = 'markers/image.png';
+myIcon.shadow = 'markers/shadow.png';
+myIcon.iconSize = new GSize(139,20);
+myIcon.shadowSize = new GSize(149,20);
+myIcon.iconAnchor = new GPoint(70,20);
+myIcon.infoWindowAnchor = new GPoint(70,0);
+myIcon.printImage = 'markers/printImage.gif';
+myIcon.mozPrintImage = 'markers/mozPrintImage.gif';
+myIcon.printShadow = 'markers/printShadow.gif';
+myIcon.transparent = 'markers/transparent.png';
+myIcon.imageMap = [138,0,138,1,138,2,138,3,138,4,138,5,138,6,138,7,138,8,138,9,138,10,138,11,138,12,138,13,138,14,138,15,138,16,138,17,138,18,138,19,0,19,0,18,0,17,0,16,0,15,0,14,0,13,0,12,0,11,0,10,0,9,0,8,0,7,0,6,0,5,0,4,0,3,0,2,0,1,0,0];

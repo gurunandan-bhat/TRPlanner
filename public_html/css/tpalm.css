@@ -1,0 +1,179 @@
+body {
+	font-size: 62.5%;
+	font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, sans-serif;
+	color: #4e4e4e;
+	margin: 0px 0;
+	background: #e7ebce;
+	background: #ada29e;
+}
+
+.container {
+	background: #fff;
+}
+
+hr.none {
+	color: #fff;
+	background: #fff;
+}
+
+img.logo {
+	border-bottom: 3px solid #dbca82;
+	margin-bottom: 5px;
+}
+
+.topmenu {
+	background: #fff;
+	height: 9em;
+	width: 300px;
+	margin: 0 5px 15px 5px;
+	border: 1px solid #ccc;
+}
+
+.topmenu h1 {
+	font-size: 1.2em;
+	color: #59620f;
+	font-family: Georgia;
+	font-weight: bold;
+	font-variant: small-caps;
+	padding: 10px 10px 0 10px;
+}
+
+.topmenu p {
+	padding: 0 10px;
+	font-size: 1.1em;
+}
+
+.topmenu h1 img {
+	float: left;
+	padding: 0;
+	margin: 0;
+}
+
+.mainimage img {
+	margin: 0;
+	padding: 10px 10px 3px 10px;
+}
+
+.intro h1, .intro h2 {
+	font-size: 1.8em;
+	color: #a52a2a;
+	color: #000;
+	font-family: Georgia;
+	font-weight: bold;
+	padding: 10px 30px 0 0;
+	font-variant: small-caps;
+}
+
+.intro h2 {
+	font-size: 1.5em;
+	padding: 0 30px 0 0;
+	line-height: 1em;
+	font-weight: bold;
+	color: #1e1e1e;
+	font-variant: normal;
+}
+
+.itinerary p, .intro p {
+	font-size: 1.2em;
+	line-height: 1.5em;
+	padding: 10px 0 0 0;
+}
+
+
+.intro p {
+	padding-right: 20px;
+	font-size: 1.3em;
+}
+
+.summary {
+	padding-right: 20px;
+}
+
+.itinerary h1, .summary h1 {
+	font-size: 1.3em;
+	color: #2e2e2e;
+	font-family: Georgia;
+	font-variant: small-caps;
+	font-weight: bold;
+	padding: 5px 0 0 0;
+	margin: 0;
+}
+
+.summary h1 {
+	font-size: 1.2em;
+	background: #f6f0e0;
+	border-bottom: 1px solid #c8c2b4;
+	border-right: 1px solid #c8c2b4;
+	margin-bottom: 10px;
+}
+
+.summary h2 {
+	font-size: 1.2em;
+	color: #a52a2a;
+	font-family: Georgia;
+	font-weight: bold;
+	margin-bottom: 0px;
+}
+
+.summary p {
+	line-height: 1.55em;
+	font-size: 1.1em;
+	padding-bottom: 5px;
+}
+
+.itinerary h2, .summary h3 {
+	font-size: 1.1em;
+	color: #59620f;
+	font-family: Georgia;
+	font-weight: bold;
+}
+
+.itinerary p {
+	font-size: 1.3em;
+}
+
+.summary img {
+	float: left;
+	padding: 3px;
+	border: 1px solid #f6f0e0;
+	margin-right: 5px;
+}
+
+h1.columns {
+	font-size: 1.3em;
+	color: #59620f;
+	font-family: Georgia;
+	font-variant: small-caps;
+	font-weight: bold;
+	text-align: center;
+	padding: 10px 10px 20px 0;
+	background: url('../images/hr-bg-tan.gif') bottom center no-repeat;
+	margin-right: 5px;
+	border-top: 1px solid #ddcdae;
+}
+
+.content {
+	background: url('../images/strip.gif') top left repeat-y;
+}
+
+h1.maincolumn {
+	color: #a52a2a;
+}
+
+.leftmost p{
+	font-size: 1.1em;
+}
+
+.footer {
+	background: #899d46 !important;
+/*	background: #075e4f !important; */
+	color: #fff;
+}
+
+.footer h1 {
+	color: #fff;
+}
+
+.footer p {
+	font-size: 1.1em;
+}

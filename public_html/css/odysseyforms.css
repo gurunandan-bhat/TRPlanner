@@ -1,0 +1,81 @@
+fieldset {
+	float: left;
+	clear: left;
+	width: 100%;
+	margin: 1.5em 0 0 0;
+	padding: 0;
+}
+
+legend {
+	margin-left: 1em;
+	color: #a52a2a;
+	font-size: 1.1em;
+	font-weight: bold;
+}
+
+fieldset ol {
+	padding: 1em 1em 0 1em;
+	list-style: none;
+	float: left;
+}
+
+fieldset li {
+	float: left;
+	clear: left;
+	width: 100%;
+	padding-bottom: 1em;
+	position: relative;
+}
+
+fieldset label {
+	float: left;
+	width: 15em;
+	margin-right: 1em;
+	text-align: right;
+	color: #29296f;
+}
+
+fieldset label.chkboxlabel {
+	float: none;
+	width: auto;
+	margin-right: auto;
+}
+
+input[type="text"], 
+input[type="password"], 
+input.text, 
+input.title, 
+textarea, 
+select {
+	margin: 0;
+	width: 120px;
+	height: 1.5em;
+	padding: 0;
+	border: 1px solid #e2a441;
+}
+
+select.smallwidth, input.smallwidth  {
+	width: 40px;
+}
+
+fieldset h2, fieldset p {
+	margin: 1em 1.5em;
+}
+
+fieldset.submit {
+	float: none;
+	width: auto;
+	border: 0 none #fff;
+	padding: 1em;
+	text-align: center;
+}
+
+fieldset label.error {
+	position: absolute;
+	left: 0;
+	right: 0;
+	width: 13em;
+	text-align: left;
+	margin-bottom: 0;
+	padding: 2px;
+}

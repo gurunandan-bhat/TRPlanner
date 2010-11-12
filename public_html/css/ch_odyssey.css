@@ -1,0 +1,572 @@
+@CHARSET "UTF-8";
+
+body {
+	background: url('../images/bg-repeat.gif') repeat;
+	font-size: 62.5%;
+	font-family: Arial, Helvetica, sans-serif;
+	margin-bottom: 20px;
+}
+
+.container {
+	background: #fff url('../images/bg-decorative.gif')  right 150px no-repeat;
+	padding: 0 10px;
+}
+
+.banner {
+	height: 150px;
+	border-bottom: 1px solid rgb(226, 164, 65);
+	background: #fffdf6 url('../images/new_banner.gif') top left no-repeat;
+}
+
+#topmenu ul {
+	list-style: none;
+	float: right;
+	margin: 1.5em 1.5em;
+}
+
+#topmenu ul li {
+	float: left;
+}
+
+#topmenu li a {
+	display: block;
+	padding: 0 0.5em;
+	border-left: 2px solid rgb(226, 164, 65);
+	text-decoration: none;
+	font-family: "Times New Roman", Times, serif;
+	font-size: 1.4em;
+	font-weight: bold;
+	color: #000;
+}
+
+#topmenu li:first-child a {
+	border: none;
+}
+
+#topmenu li#current a {
+	color: #e2a441;
+}
+
+#loginbox {
+	width: 210px;
+	clear: both;
+	float: right;
+	margin-right: 10px;
+}
+
+#loginbox td {
+	padding: 0;
+	margin: 0;
+	align: right;
+}
+
+#loginbox label {
+	font-weight: bold;
+	font-family: Times, "Times New Roman", serif;
+	font-size: 1.1em;
+}
+
+#loginbox input[type="text"], 
+#loginbox input[type="password"], 
+#loginbox input.text, 
+#loginbox input.title, 
+#loginbox textarea, 
+#loginbox select  {
+	border:1px solid #f7e7cd;
+	margin: 0.25em 0;
+	width: 150px;
+}
+
+#imgstack {
+	background: url('../images/photo-stack.gif') no-repeat;
+	height: 380px;
+	position: relative;
+}
+
+
+#submitbutton,  #registerlink{
+	float: left;
+	font-weight: bold;
+	font-family: Times, "Times New Roman", serif;
+	font-size: 1.2em;
+	font-style: italic;
+	color: #a22844;
+}
+
+#registerlink {
+	padding-top: 1px;
+	padding-left: 0.66em;
+}
+
+#registerlink a {
+	text-decoration: none;
+	color: #a22844;
+}
+
+#imgframe {
+	background: url('../images/photo-frame.gif') no-repeat;
+	height: 380px;
+	position: relative;
+}
+
+
+#imgstack img {
+	padding: 0;
+	margin: 0;
+}
+
+#frameslideshow, #thememapholder {
+	height: 367px;
+	position: absolute;
+	top: 13px;
+	left: 49px;
+}
+
+#writeup {
+	height: 370px;
+	background: url('../images/inside-bg-rules.gif') no-repeat;
+	padding: 10px 15px 0 10px;
+	position: relative;
+	margin-top: 5px;
+}
+ 
+#writeup h1, h1.midheader {
+	font-size: 1.8em;
+	font-family: "Times New Roman", Times, serif;
+	margin-bottom: 3px;
+	font-weight: bold;
+	font-style: italic;
+	color: #e2a441;
+}
+
+#writeup h2 {
+	font-size: 1.2em;
+	font-family: Arial, sans-serif;
+	font-weight: bold;
+	font-style: italic;
+	margin-bottom: 4px;
+}
+
+#writeup p, p.writeup {
+	font-size: 1.2em;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #000;
+	line-height: 1.55em;
+	font-weight: normal;
+	margin: 0 0 1.3em 0;
+}
+
+p.writeup {
+	font-weight: normal;
+}
+
+#writeup #searchunit {
+	position: absolute;
+	bottom: 0;
+	left: 20px;
+}
+
+#writeup #quoteunit {
+	position: absolute;
+	bottom: 30px;
+	left: 10px;
+}
+
+#quoteunit {
+	font-size: 1.5em;
+	font-family: "Times New Roman", Times, serif;
+	font-weight: bold;
+	color: rgb(77,89,39);
+	background: #fffdf6;
+}
+
+form#searchunit table {
+/*	padding: 10px; */
+	background: #fffdf6
+}
+
+form#searchunit td {
+	margin: 0;
+	padding: 0 0 2px 3px;
+	text-align: right;
+}
+
+form#searchunit td.headline {
+	font-size: 1.5em;
+	font-family: "Times New Roman", Times, serif;
+	font-weight: bold;
+	text-align: center;
+}
+
+form#searchunit input[type="text"], 
+form#searchunit input[type="password"]
+form#searchunit input.text, 
+form#searchunit input.title, 
+form#searchunit textarea, 
+form#searchunit select  {
+	width: 110px;
+	margin: 0;
+	font-size: 10px;
+	border:1px solid #f7e7cd;
+}
+
+form#searchunit input[type="submit"] {
+	margin: 0;
+	font-size: 10px;
+}
+
+.content {
+	background: url('../images/strip.gif') repeat-y;
+	float: left;
+}
+
+.content h3 {
+	background: #9f1f42;
+	font-size: 1.6em;
+	font-family: "Times New Roman", Times, serif;
+	font-weight: bold;
+	color: #fff;
+	line-height: 1.8em;
+	text-align: center;
+	clear: both;
+}
+
+.content h4 {
+	font-size: 1.4em;
+	font-family: "Times New Roman", Times, serif;
+	font-weight: bold;
+	margin-bottom: 4px;
+}
+
+
+
+.leftcol ul {
+	margin: 0;
+	padding: 0 0 0 15px;
+	list-style: none;
+	font-family: "Times New Roman", Times, serif;
+	font-weight: bold;
+}
+
+.leftcol ul ul {
+	padding: 0;
+}
+
+.leftcol ul li {
+	background: none;
+	border: 0;
+	font-size: 14px;
+	margin: 0;
+}
+
+.leftcol ul li a#toplink {
+	background: url('../images/triangle.jpg') left center no-repeat;
+	padding-left: 15px;
+	display: block;
+	color: #dea242;
+}
+
+.leftcol ul li a
+{
+	padding: 0.5em 0 0.5em 0.2em;
+	text-decoration: none;
+	display: block;
+	margin: 0;
+	height: 100%;
+	font-size: 14px;
+	color: #000;
+}
+
+.leftcol ul li ul li {
+	background: none;
+	border: 0;
+	margin: 0;
+	font-size: 11px;
+}
+
+.leftcol ul li ul li div#current {
+	padding: 0.5em 0 0.5em 1em;
+	color: #dea242 !important;
+	font-size: 12px !important;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+.leftcol ul li ul li a{
+	padding: 0.5em 0 0.5em 1em;
+	margin: 0;
+	text-decoration: none;
+	display: block;
+	font-size: 12px;
+}
+
+.leftcol ul li ul li a#midlink {
+	background: url('../images/rightdot.gif') 0 9px no-repeat;
+	padding-left: 13px;
+	display: block;
+}
+
+.leftcol ul li ul li ul li {
+	border: 0;
+	margin: 0;
+	margin: 0;
+	line-height: 12px;
+}
+
+.leftcol ul li ul li ul li div#current {
+	padding: 0.5em 0 0.5em 1.5em;
+	color: #dea242;
+	font-size: 12px;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+.leftcol ul li ul li ul li a{
+	padding: 0.5em 0 0.5em 1.5em;
+	margin: 0;
+	color: #000;
+	text-decoration: none;
+	display: block;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: normal;
+	font-style: italic;
+}
+
+.leftcol ul li ul li ul li ul li {
+	margin: 0;
+	font-size: 9px;
+}
+
+.leftcol ul li ul li ul li ul li div#current {
+	padding: 0.5em 0 0.5em 3em;
+}
+
+.leftcol ul li ul li ul li ul li a{
+	padding: 0.5em 0 0.5em 3em;
+	margin: 0;
+	text-decoration: none;
+	display: block;
+}
+
+.midcol h4, .midcol h2 {
+	line-height: 100%;
+	font-weight: bold;
+	font-size: 1.5em;
+	font-family: "Times New Roman", Times, serif;
+	font-weight: bold;
+}
+
+
+.midcol h5 {
+	color: #9f1f42;
+	font-size: 1.2em;
+	font-family: "Times New Roman", Times, serif;
+	margin-bottom: 8px;
+	font-weight: normal;
+	line-height: 1em;
+	font-weight: bold;
+}
+
+h5 span {
+	color: #000;
+	font-style: italic;
+}
+
+.midcol h4.listmods {
+	color: #9f1f42;
+	font-size: 1.5em;
+	font-family: "Times New Roman", Times, serif;
+	margin-bottom: 3px;
+	font-style: normal;
+}
+
+.midcol h5.listmods {
+	color: #000;
+	font-size: 1.4em;
+	font-family: "Times New Roman", Times, serif;
+	margin-bottom: 8px;
+	font-style: italic;
+	font-weight: normal;
+	line-height: 1em;
+}
+
+div.box {
+	margin-bottom: 1em;
+	padding: 1em;
+	background: none;
+	float: left;
+	clear: both;
+	width: 92%;
+}
+
+div.box img.left {
+	float: left;
+	margin: 0.3em 1.5em 1.5em 0;
+	padding: 0;
+}
+
+p img.left {
+	margin-top: 0.3em;
+}
+
+p.hotelcatnotice {
+	font-size: 1.5em;
+	font-family: "Times New Roman", Times, serif;
+	font-style: italic;
+	text-align: center;
+}
+
+#footer {
+	background: rgb(77,89,39) url('../images/footer-bottom.gif') bottom center no-repeat;
+	float: left;
+	margin: 0 0 0 -10px;
+	width: 970px;
+	padding-bottom: 20px;
+	
+}
+
+#footer h2 {
+	color: #fff;
+	font-size: 13px;
+	font-weight: bold;
+	font-family: "Times New Roman", Times, serif;
+	margin-top: 5px;
+	margin-bottom: 3px;
+	padding-left: 25px;
+}
+
+#footer ul {
+	list-style: none;
+	margin: 0;
+	padding-left: 25px;
+}
+
+#footer li {
+	background: url('../images/bullet.jpg') left center no-repeat;
+	padding-left: 10px;
+	line-height: 18px;
+	color: #fff;
+}
+
+#footer li a {
+	text-decoration: none;
+	color: #fff;
+	font-weight: bold;
+}
+
+#footer .holder {
+	height: 110px;
+}
+
+#footer .colborder, .colnoborder {
+	border-color: rgb(226, 164, 65);
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.hansbold {
+	font-weight: normal;
+}
+
+.rightcol h6 {
+	font-size: 1.2em;
+	font-family: Arial, Helvetica, sans-serif;
+	color: rgb(77,89,39);
+	font-weight: bold;
+	margin-bottom: 0;
+}
+
+.rightcol h5 {
+	font-size: 1.2em;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #000;
+	margin-bottom: 3px;
+	font-style: italic;
+	padding-left: 12px;
+	background: url('../images/rightdot.gif') 0 4px no-repeat;
+}
+
+.itinbox {
+	padding-left: 30px;
+}
+
+.rightcol hr {
+	background: #4e4e4e;
+	color: #4e4e4e;
+}
+
+.midcol p {
+	font-size: 1.1em;
+}
+
+.midcol p.box {
+	margin-left: 230px;
+	background: #eec38c;
+}
+
+#themedesc h1, #themecitydesc h1 {
+	font-size: 1.8em;
+	font-family: "Times New Roman", Times, serif;
+	margin-bottom: 3px;
+	font-weight: bold;
+	font-style: italic;
+	color: #e2a441;
+}
+
+#themecitydesc h2 {
+	font-size: 1.2em;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #a22844;
+	margin-bottom: 0;
+	font-weight: bold;
+}
+
+#themecitydesc p#readmore {
+	margin-top: 1em;
+}
+
+#themecitydesc p#readmore a {
+	text-decoration: none;
+	font-size: 1.2em;
+	color: #e2a441;
+	font-style: italic;
+}
+
+form#subthemelist h2 {
+	font-size: 1.4em;
+	font-family: "Times New Roman", Times, serif;
+	font-weight: bold;
+	margin-bottom: 4px;
+}
+
+form#subthemelist ul {
+	margin: 0;
+	list-style-type: none;
+	margin-bottom: 15px;
+}
+
+p#mapnote {
+	font-size: 1.4em;
+	font-family: "Times New Roman", Times, serif;
+	margin-bottom: 3px;
+	font-weight: bold;
+	font-style: italic;
+}
+
+.midcol a {
+	text-decoration: none;
+	color: #e2a441;
+	font-weight: bold;
+	font-style: italic;
+}
+
+.midcol a.hotellink {
+	color: #e2a441;
+}
+
+.rightcol a {
+	text-decoration: none;
+	color: #e2a441;
+}
+
+.rightcol h4 a {
+	color: #000;
+}

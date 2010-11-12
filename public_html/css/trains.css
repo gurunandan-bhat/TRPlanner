@@ -1,0 +1,38 @@
+/***********************************************/
+/* HTML tag styles                             */
+/***********************************************/ 
+
+h1 {
+	background: #76769a;
+	color: #fff;
+	font-size: 1.2em;
+	text-align: center;
+	font-variant: small-caps;
+	font-weight: bold;
+	padding: 0.25em 0;
+}
+
+p#schedulethrobber {
+	background: url(../images/ajax-loader.gif) left center no-repeat;
+	margin-bottom: 5px;
+	height: 32px;
+	padding: 14px 0 0 32px;
+	display: none;
+}
+
+#detailschedule thead th {
+	background: #ffc0cb;
+}
+
+#detailschedule h1 {
+	background: #a52a2a;
+}
+
+#detailschedule tr.even td {
+	background: #f8eaea;
+}
+
+#detailschedule {
+	padding: 3px;
+	border: 1px solid #a52a2a;
+}

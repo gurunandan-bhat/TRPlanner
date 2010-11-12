@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map map_file="states/india.swf" zoom="100%" tl_long="68.862305" tl_lat="61.3529189397726" zoom_y="10.79%" zoom_x="0%">
+  <areas>
+    <area mc_name="IN_AN" title="Andaman and Nicobar Islands" url="javascript:showdetails(1)"></area>
+    <area mc_name="IN_AP" title="Andhra Pradesh" url="javascript:showdetails(2)"></area>
+    <area mc_name="IN_AR" title="Arunachal Pradesh" url="javascript:showdetails(3)"></area>
+    <area mc_name="IN_AS" title="Assam" url="javascript:showdetails(4)"></area>
+    <area mc_name="IN_BR" title="Bihar" url="javascript:showdetails(5)"></area>
+    <area mc_name="IN_CH" title="Chandigarh" url="javascript:showdetails(6)"></area>
+    <area mc_name="IN_CT" title="Chhattisgarh" url="javascript:showdetails(34)"></area>
+    <area mc_name="IN_DN" title="Dadra and Nagar Haveli"></area>
+    <area mc_name="IN_DD" title="Daman and Diu" url="javascript:showdetails(8)"></area>
+    <area mc_name="IN_DL" title="Delhi" url="javascript:showdetails(9)"></area>
+    <area mc_name="IN_GA" title="Goa" url="javascript:showdetails(10)"></area>
+    <area mc_name="IN_GJ" title="Gujarat" url="javascript:showdetails(11)"></area>
+    <area mc_name="IN_HR" title="Haryana" url="javascript:showdetails(12)"></area>
+    <area mc_name="IN_HP" title="Himachal Pradesh" url="javascript:showdetails(13)"></area>
+    <area mc_name="IN_JK" title="Jammu and Kashmir" url="javascript:showdetails(14)"></area>
+    <area mc_name="IN_JH" title="Jharkhand" url="javascript:showdetails(33)"></area>
+    <area mc_name="IN_KA" title="Karnataka" url="javascript:showdetails(15)"></area>
+    <area mc_name="IN_KL" title="Kerala" url="javascript:showdetails(16)"></area>
+    <area mc_name="IN_LD" title="Lakshadweep" url="javascript:showdetails(17)"></area>
+    <area mc_name="IN_MP" title="Madhya Pradesh" url="javascript:showdetails(21)"></area>
+    <area mc_name="IN_MH" title="Maharashtra" url="javascript:showdetails(20)"></area>
+    <area mc_name="IN_MN" title="Manipur" url="javascript:showdetails(18)"></area>
+    <area mc_name="IN_ML" title="Meghalaya" url="javascript:showdetails(19)"></area>
+    <area mc_name="IN_MZ" title="Mizoram" url="javascript:showdetails(22)"></area>
+    <area mc_name="IN_NL" title="Nagaland" url="javascript:showdetails(23)"></area>
+    <area mc_name="IN_OR" title="Orissa" url="javascript:showdetails(24)"></area>
+    <area mc_name="IN_PY" title="Pondicherry" url="javascript:showdetails(25)"></area>
+    <area mc_name="IN_PB" title="Punjab" url="javascript:showdetails(26)"></area>
+    <area mc_name="IN_RJ" title="Rajasthan" url="javascript:showdetails(27)"></area>
+    <area mc_name="IN_SK" title="Sikkim" url="javascript:showdetails(28)"></area>
+    <area mc_name="IN_TN" title="Tamil Nadu" url="javascript:showdetails(29)"></area>
+    <area mc_name="IN_TR" title="Tripura" url="javascript:showdetails(30)"></area>
+    <area mc_name="IN_UT" title="Uttarakhand" url="javascript:showdetails(35)"></area>
+    <area mc_name="IN_UP" title="Uttar Pradesh" url="javascript:showdetails(31)"></area>
+    <area mc_name="IN_WB" title="West Bengal" url="javascript:showdetails(32)"></area>s
+    <area mc_name="borders" title="borders" color="#FFFFFF" balloon="false"></area>
+  </areas>
+ </map>

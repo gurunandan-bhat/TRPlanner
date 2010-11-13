@@ -714,7 +714,6 @@ sub minidescribe {
 		HOTELID => $hotelid,
 		HOTELNAME => $hotel->organisation,
 		NUMIMAGES => $app->hotelimages($hotelid),
-		
 		HOTELDESCRIPTION => addptags($hotel->description),
 	);
 

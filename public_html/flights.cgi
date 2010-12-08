@@ -8,8 +8,8 @@ use lib qw{../traveljadoo/lib/};
 use Air::Flights;
 use Odyssey::Constants;
 
-my $app = Air::Flights->new(
+my $app = Air::Flights->new({
 	cfg_file => $Odyssey::Constants::confdir . 'Odyssey.conf',
-);
+});
 
 $app->run;

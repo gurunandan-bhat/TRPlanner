@@ -58,6 +58,7 @@ CGI::Application::Dispatch->dispatch(
 		'togateway' => {app => 'Payment', rm => 'togateway'},
 		'success' => {app => 'Payment', rm => 'success'},
 		'failure' => {app => 'Payment', rm => 'failure'},
+		'thanks' => {app => 'Payment', rm => 'thanks'},
 	],
 
 	debug => 1,

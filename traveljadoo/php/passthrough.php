@@ -1,8 +1,5 @@
 <?php
 
-// IMPORTANT NOTE - Merchant should ensure that he is not using demo pages in production, 
-// also merchant should ensure that request from merchant page  to plugin goes in secure manner
-
 // Expects the following
 // TrackId
 // Currency Code
@@ -22,34 +19,37 @@
 		exit;
 	}
 	
-	$trackid = isset($_POST['trackid']) ?  $_POST['trackid'] : 0;
+	$trackid  = isset($_POST['trackid']) ?  $_POST['trackid'] : 0;
 	$currency = isset($_POST['currency']) ?  $_POST['currency'] : 0;
-	$amount = isset($_POST['amount']) ?  $_POST['amount'] : 0;
-	$udf1 = isset($_POST['udf1']) ?  $_POST['udf1'] : 0;
-
+	$amount   = isset($_POST['amount']) ?  $_POST['amount'] : 0;
+	$alias    = isset($_POST['alias']) ? $_POST['alias'] : 0;
+	$respurl  = isset($_POST['respurl']) ? $_POST['respurl'] : 0;
+	$errurl   = isset($_POST['errurl']) ? $_POST['errurl'] : 0;
+	$rsrcpath = isset($_POST['rsrcpath']) ? $_POST['rsrcpath'] : 0;
+	$udf1     = isset($_POST['udf1']) ?  $_POST['udf1'] : 0;
+	$udf2     = isset($_POST['udf2']) ?  $_POST['udf2'] : 0;
+	
 	if (!($trackid && $currency && $amount && $udf1)) {
 		
 		echo  -1;
 		exit;
 	}
 	
-	
-	
 	require_once('java/Java.inc');
-
 	$pipe = new Java('com.aciworldwide.commerce.gateway.plugins.e24PaymentPipe');
 	
 	$pipe->setLanguage("USA");
 	$pipe->setAction("1");
-	$pipe->setResponseURL("http://www.travellers-palm.com/success");
-	$pipe->setErrorURL("http://www.travellers-palm.com/failure");
-	$pipe->setResourcePath("/home/tpcom/traveljadoo/conf/");
-	$pipe->setAlias("90001343");
-	
+
+	$pipe->setResponseURL($respurl);
+	$pipe->setErrorURL($errurl);
+	$pipe->setResourcePath($rsrcpath);
+	$pipe->setAlias($alias);
 	$pipe->setCurrency($currency);
 	$pipe->setAmt($amount);
 	$pipe->setTrackId($trackid); 
 	$pipe->setUdf1($udf1);
+	$pipe->setUdf2($udf2);
 	
 	$status = $pipe->performPaymentInitialization();
 	

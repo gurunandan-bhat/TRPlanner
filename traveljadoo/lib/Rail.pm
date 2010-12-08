@@ -16,9 +16,9 @@ our $VERSION = '0.01';
 
 sub cgiapp_init {
 	
-	my ($app, %params) = @_;
+	my ($app, $params) = @_;
 	
-	$app->config_file($params{cfg_file});
+	$app->config_file($params->{cfg_file});
 	$app->tmpl_path( $app->config_param('default.TemplatePath') );
 
 	CGI::Session->name($app->config_param('Default.CookieName'));

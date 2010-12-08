@@ -12,12 +12,12 @@ use Odyssey::Constants;
 CGI::Application::Dispatch->dispatch(
 
 	prefix => 'Odyssey',
-	default => 'Init',
 	args_to_new => {
 		cfg_file => $Odyssey::Constants::confdir . 'Odyssey.conf',
 	},
 	table => [
 		'' => {app => 'Init', rm => 'home'},
+		'/' => {app => 'Init', rm => 'home'},
 		'city/:city' => {app => 'Hotels', rm => 'cityhotels'},
 		'hotel/:hotel' => {app => 'Hotels', rm => 'describe'},
 		'state/:state' => {app => 'Hotels', rm => 'statehotels'},
@@ -54,8 +54,12 @@ CGI::Application::Dispatch->dispatch(
 		'confirm-quotation' => {app => 'Init', rm => 'quotation_details'},
 		'acknowledge-quotation' => {app => 'Init', rm => 'quote_modtours'},
 		'getimg_attr/:imgname' => {app => 'Hotels', rm => 'getimg_attr'},
+		'checkout' => {app => 'Payment', rm => 'index'},
+		'togateway' => {app => 'Payment', rm => 'togateway'},
+		'success' => {app => 'Payment', rm => 'success'},
+		'failure' => {app => 'Payment', rm => 'failure'},
 	],
 
-	debug => 0,
+	debug => 1,
 	
 );

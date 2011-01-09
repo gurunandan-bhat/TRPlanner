@@ -13,6 +13,7 @@
 
 // TODO Add some signature to identify source
 
+	header('Content-type: text/plain');
 	if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
 		echo -1;
@@ -29,12 +30,12 @@
 	$udf1     = isset($_POST['udf1']) ?  $_POST['udf1'] : 0;
 	$udf2     = isset($_POST['udf2']) ?  $_POST['udf2'] : 0;
 	
-	if (!($trackid && $currency && $amount && $udf1)) {
+	if (!($trackid && $currency && $amount && $udf1 && $udf2)) {
 		
 		echo  -1;
 		exit;
 	}
-	
+
 	require_once('java/Java.inc');
 	$pipe = new Java('com.aciworldwide.commerce.gateway.plugins.e24PaymentPipe');
 	
@@ -50,27 +51,12 @@
 	$pipe->setTrackId($trackid); 
 	$pipe->setUdf1($udf1);
 	$pipe->setUdf2($udf2);
+
+  	$status = $pipe->performPaymentInitialization();
+
+	$payID = $pipe->getPaymentId();
+	$payURL = $pipe->getPaymentPage();
+	echo "$payURL?PaymentID=$payID";
 	
-	$status = $pipe->performPaymentInitialization();
-	
-	if ($status == -1) {
-
-		echo 0;
-		exit;
-	}
-	elseif ($status == 0) {
-
-		$payID = $pipe->getPaymentId();
-		$payURL = $pipe->getPaymentPage();
-		
-		header('Content-type: text/plain');
-		echo "$payURL?PaymentID=$payID";
-
-		exit;
-	}
-	elseif {
-
-		echo -1,
-		exit;
-	}
+	exit;
 	

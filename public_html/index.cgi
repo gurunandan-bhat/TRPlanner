@@ -59,6 +59,7 @@ CGI::Application::Dispatch->dispatch(
 		'success' => {app => 'Payment', rm => 'success'},
 		'failure' => {app => 'Payment', rm => 'failure'},
 		'thanks' => {app => 'Payment', rm => 'thanks'},
+		'form' => {app => 'Init', rm => 'init'},
 	],
 
 	debug => 1,

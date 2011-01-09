@@ -4,8 +4,11 @@ use strict;
 use warnings;
 
 use LWP::UserAgent;
+use HTTP::Request::Common;
 use Data::Dumper;
 use Regexp::Common qw{URI};
+use Data::UUID;
+
 use lib qw{../};
 use base qw(Odyssey);
 
@@ -65,11 +68,11 @@ sub togateway {
 				$app->redirect($rdurl) ;
 			}
 			else {
-				die({type => 'error', msg => {'Got an Invalid URL from Gateway. Aborting'}});
+				die({type => 'error', msg => 'Got an Invalid URL from Gateway. Aborting'});
 			}
 		}
 		else {
-			die({type => 'error', msg => {'Got NULL response from URL Converter. Aborting'}});
+			die({type => 'error', msg => 'Got NULL response from URL Converter. Aborting'});
 		}
 	}
 	else {
@@ -86,13 +89,15 @@ sub success {
 	open my $sickfh, ">", "/tmp/HDFCLog.txt";
 	print $sickfh '<pre>' . Dumper($params) . '</pre>';
 	
-	$app->redirect('thanks');	
+	my $qrystr = join('&', map {$_ . '=' . $params->{$_}} keys %$params);
+	
+	return 'REDIRECT=' . 'http://www.travellers-palm.com/thanks' . '?' . $qrystr;
 }
 
 sub thanks {
 	
 	my $app = shift;
-	my $q = $app->Vars;
+	my $q = $app->query;
 
 	my $params = $q->Vars;
 	return '<p>Thank You</p><br /><pre>' . Dumper($params) . '</pre>';

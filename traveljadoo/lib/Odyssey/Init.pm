@@ -53,8 +53,6 @@ sub setup {
 
 	$app->start_mode('home');
 	$app->error_mode('errhndlr');
-	
-	$app->authen->protected_runmodes('init');
 }
 
 

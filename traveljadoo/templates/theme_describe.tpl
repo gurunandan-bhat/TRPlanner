@@ -5,14 +5,14 @@
 		<!-- TMPL_INCLUDE NAME="googletracker.tpl" -->
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title>India Itineraries - Recommended Travel Ideas | Traveller's Palm</title>
-		<link rel="stylesheet" href="/css/screen.css" type="text/css" media="screen, projection" charset="utf-8" />
-		<!--[if lt IE 8]><link rel="stylesheet" href="/css/ie.css" type="text/css" media="screen, projection"><![endif]-->
-		<link rel="stylesheet" href="/css/ch_odyssey.css" type="text/css" media="screen, projection" charset="utf-8" />
-		<link rel="stylesheet" href="/css/tabs.css" type="text/css" media="screen, projection" charset="utf-8" />
-		<script type="text/javascript" src="/js/jquery-1.4.3.min.js"></script>
+		<link rel="stylesheet" href="<!-- TMPL_VAR NAME=BASEPREFIX -->css/screen.css" type="text/css" media="screen, projection" charset="utf-8" />
+		<!--[if lt IE 8]><link rel="stylesheet" href="<!-- TMPL_VAR NAME=BASEPREFIX -->css/ie.css" type="text/css" media="screen, projection"><![endif]-->
+		<link rel="stylesheet" href="<!-- TMPL_VAR NAME=BASEPREFIX -->css/ch_odyssey.css" type="text/css" media="screen, projection" charset="utf-8" />
+		<link rel="stylesheet" href="<!-- TMPL_VAR NAME=BASEPREFIX -->css/tabs.css" type="text/css" media="screen, projection" charset="utf-8" />
+		<script type="text/javascript" src="<!-- TMPL_VAR NAME=BASEPREFIX -->js/jquery-1.4.3.min.js"></script>
 		<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
-		<script type="text/javascript" src="/js/gmaps.js"></script>
-		<script type="text/javascript" src="/js/blk.js"></script>
+		<script type="text/javascript" src="<!-- TMPL_VAR NAME=BASEPREFIX -->js/gmaps.js"></script>
+		<script type="text/javascript" src="<!-- TMPL_VAR NAME=BASEPREFIX -->js/blk.js"></script>
 		<meta name="description" content="<!-- TMPL_VAR NAME=METADESCRIPTION -->" />
 		<meta name="keywords" content="<!-- TMPL_VAR NAME=METAKEYWORDS -->" />
 		<title>
@@ -32,7 +32,7 @@
 				<div id="tabs">
 					<ul>
 						<!-- TMPL_LOOP NAME=MAINTHEMES -->
-						<li<!-- TMPL_IF NAME = THEME_CURRENT --> id="<!-- TMPL_VAR NAME=THEME_CURRENT -->"<!-- /TMPL_IF -->><a href="/themes/<!-- TMPL_VAR NAME=THEME_URL -->"><!-- TMPL_VAR NAME=THEME_TITLE --></a></li>
+						<li<!-- TMPL_IF NAME = THEME_CURRENT --> id="<!-- TMPL_VAR NAME=THEME_CURRENT -->"<!-- /TMPL_IF -->><a href="<!-- TMPL_VAR NAME=BASEPREFIX -->themes/<!-- TMPL_VAR NAME=THEME_URL -->"><!-- TMPL_VAR NAME=THEME_TITLE --></a></li>
 						<!-- /TMPL_LOOP -->
 					</ul>
 				</div>

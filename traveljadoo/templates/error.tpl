@@ -2,10 +2,10 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-		<link rel="stylesheet" href="/css/screen.css" type="text/css" media="screen, projection">
-		<link rel="stylesheet" href="/css/print.css" type="text/css" media="print"> 
-		<!--[if lt IE 8]><link rel="stylesheet" href="/css/ie.css" type="text/css" media="screen, projection"><![endif]-->
-		<link rel="stylesheet" href="/css/newodyssey.css" type="text/css" media="screen, projection"> 
+		<link rel="stylesheet" href="<!-- TMPL_VAR NAME=BASEPREFIX -->css/screen.css" type="text/css" media="screen, projection">
+		<link rel="stylesheet" href="<!-- TMPL_VAR NAME=BASEPREFIX -->css/print.css" type="text/css" media="print"> 
+		<!--[if lt IE 8]><link rel="stylesheet" href="<!-- TMPL_VAR NAME=BASEPREFIX -->css/ie.css" type="text/css" media="screen, projection"><![endif]-->
+		<link rel="stylesheet" href="<!-- TMPL_VAR NAME=BASEPREFIX -->css/newodyssey.css" type="text/css" media="screen, projection"> 
 		<title>Odyssey: Sorry! An Unexpected Error Occurred</title>
 	</head>
 	<body>
@@ -18,7 +18,7 @@
 			<div class="column span-24 last city">
 				<div class="column span-16">
 					<div id="slideshow" class="mainimg">
-						<img src="/images/error_image_2.jpg" width="600" height="370" alt="Errors are Fun, No?" />
+						<img src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/error_image_2.jpg" width="600" height="370" alt="Errors are Fun, No?" />
 					</div>
 				</div>
 				<div class="column span-8 last description">

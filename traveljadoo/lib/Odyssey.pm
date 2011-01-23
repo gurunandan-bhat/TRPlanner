@@ -58,7 +58,7 @@ sub cgiapp_init {
 	);
 	CGI::Session->name('ODYSSEYPALM');
 	
-	$app->dbh_config($app->config_param('UserDBDSN'), '', '',);
+	$app->dbh_config($app->config_param('default.UserDBDSN'), '', '',);
 	
 	$app->authen->config(
 		DRIVER => 'Dummy',
@@ -92,6 +92,7 @@ sub cgiapp_prerun {
 
 		$ht_params->{die_on_bad_params} = 0;
 		
+		$tmpl_params->{BASEPREFIX} = $app->config_param('default.BasePrefix');
 		$tmpl_params->{THISURL} = $app->query->url;
 		$tmpl_params->{GOOGLEKEY} = $googlekey;
 		$tmpl_params->{FOOTERTEXT} = "$foot1<br /><br />$foot2";
@@ -125,6 +126,12 @@ sub errhndlr {
 		MSG => $errstr,
 	);
 
+	if (! $app->config_param('default.SendErrorEmail')) {
+
+		return $tpl->output;
+	}
+	
+	
 	my $msg = MIME::Lite->new(
 		To => 		'hans@odyssey.co.in',
 		From => 	'Travellers Palm Administrator <webmaster@travellers-palm.com>',

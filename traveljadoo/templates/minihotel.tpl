@@ -52,8 +52,8 @@
 </style>
 <h3 class="inset"><!-- TMPL_VAR NAME=HOTELNAME --></h3>
 <div id="minislideshow" thishotel="<!-- TMPL_VAR NAME=HOTELID -->" maxhotelimages="<!-- TMPL_VAR NAME=NUMIMAGES -->">
-	<img src="/images/hotel/hotel_<!-- TMPL_VAR NAME=HOTELID -->_large_1.jpg" width="400" height="240" alt="1" />
-	<img src="/images/hotel/hotel_<!-- TMPL_VAR NAME=HOTELID -->_large_2.jpg" width="400" height="240" alt="2" />
+	<img src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/hotel/hotel_<!-- TMPL_VAR NAME=HOTELID -->_large_1.jpg" width="400" height="240" alt="1" />
+	<img src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/hotel/hotel_<!-- TMPL_VAR NAME=HOTELID -->_large_2.jpg" width="400" height="240" alt="2" />
 </div>
 <hr class="space" />
 <!-- TMPL_VAR NAME=HOTELDESCRIPTION -->

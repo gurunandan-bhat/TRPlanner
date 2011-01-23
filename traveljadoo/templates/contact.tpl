@@ -3,12 +3,12 @@
 	<head>
 		<!-- TMPL_INCLUDE NAME="googletracker.tpl" -->
 		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-		<link rel="stylesheet" href="css/screen.css" type="text/css" media="screen, projection">
-		<link rel="stylesheet" href="css/print.css" type="text/css" media="print"> 
-		<!--[if lt IE 8]><link rel="stylesheet" href="css/ie.css" type="text/css" media="screen, projection"><![endif]-->
-		<link rel="stylesheet" href="css/newodyssey.css" type="text/css" media="screen, projection"> 
-		<script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
-		<script type="text/javascript" src="js/blk.js"></script>
+		<link rel="stylesheet" href="<!-- TMPL_VAR NAME=BASEPREFIX -->css/screen.css" type="text/css" media="screen, projection">
+		<link rel="stylesheet" href="<!-- TMPL_VAR NAME=BASEPREFIX -->css/print.css" type="text/css" media="print"> 
+		<!--[if lt IE 8]><link rel="stylesheet" href="<!-- TMPL_VAR NAME=BASEPREFIX -->css/ie.css" type="text/css" media="screen, projection"><![endif]-->
+		<link rel="stylesheet" href="<!-- TMPL_VAR NAME=BASEPREFIX -->css/newodyssey.css" type="text/css" media="screen, projection"> 
+		<script type="text/javascript" src="<!-- TMPL_VAR NAME=BASEPREFIX -->js/jquery-1.4.2.min.js"></script>
+		<script type="text/javascript" src="<!-- TMPL_VAR NAME=BASEPREFIX -->js/blk.js"></script>
 		<meta name="description" content="<!-- TMPL_VAR NAME=METADESCRIPTION -->" />
 		<meta name="keywords" content="<!-- TMPL_VAR NAME=METAKEYWORDS -->" />
 		<title>
@@ -25,7 +25,7 @@
 				<!-- TMPL_INCLUDE NAME="bannermenu_contact.tpl" -->					
 			</div>
 			<div class="span-24 last">
-				<img src="images/contactus_large.jpg" width="950" height="150" alt="Collage"/>
+				<img src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/contactus_large.jpg" width="950" height="150" alt="Collage"/>
 			</div>
 			<hr class="space" />
 			<div class="content" style="background: none;">

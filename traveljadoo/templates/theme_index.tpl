@@ -5,11 +5,11 @@
 		<!-- TMPL_INCLUDE NAME="googletracker.tpl" -->
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<!-- <meta name="viewport" content="initial-scale=1.0, user-scalable=no" /> -->
-		<link rel="stylesheet" href="/css/screen.css" type="text/css" media="screen, projection" charset="utf-8" />
-		<!--[if lt IE 8]><link rel="stylesheet" href="/css/ie.css" type="text/css" media="screen, projection"><![endif]-->
-		<link rel="stylesheet" href="/css/newodyssey.css" type="text/css" media="screen, projection" charset="utf-8" />
-		<script type="text/javascript" src="/js/jquery-1.4.2.min.js"></script>
-		<script type="text/javascript" src="/js/blk.js"></script>
+		<link rel="stylesheet" href="<!-- TMPL_VAR NAME=BASEPREFIX -->css/screen.css" type="text/css" media="screen, projection" charset="utf-8" />
+		<!--[if lt IE 8]><link rel="stylesheet" href="<!-- TMPL_VAR NAME=BASEPREFIX -->css/ie.css" type="text/css" media="screen, projection"><![endif]-->
+		<link rel="stylesheet" href="<!-- TMPL_VAR NAME=BASEPREFIX -->css/newodyssey.css" type="text/css" media="screen, projection" charset="utf-8" />
+		<script type="text/javascript" src="<!-- TMPL_VAR NAME=BASEPREFIX -->js/jquery-1.4.2.min.js"></script>
+		<script type="text/javascript" src="<!-- TMPL_VAR NAME=BASEPREFIX -->js/blk.js"></script>
 		<meta name="description" content="<!-- TMPL_VAR NAME=METADESCRIPTION -->" />
 		<meta name="keywords" content="<!-- TMPL_VAR NAME=METAKEYWORDS -->" />
 		<title>
@@ -31,16 +31,16 @@
 			<div class="span-24 last thememenu">
 			<!-- TMPL_LOOP NAME=TOPROW -->
 				<div class="span-8<!-- TMPL_IF NAME=__last__ --> last<!-- /TMPL_IF -->">
-					<a href="/themes/<!-- TMPL_VAR NAME=THEME_URL -->"><h1 class="themename"><!-- TMPL_VAR NAME=THEME_TITLE --></h1></a>
-					<a href="/themes/<!-- TMPL_VAR NAME=THEME_URL -->"><img src="/images/themes/theme_<!-- TMPL_VAR NAME=THEME_ID -->_1.jpg" width="310" height="160" /></a>
+					<a href="<!-- TMPL_VAR NAME=BASEPREFIX -->themes/<!-- TMPL_VAR NAME=THEME_URL -->"><h1 class="themename"><!-- TMPL_VAR NAME=THEME_TITLE --></h1></a>
+					<a href="<!-- TMPL_VAR NAME=BASEPREFIX -->themes/<!-- TMPL_VAR NAME=THEME_URL -->"><img src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/themes/theme_<!-- TMPL_VAR NAME=THEME_ID -->_1.jpg" width="310" height="160" /></a>
 					<hr class="space">
 				</div>
 			<!-- /TMPL_LOOP -->
 			<hr />
 			<!-- TMPL_LOOP NAME=BOTROW -->
 				<div class="span-8<!-- TMPL_IF NAME=__last__ --> last<!-- /TMPL_IF -->">
-					<a href="/themes/<!-- TMPL_VAR NAME=THEME_URL -->"><h1 class="themename"><!-- TMPL_VAR NAME=THEME_TITLE --></h1></a>
-					<a href="/themes/<!-- TMPL_VAR NAME=THEME_URL -->"><img src="/images/themes/theme_<!-- TMPL_VAR NAME=THEME_ID -->_1.jpg" width="310" height="160" /></a>
+					<a href="<!-- TMPL_VAR NAME=BASEPREFIX -->themes/<!-- TMPL_VAR NAME=THEME_URL -->"><h1 class="themename"><!-- TMPL_VAR NAME=THEME_TITLE --></h1></a>
+					<a href="<!-- TMPL_VAR NAME=BASEPREFIX -->themes/<!-- TMPL_VAR NAME=THEME_URL -->"><img src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/themes/theme_<!-- TMPL_VAR NAME=THEME_ID -->_1.jpg" width="310" height="160" /></a>
 					<hr class="space">
 				</div>
 			<!-- /TMPL_LOOP -->

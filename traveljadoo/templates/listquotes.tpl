@@ -3,10 +3,10 @@
 	<head>
 		<!-- TMPL_INCLUDE NAME="googletracker.tpl" -->
 		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-		<link rel="stylesheet" href="css/screen.css" type="text/css" media="screen, projection">
-		<link rel="stylesheet" href="css/print.css" type="text/css" media="print"> 
-		<!--[if lt IE 8]><link rel="stylesheet" href="css/ie.css" type="text/css" media="screen, projection"><![endif]-->
-		<link rel="stylesheet" href="css/odyssey.css" type="text/css" media="screen, projection"> 
+		<link rel="stylesheet" href="<!-- TMPL_VAR NAME=BASEPREFIX -->css/screen.css" type="text/css" media="screen, projection">
+		<link rel="stylesheet" href="<!-- TMPL_VAR NAME=BASEPREFIX -->css/print.css" type="text/css" media="print"> 
+		<!--[if lt IE 8]><link rel="stylesheet" href="<!-- TMPL_VAR NAME=BASEPREFIX -->css/ie.css" type="text/css" media="screen, projection"><![endif]-->
+		<link rel="stylesheet" href="<!-- TMPL_VAR NAME=BASEPREFIX -->css/odyssey.css" type="text/css" media="screen, projection"> 
 		<title>Odyssey: Module Log</title>
 	</head>
 	<body>
@@ -17,7 +17,7 @@
 			<div class="column span-24 last city">
 				<div class="column span-16">
 					<div id="slideshow" class="mainimg">
-						<img src="images/dalailama.jpg" width="600" height="370" alt="Errors are Fun, No?" />
+						<img src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/dalailama.jpg" width="600" height="370" alt="Errors are Fun, No?" />
 					</div>
 				</div>
 				<div class="column span-8 last description">
@@ -35,7 +35,7 @@
 						<!-- TMPL_LOOP NAME=QUOTES -->
 						<tr<!-- TMPL_UNLESS NAME=__odd__ --> class="even"<!-- /TMPL_UNLESS -->>
 							<td><!-- TMPL_VAR NAME=QUOTEID --></td>
-							<td><a href="edit.cgi?mode=listtour&quoteid=<!-- TMPL_VAR NAME=QUOTEID -->"><!-- TMPL_VAR NAME=PAXNAME --></a></td>
+							<td><a href="<!-- TMPL_VAR NAME=BASEPREFIX -->edit.cgi?mode=listtour&quoteid=<!-- TMPL_VAR NAME=QUOTEID -->"><!-- TMPL_VAR NAME=PAXNAME --></a></td>
 							<td><!-- TMPL_VAR NAME=ARRDATE --></td>
 							<td><!-- TMPL_VAR NAME=STARTDATE --></td>
 						</tr>

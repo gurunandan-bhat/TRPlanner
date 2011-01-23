@@ -1,5 +1,5 @@
 <div class="hotelsearch">
-	<form id="hotelssearch" method="post" action="hotel.cgi">
+	<form id="hotelssearch" method="post" action="<!-- TMPL_VAR NAME=BASEPREFIX -->hotel.cgi">
 		<select class="bystate" name="id" size="1">
 			<option value="0" selected="selected">Search Hotels by State...</option>
 			<!-- TMPL_LOOP NAME=STATES -->

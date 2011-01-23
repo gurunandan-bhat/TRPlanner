@@ -3,15 +3,15 @@
 	<head>
 		<!-- TMPL_INCLUDE NAME="googletracker.tpl" -->
 		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-		<link rel="stylesheet" href="css/screen.css" type="text/css" media="screen, projection">
-		<link rel="stylesheet" href="css/print.css" type="text/css" media="print"> 
-		<!--[if lt IE 8]><link rel="stylesheet" href="css/ie.css" type="text/css" media="screen, projection"><![endif]-->
-		<link rel="stylesheet" href="css/newodyssey.css" type="text/css" media="screen, projection"> 
-		<link rel="stylesheet" href="css/cmxform.css" type="text/css" media="screen, projection"> 
-		<script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
-		<script type="text/javascript" src="js/jquery.validate.pack.js"></script>
-		<script type="text/javascript" src="js/quoteformdetails-validate.js"></script>
-		<script type="text/javascript" src="js/blk.js"></script>
+		<link rel="stylesheet" href="<!-- TMPL_VAR NAME=BASEPREFIX -->css/screen.css" type="text/css" media="screen, projection">
+		<link rel="stylesheet" href="<!-- TMPL_VAR NAME=BASEPREFIX -->css/print.css" type="text/css" media="print"> 
+		<!--[if lt IE 8]><link rel="stylesheet" href="<!-- TMPL_VAR NAME=BASEPREFIX -->css/ie.css" type="text/css" media="screen, projection"><![endif]-->
+		<link rel="stylesheet" href="<!-- TMPL_VAR NAME=BASEPREFIX -->css/newodyssey.css" type="text/css" media="screen, projection"> 
+		<link rel="stylesheet" href="<!-- TMPL_VAR NAME=BASEPREFIX -->css/cmxform.css" type="text/css" media="screen, projection"> 
+		<script type="text/javascript" src="<!-- TMPL_VAR NAME=BASEPREFIX -->js/jquery-1.4.2.min.js"></script>
+		<script type="text/javascript" src="<!-- TMPL_VAR NAME=BASEPREFIX -->js/jquery.validate.pack.js"></script>
+		<script type="text/javascript" src="<!-- TMPL_VAR NAME=BASEPREFIX -->js/quoteformdetails-validate.js"></script>
+		<script type="text/javascript" src="<!-- TMPL_VAR NAME=BASEPREFIX -->js/blk.js"></script>
 		<title>Odyssey: About Us</title>
 	</head>
 	<body>
@@ -20,20 +20,20 @@
 				<!-- TMPL_INCLUDE NAME="bannermenu_splaces.tpl" -->					
 			</div>
 			<div class="span-24 last">
-				<img src="images/aboutus_large.jpg" width="950" height="150" alt="Collage"/>
+				<img src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/aboutus_large.jpg" width="950" height="150" alt="Collage"/>
 			</div>
 			<hr class="space" />
 			<div class="content">
 				<div class="span-4 leftcol">
 					<h3>Quick Links</h3>
 					<ul>
-						<li><a href="/">Home</li>
-						<li><a href="/themes">Themes</a></li>
-						<li><a href="/special_places">Special Places</a></li>
-						<li><a href="/modules">Modules</a></li>
-						<li><a href="/tours">Tours</a></li>
-						<li><a href="/about-us">Tours</a></li>
-						<li><a href="/contact-us">Contact Us</a></li>
+						<li><a href="<!-- TMPL_VAR NAME=BASEPREFIX -->">Home</li>
+						<li><a href="<!-- TMPL_VAR NAME=BASEPREFIX -->themes">Themes</a></li>
+						<li><a href="<!-- TMPL_VAR NAME=BASEPREFIX -->special_places">Special Places</a></li>
+						<li><a href="<!-- TMPL_VAR NAME=BASEPREFIX -->modules">Modules</a></li>
+						<li><a href="<!-- TMPL_VAR NAME=BASEPREFIX -->tours">Tours</a></li>
+						<li><a href="<!-- TMPL_VAR NAME=BASEPREFIX -->about-us">Tours</a></li>
+						<li><a href="<!-- TMPL_VAR NAME=BASEPREFIX -->contact-us">Contact Us</a></li>
 					</ul>
 				</div>
 				<div class="span-12 midcol">
@@ -164,7 +164,7 @@
 						</fieldset>
 						<input type="hidden" name="mode" value="quote_modtours" />
 						<p><input type="submit" value="Send me a Quotation" /></p>
-						<p>Click here to return to <a href="/modules">Itineraries</a> or <a href="/tours">Ready Tours</a>.</p>
+						<p>Click here to return to <a href="<!-- TMPL_VAR NAME=BASEPREFIX -->modules">Itineraries</a> or <a href="<!-- TMPL_VAR NAME=BASEPREFIX -->tours">Ready Tours</a>.</p>
 					</form>
 				</div>
 				<div class="span-8 rightcol last">
@@ -173,25 +173,25 @@
 						<h5>Modules</h5>
 						<ol>
 							<!-- TMPL_LOOP NAME=ITINS -->
-							<li><a href="/moduledetails/<!-- TMPL_VAR NAME=URL -->"><!-- TMPL_VAR NAME=NAME --></a></li>
+							<li><a href="<!-- TMPL_VAR NAME=BASEPREFIX -->moduledetails/<!-- TMPL_VAR NAME=URL -->"><!-- TMPL_VAR NAME=NAME --></a></li>
 							<!-- /TMPL_LOOP -->
 						</ol>
 						<h5>Tours</h5>
 						<ol>
 							<!-- TMPL_LOOP NAME=RTOURS -->
-							<li><a href="/tourdetails/<!-- TMPL_VAR NAME=URL -->"><!-- TMPL_VAR NAME=NAME --></a></li>
+							<li><a href="<!-- TMPL_VAR NAME=BASEPREFIX -->tourdetails/<!-- TMPL_VAR NAME=URL -->"><!-- TMPL_VAR NAME=NAME --></a></li>
 							<!-- /TMPL_LOOP -->
 						</ol>
 						<h5>Cities</h5>
 						<ol>
 							<!-- TMPL_LOOP NAME=CITIES -->
-							<li><a href="/city/<!-- TMPL_VAR NAME=URL -->"><!-- TMPL_VAR NAME=NAME --></a></li>
+							<li><a href="<!-- TMPL_VAR NAME=BASEPREFIX -->city/<!-- TMPL_VAR NAME=URL -->"><!-- TMPL_VAR NAME=NAME --></a></li>
 							<!-- /TMPL_LOOP -->
 						</ol>
 						<h5>Hotels</h5>
 						<ol>
 							<!-- TMPL_LOOP NAME=HOTELS -->
-							<li><a href="/hotel/<!-- TMPL_VAR NAME=URL -->"><!-- TMPL_VAR NAME=NAME --></a></li>
+							<li><a href="<!-- TMPL_VAR NAME=BASEPREFIX -->hotel/<!-- TMPL_VAR NAME=URL -->"><!-- TMPL_VAR NAME=NAME --></a></li>
 							<!-- /TMPL_LOOP -->
 						</ol>
 					</div>

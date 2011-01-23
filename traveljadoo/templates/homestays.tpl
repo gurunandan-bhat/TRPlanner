@@ -3,12 +3,12 @@
 	<head>
 		<!-- TMPL_INCLUDE NAME="googletracker.tpl" -->
 		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-		<link rel="stylesheet" href="css/screen.css" type="text/css" media="screen, projection">
-		<link rel="stylesheet" href="css/print.css" type="text/css" media="print"> 
-		<!--[if lt IE 8]><link rel="stylesheet" href="css/ie.css" type="text/css" media="screen, projection"><![endif]-->
-		<link rel="stylesheet" href="css/newodyssey.css" type="text/css" media="screen, projection"> 
-		<script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
-		<script type="text/javascript" src="js/blk.js"></script>
+		<link rel="stylesheet" href="<!-- TMPL_VAR NAME=BASEPREFIX -->css/screen.css" type="text/css" media="screen, projection">
+		<link rel="stylesheet" href="<!-- TMPL_VAR NAME=BASEPREFIX -->css/print.css" type="text/css" media="print"> 
+		<!--[if lt IE 8]><link rel="stylesheet" href="<!-- TMPL_VAR NAME=BASEPREFIX -->css/ie.css" type="text/css" media="screen, projection"><![endif]-->
+		<link rel="stylesheet" href="<!-- TMPL_VAR NAME=BASEPREFIX -->css/newodyssey.css" type="text/css" media="screen, projection"> 
+		<script type="text/javascript" src="<!-- TMPL_VAR NAME=BASEPREFIX -->js/jquery-1.4.2.min.js"></script>
+		<script type="text/javascript" src="<!-- TMPL_VAR NAME=BASEPREFIX -->js/blk.js"></script>
 		<meta name="description" content="<!-- TMPL_VAR NAME=METADESCRIPTION -->" />
 		<meta name="keywords" content="<!-- TMPL_VAR NAME=METAKEYWORDS -->" />
 		<title>
@@ -25,26 +25,26 @@
 				<!-- TMPL_INCLUDE NAME="bannermenu_splaces.tpl" -->					
 			</div>
 			<div class="span-24 last">
-				<img src="images/banners/banner_homestays.jpg" width="950" height="150" alt="Collage"/>
+				<img src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/banners/banner_homestays.jpg" width="950" height="150" alt="Collage"/>
 			</div>
 			<hr class="space" />
 			<div class="content">
 				<div class="span-4 leftcol">
 					<h3>Quick Links</h3>
 					<ul>
-						<li><a href="/">Home</li>
-						<li><a href="/themes">Incredible India</a></li>
-						<li><a href="special_places">Special Places</a>
+						<li><a href="<!-- TMPL_VAR NAME=BASEPREFIX -->">Home</li>
+						<li><a href="<!-- TMPL_VAR NAME=BASEPREFIX -->themes">Incredible India</a></li>
+						<li><a href="<!-- TMPL_VAR NAME=BASEPREFIX -->special_places">Special Places</a>
 							<ul>
-								<li><a href="/hotel-categories">Hotel Categories</a></li>
-								<li><a href="heritage-hotels">Heritage Hotels</a></li>
+								<li><a href="<!-- TMPL_VAR NAME=BASEPREFIX -->hotel-categories">Hotel Categories</a></li>
+								<li><a href="<!-- TMPL_VAR NAME=BASEPREFIX -->heritage-hotels">Heritage Hotels</a></li>
 								<li><div id="current"> &raquo; Home Stays</div></li>
 							</ul>
 						</li>
-						<li><a href="/modules">Mini Itineraries</a></li>
-						<li><a href="/tours">Indian Journeys</a></li>
-						<li><a href="/about-us">About Us</a></li>
-						<li><a href="/contact-us">Contact Us</a></li>
+						<li><a href="<!-- TMPL_VAR NAME=BASEPREFIX -->modules">Mini Itineraries</a></li>
+						<li><a href="<!-- TMPL_VAR NAME=BASEPREFIX -->tours">Indian Journeys</a></li>
+						<li><a href="<!-- TMPL_VAR NAME=BASEPREFIX -->about-us">About Us</a></li>
+						<li><a href="<!-- TMPL_VAR NAME=BASEPREFIX -->contact-us">Contact Us</a></li>
 					</ul>
 				</div>
 				<div class="span-12 midcol">
@@ -61,7 +61,7 @@
 							<li><a href="#"><!-- TMPL_VAR NAME=STATENAME --></a>
 								<ul class="mlevel2">
 									<!-- TMPL_LOOP NAME=HOTELS -->
-									<li><a href="/hotel/<!-- TMPL_VAR NAME=URL -->"><!-- TMPL_VAR NAME=NAME --></a></li>
+									<li><a href="<!-- TMPL_VAR NAME=BASEPREFIX -->hotel/<!-- TMPL_VAR NAME=URL -->"><!-- TMPL_VAR NAME=NAME --></a></li>
 									<!-- /TMPL_LOOP -->
 								</ul>
 							</li>

@@ -3,17 +3,17 @@
 	<head>
 		<!-- TMPL_INCLUDE NAME="googletracker.tpl" -->
 		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-		<link rel="stylesheet" href="/css/screen.css" type="text/css" media="screen, projection">
-		<link rel="stylesheet" href="/css/print.css" type="text/css" media="print"> 
-		<!--[if lt IE 8]><link rel="stylesheet" href="/css/ie.css" type="text/css" media="screen, projection"><![endif]-->
-		<link rel="stylesheet" href="/css/ch_odyssey.css" type="text/css" media="screen, projection"> 
+		<link rel="stylesheet" href="<!-- TMPL_VAR NAME=BASEPREFIX -->css/screen.css" type="text/css" media="screen, projection">
+		<link rel="stylesheet" href="<!-- TMPL_VAR NAME=BASEPREFIX -->css/print.css" type="text/css" media="print"> 
+		<!--[if lt IE 8]><link rel="stylesheet" href="<!-- TMPL_VAR NAME=BASEPREFIX -->css/ie.css" type="text/css" media="screen, projection"><![endif]-->
+		<link rel="stylesheet" href="<!-- TMPL_VAR NAME=BASEPREFIX -->css/ch_odyssey.css" type="text/css" media="screen, projection"> 
 		<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key=<!-- TMPL_VAR NAME=GOOGLEKEY -->" type="text/javascript"></script>
-		<script type="text/javascript" src="/js/jquery-1.4.2.min.js"></script>
-		<script type="text/javascript" src="/js/jquery.cycle.min.js"></script>
-		<script type="text/javascript" src="/js/odysseyhotels.js"></script>
-		<script type="text/javascript" src="/js/hotelsearch.js"></script>
-		<script type="text/javascript" src="/js/favourites.js"></script>
-		<script type="text/javascript" src="/js/blk.js"></script>
+		<script type="text/javascript" src="<!-- TMPL_VAR NAME=BASEPREFIX -->js/jquery-1.4.2.min.js"></script>
+		<script type="text/javascript" src="<!-- TMPL_VAR NAME=BASEPREFIX -->js/jquery.cycle.min.js"></script>
+		<script type="text/javascript" src="<!-- TMPL_VAR NAME=BASEPREFIX -->js/odysseyhotels.js"></script>
+		<script type="text/javascript" src="<!-- TMPL_VAR NAME=BASEPREFIX -->js/hotelsearch.js"></script>
+		<script type="text/javascript" src="<!-- TMPL_VAR NAME=BASEPREFIX -->js/favourites.js"></script>
+		<script type="text/javascript" src="<!-- TMPL_VAR NAME=BASEPREFIX -->js/blk.js"></script>
 		<meta name="description" content="<!-- TMPL_VAR NAME=METADESCRIPTION -->" />
 		<meta name="keywords" content="<!-- TMPL_VAR NAME=METAKEYWORDS -->" />
 		<title>Checkout Page</title>
@@ -24,7 +24,7 @@
 				<!-- TMPL_INCLUDE NAME="bannermenu_splaces.tpl" -->					
 			</div>
 			<div class="prepend-8 span-8 append-8 last">
-				<form method="post" action="/togateway">
+				<form method="post" action="<!-- TMPL_VAR NAME=BASEPREFIX -->togateway">
 					<fieldset>
 						<legend>Confirm your Payment</legend>
 						<table>

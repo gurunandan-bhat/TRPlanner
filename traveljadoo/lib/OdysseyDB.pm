@@ -33,8 +33,4 @@ __PACKAGE__->set_db(
 
 # Preloaded methods go here.
 
-sub CACHE_ROOT {
-	return '/home/guru/Devel/Applications/tmp/';
-}
-
 1;

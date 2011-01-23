@@ -3,14 +3,14 @@
 	<head>
 		<!-- TMPL_INCLUDE NAME="googletracker.tpl" -->
 		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-		<link rel="stylesheet" href="css/screen.css" type="text/css" media="screen, projection">
-		<link rel="stylesheet" href="css/print.css" type="text/css" media="print"> 
-		<!--[if lt IE 8]><link rel="stylesheet" href="css/ie.css" type="text/css" media="screen, projection"><![endif]-->
-		<link rel="stylesheet" href="css/newodyssey.css" type="text/css" media="screen, projection"> 
-		<link rel="stylesheet" href="css/cmxform.css" type="text/css" media="screen, projection"> 
-		<script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
-		<script type="text/javascript" src="js/quoteform-validate.js"></script>
-		<script type="text/javascript" src="js/blk.js"></script>
+		<link rel="stylesheet" href="<!-- TMPL_VAR NAME=BASEPREFIX -->css/screen.css" type="text/css" media="screen, projection">
+		<link rel="stylesheet" href="<!-- TMPL_VAR NAME=BASEPREFIX -->css/print.css" type="text/css" media="print"> 
+		<!--[if lt IE 8]><link rel="stylesheet" href="<!-- TMPL_VAR NAME=BASEPREFIX -->css/ie.css" type="text/css" media="screen, projection"><![endif]-->
+		<link rel="stylesheet" href="<!-- TMPL_VAR NAME=BASEPREFIX -->css/newodyssey.css" type="text/css" media="screen, projection"> 
+		<link rel="stylesheet" href="<!-- TMPL_VAR NAME=BASEPREFIX -->css/cmxform.css" type="text/css" media="screen, projection"> 
+		<script type="text/javascript" src="<!-- TMPL_VAR NAME=BASEPREFIX -->js/jquery-1.4.2.min.js"></script>
+		<script type="text/javascript" src="<!-- TMPL_VAR NAME=BASEPREFIX -->js/quoteform-validate.js"></script>
+		<script type="text/javascript" src="<!-- TMPL_VAR NAME=BASEPREFIX -->js/blk.js"></script>
 
 		<title>Odyssey: About Us</title>
 	</head>
@@ -33,13 +33,13 @@
 				<div class="span-4 leftcol">
 					<h3>Quick Links</h3>
 					<ul>
-						<li><a href="/">Home</li>
-						<li><a href="/themes">Incredible India</a></li>
-						<li><a href="/special_places">Special Places</a></li>
-						<li><a href="/modules">Mini Itineraries</a></li>
-						<li><a href="/tours">Indian Journeys</a></li>
-						<li><a href="/about-us">About Us</a></li>
-						<li><a href="/contact-us">Contact Us</a></li>
+						<li><a href="<!-- TMPL_VAR NAME=BASEPREFIX -->">Home</li>
+						<li><a href="<!-- TMPL_VAR NAME=BASEPREFIX -->themes">Incredible India</a></li>
+						<li><a href="<!-- TMPL_VAR NAME=BASEPREFIX -->special_places">Special Places</a></li>
+						<li><a href="<!-- TMPL_VAR NAME=BASEPREFIX -->modules">Mini Itineraries</a></li>
+						<li><a href="<!-- TMPL_VAR NAME=BASEPREFIX -->tours">Indian Journeys</a></li>
+						<li><a href="<!-- TMPL_VAR NAME=BASEPREFIX -->about-us">About Us</a></li>
+						<li><a href="<!-- TMPL_VAR NAME=BASEPREFIX -->contact-us">Contact Us</a></li>
 					</ul>
 				</div>
 				<div class="span-12 midcol">
@@ -81,7 +81,7 @@
 						<p>No Mini Itineraries Saved.</p>
 						<!-- /TMPL_IF --> 
 						<p>
-							Please feel free to browse more <a href="/modules">Mini Itineraries</a>. You can keep adding to 
+							Please feel free to browse more <a href="<!-- TMPL_VAR NAME=BASEPREFIX -->modules">Mini Itineraries</a>. You can keep adding to 
 							your favourites and you can come back here when you are done.
 						</p>
 						<h4>Indian Journeys</h4>
@@ -110,7 +110,7 @@
 						<p>No Indian Journeys Saved.</p>
 						<!-- /TMPL_IF --> 
 						<p>
-							Please feel free to browse more <a href="/tours">Indian Journeys</a>. You can keep adding to your basket 
+							Please feel free to browse more <a href="<!-- TMPL_VAR NAME=BASEPREFIX -->tours">Indian Journeys</a>. You can keep adding to your basket 
 							and you can come back here when you are done.
 						</p>
 						<fieldset>
@@ -122,7 +122,7 @@
 						</fieldset>
 						<input type="hidden" name="mode" value="quotation_details" />
 						<p><input type="submit" id="quote-submit" value="Proceed with my Quote Request" /></p>
-						<p>Click here to return to <a href="/modules">Mini Itineraries</a> or <a href="/tours">Indian Journeys</a>.</p>
+						<p>Click here to return to <a href="<!-- TMPL_VAR NAME=BASEPREFIX -->modules">Mini Itineraries</a> or <a href="<!-- TMPL_VAR NAME=BASEPREFIX -->tours">Indian Journeys</a>.</p>
 					</form>
 				</div>
 				<div class="span-8 rightcol last">
@@ -131,25 +131,25 @@
 						<h5>Mini Itineraries</h5>
 						<ol>
 							<!-- TMPL_LOOP NAME=ITINS -->
-							<li><a href="/moduledetails/<!-- TMPL_VAR NAME=URL -->"><!-- TMPL_VAR NAME=NAME --></a></li>
+							<li><a href="<!-- TMPL_VAR NAME=BASEPREFIX -->moduledetails/<!-- TMPL_VAR NAME=URL -->"><!-- TMPL_VAR NAME=NAME --></a></li>
 							<!-- /TMPL_LOOP -->
 						</ol>
 						<h5>Indian Journeys</h5>
 						<ol>
 							<!-- TMPL_LOOP NAME=RTOURS -->
-							<li><a href="/tourdetails/<!-- TMPL_VAR NAME=URL -->"><!-- TMPL_VAR NAME=NAME --></a></li>
+							<li><a href="<!-- TMPL_VAR NAME=BASEPREFIX -->tourdetails/<!-- TMPL_VAR NAME=URL -->"><!-- TMPL_VAR NAME=NAME --></a></li>
 							<!-- /TMPL_LOOP -->
 						</ol>
 						<h5>Cities</h5>
 						<ol>
 							<!-- TMPL_LOOP NAME=CITIES -->
-							<li><a href="/city/<!-- TMPL_VAR NAME=URL -->"><!-- TMPL_VAR NAME=NAME --></a></li>
+							<li><a href="<!-- TMPL_VAR NAME=BASEPREFIX -->city/<!-- TMPL_VAR NAME=URL -->"><!-- TMPL_VAR NAME=NAME --></a></li>
 							<!-- /TMPL_LOOP -->
 						</ol>
 						<h5>Hotels</h5>
 						<ol>
 							<!-- TMPL_LOOP NAME=HOTELS -->
-							<li><a href="/hotel/<!-- TMPL_VAR NAME=URL -->"><!-- TMPL_VAR NAME=NAME --></a></li>
+							<li><a href="<!-- TMPL_VAR NAME=BASEPREFIX -->hotel/<!-- TMPL_VAR NAME=URL -->"><!-- TMPL_VAR NAME=NAME --></a></li>
 							<!-- /TMPL_LOOP -->
 						</ol>
 					</div>

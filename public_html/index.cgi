@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 
-use ex::lib qw{../traveljadoo/lib/};
+use lib qw{../traveljadoo/lib/};
 
 use strict;
 use warnings;

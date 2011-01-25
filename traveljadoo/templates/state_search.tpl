@@ -7,7 +7,7 @@
 		<link rel="stylesheet" href="<!-- TMPL_VAR NAME=BASEPREFIX -->css/print.css" type="text/css" media="print"> 
 		<!--[if lt IE 8]><link rel="stylesheet" href="<!-- TMPL_VAR NAME=BASEPREFIX -->css/ie.css" type="text/css" media="screen, projection"><![endif]-->
 		<link rel="stylesheet" href="<!-- TMPL_VAR NAME=BASEPREFIX -->css/ch_odyssey.css" type="text/css" media="screen, projection"> 
-		<script type="text/javascript" src="<!-- TMPL_VAR NAME=BASEPREFIX -->js/jquery-1.4.2.min.js"></script>
+		<script type="text/javascript" src="<!-- TMPL_VAR NAME=BASEPREFIX -->js/jquery-1.4.4.min.js"></script>
 		<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key=<!-- TMPL_VAR NAME=GOOGLEKEY -->" type="text/javascript"></script>
 		<script type="text/javascript" src="<!-- TMPL_VAR NAME=BASEPREFIX -->js/jquery.jmap.min-r72.js"></script>
 		<script type="text/javascript" src="<!-- TMPL_VAR NAME=BASEPREFIX -->js/jquery.cycle.min.js"></script>
@@ -26,7 +26,7 @@
 			<!-- /TMPL_IF -->
 		</title>
 	</head>
-	<body>
+	<body baseprefix="<!-- TMPL_VAR NAME=BASEPREFIX -->">
 		<div class="container">
 			<div class="span-24 last">
 				<!-- TMPL_INCLUDE NAME="bannermenu_splaces.tpl" -->

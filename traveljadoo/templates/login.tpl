@@ -11,7 +11,7 @@
 		<script type="text/javascript" src="<!-- TMPL_VAR NAME=BASEPREFIX -->js/hpage.js"></script>
 		<script type="text/javascript" src="<!-- TMPL_VAR NAME=BASEPREFIX -->js/blk.js"></script>
     </head>
-	<body>
+	<body baseprefix="<!-- TMPL_VAR NAME=BASEPREFIX -->">
 		<div class="container">
 			<div class="span-24 last">
 				<div class="banner">

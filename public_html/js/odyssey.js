@@ -4,6 +4,8 @@
 
  $(document).ready(function() {
 
+	var baseprefix = $('body').attr('baseprefix');
+
 	$("#hotels").hide();
 	$("#places").hide();
 	$("#otheroptions").hide();
@@ -67,7 +69,7 @@
 			return; 
 		} 
 
-		var imgName = '<img src="images/city_' + (currentCityId) + '_large_' + (currentImageNum+1) + '.jpg" width="580" height="340" alt="' + (currentImageNum+1) + '" />'; 
+		var imgName = '<img src="' + baseprefix + 'images/city_' + (currentCityId) + '_large_' + (currentImageNum+1) + '.jpg" width="580" height="340" alt="' + (currentImageNum+1) + '" />'; 
 
 		// add our next slide 
         opts.addSlide(imgName); 

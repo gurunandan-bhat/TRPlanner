@@ -1,5 +1,7 @@
 $(document).ready(function() {
 
+	var baseprefix = $('body').attr('baseprefix');
+
 	var india = new google.maps.LatLng(22.268764, 81.474609);
 	var mapOptions = {
 		zoom: 4,
@@ -20,7 +22,7 @@ $(document).ready(function() {
 			var lng = data[i].lng;
 
 			var desc = data[i].desc;
-			var desc = '<div style="width: 240px;"><h3>' + name + '</h3><p class="mappopup"><img style="margin-top: 0;" class="left" src="images/state_' + id + '_small.jpg" width="120" height="75" /> ' + desc + '<br /><a href="hotel.cgi?mode=search&subject=state&id=' + id + '">More...</a></p>';
+			var desc = '<div style="width: 240px;"><h3>' + name + '</h3><p class="mappopup"><img style="margin-top: 0;" class="left" src="' + baseprefix + 'images/state_' + id + '_small.jpg" width="120" height="75" /> ' + desc + '<br /><a href="hotel.cgi?mode=search&subject=state&id=' + id + '">More...</a></p>';
 
 			var marker = new google.maps.Marker({
 				position: new google.maps.LatLng(lat, lng),

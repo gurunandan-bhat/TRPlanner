@@ -8,7 +8,7 @@
 		<link rel="stylesheet" href="<!-- TMPL_VAR NAME=BASEPREFIX -->css/screen.css" type="text/css" media="screen, projection" charset="utf-8" />
 		<!--[if lt IE 8]><link rel="stylesheet" href="<!-- TMPL_VAR NAME=BASEPREFIX -->css/ie.css" type="text/css" media="screen, projection"><![endif]-->
 		<link rel="stylesheet" href="<!-- TMPL_VAR NAME=BASEPREFIX -->css/newodyssey.css" type="text/css" media="screen, projection" charset="utf-8" />
-		<script type="text/javascript" src="<!-- TMPL_VAR NAME=BASEPREFIX -->js/jquery-1.4.2.min.js"></script>
+		<script type="text/javascript" src="<!-- TMPL_VAR NAME=BASEPREFIX -->js/jquery-1.4.4.min.js"></script>
 		<script type="text/javascript" src="<!-- TMPL_VAR NAME=BASEPREFIX -->js/blk.js"></script>
 		<meta name="description" content="<!-- TMPL_VAR NAME=METADESCRIPTION -->" />
 		<meta name="keywords" content="<!-- TMPL_VAR NAME=METAKEYWORDS -->" />
@@ -20,7 +20,7 @@
 			<!-- /TMPL_IF -->
 		</title>
 	</head>
-	<body>
+	<body baseprefix="<!-- TMPL_VAR NAME=BASEPREFIX -->">
 		<div class="container">
 			<div class="span-24 last">
 				<!-- TMPL_INCLUDE NAME="bannermenu_themes.tpl" -->

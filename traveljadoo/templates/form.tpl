@@ -16,7 +16,7 @@
 		<script type="text/javascript" src="<!-- TMPL_VAR NAME=BASEPREFIX -->js/form-validate.js"></script>
 		<title>The Traveller's Palm: Plan your Own Custom Trip!</title>
 	</head>
-	<body>
+	<body baseprefix="<!-- TMPL_VAR NAME=BASEPREFIX -->">
 		<div class="container">
 			<div class="span-24 last">
 				<!-- TMPL_INCLUDE NAME="bannermenu_planatrip.tpl" -->

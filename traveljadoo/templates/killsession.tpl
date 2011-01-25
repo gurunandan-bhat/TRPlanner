@@ -9,7 +9,7 @@
 		<link rel="stylesheet" href="<!-- TMPL_VAR NAME=BASEPREFIX -->css/odyssey.css" type="text/css" media="screen, projection"> 
 		<title>Odyssey: Itinerary Log</title>
 	</head>
-	<body>
+	<body baseprefix="<!-- TMPL_VAR NAME=BASEPREFIX -->">
 		<div class="container">
 			<div class="span-24 last">
 				<div class="banner">

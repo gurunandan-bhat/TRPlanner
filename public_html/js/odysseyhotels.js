@@ -8,6 +8,8 @@
 		return false
 	});
 */
+
+	var baseprefix = $('body').attr('baseprefix');
 	 
 	$("#hotels").hide();
 	$("#places").hide();
@@ -63,7 +65,7 @@
 
 		// add our next slide 
 		var imgfile = 'hotel_' + (currentHotelId) + '_large_' + (currentImageNum+1) + '.jpg';
-		var imgtag = '<img src="/images/hotel/' + imgfile + '" width="560" height="340" alt="" title="" imgsrno="' + (currentImageNum+1) + '" imgfile="' + imgfile + '" />'; 
+		var imgtag = '<img src="' + baseprefix + '/images/hotel/' + imgfile + '" width="560" height="340" alt="" title="" imgsrno="' + (currentImageNum+1) + '" imgfile="' + imgfile + '" />'; 
 		opts.addSlide(imgtag); 
     };
 	
@@ -71,7 +73,7 @@
 	
 		var imgobj = $(this);
 		var imgfile = imgobj.attr('imgfile');
-		$.getJSON('/getimg_attr/' + imgfile, function(data) {
+		$.getJSON(baseprefix + 'getimg_attr/' + imgfile, function(data) {
 			imgobj.attr('alt', data.alt);
 			imgobj.attr('title', data.title);
 		});

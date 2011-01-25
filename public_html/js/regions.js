@@ -3,6 +3,8 @@
  */
 $(document).ready(function() {
 
+	var baseprefix = $('body').attr('baseprefix');
+
 	var regions = 9;
 	var reglat = new Array (
 		26.92555556,
@@ -41,7 +43,7 @@ $(document).ready(function() {
 	var lstnrs = new Array();
 	var modulename = new Array();
 
-	$.getJSON('/modules/list', function(data) {
+	$.getJSON(baseprefix + 'modules/list', function(data) {
 		var modcount = data.count;
 		for (i = 0; i < modcount; i++) {
 			var idx = i + 1;

@@ -4,7 +4,7 @@
 		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 		<title>Itinerary for <!-- TMPL_VAR NAME=TRAVELLER --></title>
 	</head>
-	<body>
+	<body baseprefix="<!-- TMPL_VAR NAME=BASEPREFIX -->">
 		<p>
 			<b>Quotation Request Received From: <!-- TMPL_VAR NAME=PAXNAME --></b><br />
 			<b>Email Address of Lead Traveller: <!-- TMPL_VAR NAME=PAXEMAIL --></b><br />

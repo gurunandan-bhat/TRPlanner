@@ -4,6 +4,8 @@
 
  $(document).ready(function() {
 
+	var baseprefix = $('body').attr('baseprefix');
+
 	$("#hotels").hide();
 	$("#places").hide();
 	$("#otheroptions").hide();
@@ -69,7 +71,7 @@
 		} 
 
 		var imgfile = 'city_' + (currentCityId) + '_large_' + (currentImageNum+1) + '.jpg';
-		var imgtag = '<img src="/images/city/' + imgfile + '" width="560" height="340" alt="" title="" imgsrno="' + (currentImageNum+1) + '" imgfile="' + imgfile + '" />'; 
+		var imgtag = '<img src="' + baseprefix + 'images/city/' + imgfile + '" width="560" height="340" alt="" title="" imgsrno="' + (currentImageNum+1) + '" imgfile="' + imgfile + '" />'; 
 		opts.addSlide(imgtag); 
     };
 	
@@ -77,7 +79,7 @@
 	
 		var imgobj = $(this);
 		var imgfile = imgobj.attr('imgfile');
-		$.getJSON('/getimg_attr/' + imgfile, function(data) {
+		$.getJSON(baseprefix + 'getimg_attr/' + imgfile, function(data) {
 			imgobj.attr('alt', data.alt);
 			imgobj.attr('title', data.title);
 		});

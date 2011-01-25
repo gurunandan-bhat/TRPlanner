@@ -1,11 +1,13 @@
 $(document).ready(function() {
 
+	var baseprefix = $('body').attr('baseprefix');
+
 	$('select.bystate').change(function() {
 		var state = this.value;
 		if (state == 0) {
 			return false;
 		}
-		window.location = '/state/' + state;
+		window.location = baseprefix + 'state/' + state;
 	});
 	
 	$('select.bycity').change(function() {
@@ -13,7 +15,7 @@ $(document).ready(function() {
 		if (city == 0) {
 			return false;
 		}
-		window.location = '/city/' + city;
+		window.location = baseprefix + 'city/' + city;
 	})
 	
 	$('input#byname').focus(function() {

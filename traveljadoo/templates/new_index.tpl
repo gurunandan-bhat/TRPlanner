@@ -23,7 +23,7 @@
 			<!-- /TMPL_IF -->
 		</title>
 	</head>
-	<body>
+	<body baseprefix="<!-- TMPL_VAR NAME=BASEPREFIX -->">
 		<div class="container">
 			<div class="span-24">
 				<!-- TMPL_INCLUDE NAME="new_bannermenu.tpl" -->

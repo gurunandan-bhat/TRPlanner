@@ -1,5 +1,7 @@
 $(document).ready(function() {
 	
+	var baseprefix = $('body').attr('baseprefix');
+	
 	$('form#register').hide();
 	
 	$('p.fav a#addtofav').click(function() {
@@ -12,7 +14,7 @@ $(document).ready(function() {
 			$('form#register').show('slow');
 			return false;
 		}
-		$.getJSON('/old_index.cgi', {
+		$.getJSON(baseprefix + 'old_index.cgi', {
 				'mode': 'protected_save_favourites',
 				'favtype': favtype,
 				'favid': favid,
@@ -36,7 +38,7 @@ $(document).ready(function() {
 		var email = $('input#emailaddr').attr('value');
 		var favtype = $('a#addtofav').attr('type');
 		var favid = $('a#addtofav').attr('objid');
-		$.getJSON('/old_index.cgi', {
+		$.getJSON(baseprefix + 'old_index.cgi', {
 				'mode': 'protected_save_favourites',
 				'username': email,
 				'favtype': favtype,
@@ -44,7 +46,7 @@ $(document).ready(function() {
 			},
 			function(data) {
 				if (data.validuser) {
-					$('p.fav').html('Added to your favourites. Click <a href="/my-travellers-palm">here</a> to view your favourites');
+					$('p.fav').html('Added to your favourites. Click <a href="' + baseprefix + 'my-travellers-palm">here</a> to view your favourites');
 					$('form#register').hide('slow');
 				}
 				else {

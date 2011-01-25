@@ -21,7 +21,7 @@
 		</title>
 		<title>Odyssey: About Us</title>
 	</head>
-	<body>
+	<body baseprefix="<!-- TMPL_VAR NAME=BASEPREFIX -->">
 		<div class="container">
 			<div class="span-24 last">
 				<!-- TMPL_INCLUDE NAME="bannermenu_splaces.tpl" -->					

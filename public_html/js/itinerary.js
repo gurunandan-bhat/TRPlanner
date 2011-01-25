@@ -4,6 +4,8 @@
 
  $(document).ready(function() {
 
+	var baseprefix = $('body').attr('baseprefix');
+
 	var currentItinId = $('#frameslideshow').attr('thisitin');
 	var totalSlideCount = $('#frameslideshow').attr('maxitinimages');
 	var itintype = $('#frameslideshow').attr('itintype');
@@ -37,11 +39,11 @@
 			return; 
 		} 
 
-		var imgName = '<img src="/images/' + itintypedir + '/' + itintype + '_'  + (currentItinId) + '_' + (currentImageNum+1) + '.jpg" width="560" height="340" alt="' + (currentImageNum+1) + '" />'; 
+		var imgName = '<img src="' + baseprefix + 'images/' + itintypedir + '/' + itintype + '_'  + (currentItinId) + '_' + (currentImageNum+1) + '.jpg" width="560" height="340" alt="' + (currentImageNum+1) + '" />'; 
 
 		// add our next slide 
 		var imgfile = itintype + '_'  + (currentItinId) + '_' + (currentImageNum+1) + '.jpg';
-		var imgtag = '<img src="/images/' + itintypedir + '/' + imgfile + '" width="560" height="340" alt="" title="" imgsrno="' + (currentImageNum+1) + '" imgfile="' + imgfile + '" />'; 
+		var imgtag = '<img src="' + baseprefix + 'images/' + itintypedir + '/' + imgfile + '" width="560" height="340" alt="" title="" imgsrno="' + (currentImageNum+1) + '" imgfile="' + imgfile + '" />'; 
 		opts.addSlide(imgtag); 
     };
 
@@ -49,7 +51,7 @@
 	
 		var imgobj = $(this);
 		var imgfile = imgobj.attr('imgfile');
-		$.getJSON('/getimg_attr/' + imgfile, function(data) {
+		$.getJSON(baseprefix + 'getimg_attr/' + imgfile, function(data) {
 			imgobj.attr('alt', data.alt);
 			imgobj.attr('title', data.title);
 		});

@@ -2,6 +2,9 @@
  * @author guru
  */
 $(document).ready(function() {
+
+	var baseprefix = $('body').attr('baseprefix');
+	
 	var india = new google.maps.LatLng(23.268764, 81.474609);
 	var mapOptions = {
 		zoom: 4,
@@ -36,10 +39,10 @@ $(document).ready(function() {
 			delete myMarkers[currsubtheme];
 		}
 
-		$(this).parent('li').append('<span><img src="/images/ajax-loader.gif" width="16" height="16" />Getting...</span>');
+		$(this).parent('li').append('<span><img src="' + baseprefix + 'images/ajax-loader.gif" width="16" height="16" />Getting...</span>');
 		added = $(this).siblings('span');
 
-		var uri = '/themes/themename/' + subthemeid;
+		var uri = baseprefix + 'themes/themename/' + subthemeid;
 		$.getJSON(
 			uri,
 			function (data) {

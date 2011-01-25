@@ -4,6 +4,8 @@
 
  $(document).ready(function() {
 
+	var baseprefix = $('body').attr('baseprefix');
+
 	var currentCityId = $('#big_map').attr('thiscity');
 	var lat = $('#big_map').attr('lat');
 	var lng = $('#big_map').attr('lng');
@@ -42,7 +44,7 @@
 			return marker;
 		}
 
-		$.getJSON('travel.cgi', {mode: 'getmapcities'}, function(data) {
+		$.getJSON(baseprefix + 'travel.cgi', {mode: 'getmapcities'}, function(data) {
 
 			for (var i = 0; i < data.length; i++) {
 				var id = data[i].id;
@@ -50,8 +52,8 @@
 				var oneliner = data[i].oneliner;
 				var tmpcity = new GLatLng(data[i].latitude, data[i].longitude);
 
-				var desc = '<div style="width: 240px;"><h2>' + city + '</h2><p class="mappopup"><img src="images/city_' + id + '_movingon.jpg" height="75" width="120" />' + oneliner + '</p>';
-				desc = desc + '<p class="mappopup">Click <a href="travel.cgi?mode=move_to&srcid=' + currentCityId + '&destid=' + id + '">here</a> to go to ' + city + '</p></div>'
+				var desc = '<div style="width: 240px;"><h2>' + city + '</h2><p class="mappopup"><img src="' + baseprefix + 'images/city_' + id + '_movingon.jpg" height="75" width="120" />' + oneliner + '</p>';
+				desc = desc + '<p class="mappopup">Click <a href="' + baseprefix + 'travel.cgi?mode=move_to&srcid=' + currentCityId + '&destid=' + id + '">here</a> to go to ' + city + '</p></div>'
 
 				var marker = (id == currentCityId) ? createMarker(tmpcity, desc, 'm') : createMarker(tmpcity, desc, 'o');
 

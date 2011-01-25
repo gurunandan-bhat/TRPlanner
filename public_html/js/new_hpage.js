@@ -4,7 +4,8 @@
 
  $(document).ready(function() {
 
-	 var totalSlideCount = $('#slideshow').attr('maxhomeimages');
+	var baseprefix = $('body').attr('baseprefix');
+	var totalSlideCount = $('#slideshow').attr('maxhomeimages');
 	
 	$('#slideshow').cycle({ 
 		fx:      'fade', 
@@ -33,7 +34,7 @@
 			return; 
 		} 
 
-		var imgName = '<img src="/images/home/hp_' + (currentImageNum+1) + '.jpg" width="560" height="325" alt="' + (currentImageNum+1) + '" />'; 
+		var imgName = '<img src="' + baseprefix + 'images/home/hp_' + (currentImageNum+1) + '.jpg" width="560" height="325" alt="' + (currentImageNum+1) + '" />'; 
 
 		// add our next slide 
         opts.addSlide(imgName); 

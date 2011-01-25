@@ -16,7 +16,7 @@
 		<script type="text/javascript" src="js/blk.js"></script>
 		<title>The Travellers Palm: <!-- TMPL_VAR NAME=CURRNAME --></title>
 	</head>
-	<body>
+	<body baseprefix="<!-- TMPL_VAR NAME=BASEPREFIX -->">
 		<div class="container">
 			<div class="span-24 last">
 				<!-- TMPL_INCLUDE NAME="bannermenu_planatrip.tpl" -->

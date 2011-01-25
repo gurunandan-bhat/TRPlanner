@@ -3,13 +3,13 @@
 	<head>
 		<!-- TMPL_INCLUDE NAME="googletracker.tpl" -->
 		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-		<link rel="stylesheet" href="css/screen.css" type="text/css" media="screen, projection">
-		<link rel="stylesheet" href="css/print.css" type="text/css" media="print"> 
-		<!--[if IE]><link rel="stylesheet" href="css/ie.css" type="text/css" media="screen, projection"><![endif]-->
-		<link rel="stylesheet" href="css/odyssey.css" type="text/css" media="screen, projection"> 
-		<script type="text/javascript" src="js/jquery-1.4.2.pack.js"></script>
-		<script type="text/javascript" src="js/hotelsearch.js"></script>
-		<script type="text/javascript" src="js/blk.js"></script>
+		<link rel="stylesheet" href="<!-- TMPL_VAR NAME=BASEPREFIX -->css/screen.css" type="text/css" media="screen, projection">
+		<link rel="stylesheet" href="<!-- TMPL_VAR NAME=BASEPREFIX -->css/print.css" type="text/css" media="print"> 
+		<!--[if IE]><link rel="stylesheet" href="<!-- TMPL_VAR NAME=BASEPREFIX -->css/ie.css" type="text/css" media="screen, projection"><![endif]-->
+		<link rel="stylesheet" href="<!-- TMPL_VAR NAME=BASEPREFIX -->css/odyssey.css" type="text/css" media="screen, projection"> 
+		<script type="text/javascript" src="<!-- TMPL_VAR NAME=BASEPREFIX -->js/jquery-1.4.4.min.js"></script>
+		<script type="text/javascript" src="<!-- TMPL_VAR NAME=BASEPREFIX -->js/hotelsearch.js"></script>
+		<script type="text/javascript" src="<!-- TMPL_VAR NAME=BASEPREFIX -->js/blk.js"></script>
 		<title>Odyssey: Hotels of India</title>
 	</head>
 	<body>
@@ -21,11 +21,11 @@
 				</div>
 			</div>
 			<div class="span-24 broadbanner">
-				<img src="images/banners/main_banner3.jpg" width="950" height="150" alt="Collage"/>
+				<img src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/banners/main_banner3.jpg" width="950" height="150" alt="Collage"/>
 				<hr class="bigspacer" />
 			</div>
 			<div class="span-5 chatter">
-				<h1><a href="hotel.cgi">Special Places</a></h1>
+				<h1><a href="<!-- TMPL_VAR NAME=BASEPREFIX -->hotel.cgi">Special Places</a></h1>
 				<p><a href="#">Register</a></p>
 			  	<p><a href="#">Need Help</a>?<br />Many Questions are already answered in our <a href="#">FAQs</a>, 
 			  		otherwise, <a mailto="hans@odyssey.co.in">email us</a> here

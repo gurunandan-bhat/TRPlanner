@@ -4,7 +4,7 @@
 <div class="banner">
 	<div id="topmenu">
 		<ul>
-			<li id="current"><a href="index.cgi">Home</a></li>
+			<li id="current"><a href="<!-- TMPL_VAR NAME=BASEPREFIX -->index.cgi">Home</a></li>
 			<li><a href="<!-- TMPL_VAR NAME=BASEPREFIX -->themes">Incredible India</a></li>
 			<li><a href="<!-- TMPL_VAR NAME=BASEPREFIX -->special_places">Special Places</a></li>
 			<li><a href="<!-- TMPL_VAR NAME=BASEPREFIX -->modules">Mini Itineraries</a></li>

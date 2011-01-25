@@ -3,13 +3,13 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-		<link rel="stylesheet" href="css/screen.css" type="text/css" media="screen, projection" />  
-		<link rel="stylesheet" href="css/print.css" type="text/css" media="print" />  
-		<!--[if lt IE 8]><link rel="stylesheet" href="css/ie.css" type="text/css" media="screen, projection" /><![endif]-->  
-		<link rel="stylesheet" href="css/trains.css" type="text/css" media="screen" />
-		<link rel="stylesheet" href="css/newodyssey.css" type="text/css" media="screen" />
-		<script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
-		<script type="text/javascript" src="js/trains.js"></script>
+		<link rel="stylesheet" href="<!-- TMPL_VAR NAME=BASEPREFIX -->css/screen.css" type="text/css" media="screen, projection" />  
+		<link rel="stylesheet" href="<!-- TMPL_VAR NAME=BASEPREFIX -->css/print.css" type="text/css" media="print" />  
+		<!--[if lt IE 8]><link rel="stylesheet" href="<!-- TMPL_VAR NAME=BASEPREFIX -->css/ie.css" type="text/css" media="screen, projection" /><![endif]-->  
+		<link rel="stylesheet" href="<!-- TMPL_VAR NAME=BASEPREFIX -->css/trains.css" type="text/css" media="screen" />
+		<link rel="stylesheet" href="<!-- TMPL_VAR NAME=BASEPREFIX -->css/newodyssey.css" type="text/css" media="screen" />
+		<script type="text/javascript" src="<!-- TMPL_VAR NAME=BASEPREFIX -->js/jquery-1.4.2.min.js"></script>
+		<script type="text/javascript" src="<!-- TMPL_VAR NAME=BASEPREFIX -->js/trains.js"></script>
 		<title>Explore Trains</title>
     </head>
 	<body>
@@ -18,7 +18,7 @@
 				<!-- TMPL_INCLUDE NAME="bannermenu_planatrip.tpl" -->					
 			</div>
 			<div class="span-24 last">
-				<img src="images/banners/banner_trainfinder.jpg" width="950" height="150" alt="Collage"/>
+				<img src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/banners/banner_trainfinder.jpg" width="950" height="150" alt="Collage"/>
 			</div>
 			<hr class="space" />
 			<div class="prepend-2 span-8 last">

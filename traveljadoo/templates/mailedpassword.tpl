@@ -3,10 +3,10 @@
 	<head>
 		<!-- TMPL_INCLUDE NAME="googletracker.tpl" -->
 		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-		<link rel="stylesheet" href="css/screen.css" type="text/css" media="screen, projection">
-		<link rel="stylesheet" href="css/print.css" type="text/css" media="print"> 
-		<!--[if lt IE 8]><link rel="stylesheet" href="css/ie.css" type="text/css" media="screen, projection"><![endif]-->
-		<link rel="stylesheet" href="css/newodyssey.css" type="text/css" media="screen, projection"> 
+		<link rel="stylesheet" href="<!-- TMPL_VAR NAME=BASEPREFIX -->css/screen.css" type="text/css" media="screen, projection">
+		<link rel="stylesheet" href="<!-- TMPL_VAR NAME=BASEPREFIX -->css/print.css" type="text/css" media="print"> 
+		<!--[if lt IE 8]><link rel="stylesheet" href="<!-- TMPL_VAR NAME=BASEPREFIX -->css/ie.css" type="text/css" media="screen, projection"><![endif]-->
+		<link rel="stylesheet" href="<!-- TMPL_VAR NAME=BASEPREFIX -->css/newodyssey.css" type="text/css" media="screen, projection"> 
 		<title>The Traveller's Palm: Plan your Own Custom Trip!</title>
 	</head>
 	<body>
@@ -15,7 +15,7 @@
 				<!-- TMPL_INCLUDE NAME="plainbannermenu.tpl" -->
 			</div>
 			<div class="span-24 last">
-				<img src="images/planatrip_large.jpg" width="950" height="150" />
+				<img src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/planatrip_large.jpg" width="950" height="150" />
 			</div>
 			<div class="content">
 				<div class="span-4 leftcol">

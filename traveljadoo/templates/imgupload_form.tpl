@@ -2,12 +2,12 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-		<link rel="stylesheet" href="css/screen.css" type="text/css" media="screen, projection">
-		<link rel="stylesheet" href="css/print.css" type="text/css" media="print"> 
-		<!--[if lt IE 8]><link rel="stylesheet" href="css/ie.css" type="text/css" media="screen, projection"><![endif]-->
-		<link rel="stylesheet" href="css/newodyssey.css" type="text/css" media="screen, projection">
-		<script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
-		<script type="text/javascript" src="js/blk.js"></script>
+		<link rel="stylesheet" href="<!-- TMPL_VAR NAME=BASEPREFIX -->css/screen.css" type="text/css" media="screen, projection">
+		<link rel="stylesheet" href="<!-- TMPL_VAR NAME=BASEPREFIX -->css/print.css" type="text/css" media="print"> 
+		<!--[if lt IE 8]><link rel="stylesheet" href="<!-- TMPL_VAR NAME=BASEPREFIX -->css/ie.css" type="text/css" media="screen, projection"><![endif]-->
+		<link rel="stylesheet" href="<!-- TMPL_VAR NAME=BASEPREFIX -->css/newodyssey.css" type="text/css" media="screen, projection">
+		<script type="text/javascript" src="<!-- TMPL_VAR NAME=BASEPREFIX -->js/jquery-1.4.4.min.js"></script>
+		<script type="text/javascript" src="<!-- TMPL_VAR NAME=BASEPREFIX -->js/blk.js"></script>
 		<title>Odyssey: About Us</title>
 	</head>
 	<body>
@@ -16,7 +16,7 @@
 				<!-- TMPL_INCLUDE NAME="plainbannermenu.tpl" -->					
 			</div>
 			<div class="span-24 last">
-				<img src="images/aboutus_large.jpg" width="950" height="150" alt="Collage"/>
+				<img src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/aboutus_large.jpg" width="950" height="150" alt="Collage"/>
 			</div>
 			<hr class="space" />
 			<div class="content">
@@ -53,5 +53,3 @@
         </div>
 	</body>
 </html>
-
-			

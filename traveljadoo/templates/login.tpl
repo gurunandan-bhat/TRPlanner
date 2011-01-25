@@ -4,12 +4,12 @@
 		<!-- TMPL_INCLUDE NAME="googletracker.tpl" -->
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>The Travellers Palm</title>
-		<link rel="stylesheet" href="css/screen.css" type="text/css" media="screen, projection" />  
-		<!--[if lt IE 8]><link rel="stylesheet" href="css/ie.css" type="text/css" media="screen, projection" /><![endif]-->  
-		<link rel="stylesheet" href="css/newodyssey.css" type="text/css" media="screen, projection"> 
-		<script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
-		<script type="text/javascript" src="js/hpage.js"></script>
-		<script type="text/javascript" src="js/blk.js"></script>
+		<link rel="stylesheet" href="<!-- TMPL_VAR NAME=BASEPREFIX -->css/screen.css" type="text/css" media="screen, projection" />  
+		<!--[if lt IE 8]><link rel="stylesheet" href="<!-- TMPL_VAR NAME=BASEPREFIX -->css/ie.css" type="text/css" media="screen, projection" /><![endif]-->  
+		<link rel="stylesheet" href="css/newodyssey.css" type="<!-- TMPL_VAR NAME=BASEPREFIX -->text/css" media="screen, projection"> 
+		<script type="text/javascript" src="<!-- TMPL_VAR NAME=BASEPREFIX -->js/jquery-1.4.4.min.js"></script>
+		<script type="text/javascript" src="<!-- TMPL_VAR NAME=BASEPREFIX -->js/hpage.js"></script>
+		<script type="text/javascript" src="<!-- TMPL_VAR NAME=BASEPREFIX -->js/blk.js"></script>
     </head>
 	<body>
 		<div class="container">
@@ -19,7 +19,7 @@
 				</div>
 			</div>
 			<div class="span-24 last">
-				<img src="images/planatrip_large.jpg" width="950" height="150" />
+				<img src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/planatrip_large.jpg" width="950" height="150" />
 			</div>
 			<div class="content" style="background: none;">
 				<div class="prepend-1 span-12 append-1">

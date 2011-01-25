@@ -8,7 +8,7 @@
 		<!--[if lt IE 8]><link rel="stylesheet" href="css/ie.css" type="text/css" media="screen, projection"><![endif]-->
 		<link rel="stylesheet" href="css/thickbox.css" type="text/css" media="screen" />
 		<link rel="stylesheet" href="css/ch_odyssey.css" type="text/css" media="screen, projection"> 
-		<script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
+		<script type="text/javascript" src="js/jquery-1.4.4.min.js"></script>
 		<script type="text/javascript" src="js/jquery.cycle.lite.min.js"></script>
 		<script type="text/javascript" src="js/new_odyssey.js"></script>
 		<script type="text/javascript" src="js/thickbox-compressed.js"></script>

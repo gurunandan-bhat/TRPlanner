@@ -1,14 +1,14 @@
 <!-- TMPL_IF NAME=AFFILIATE -->
-<img src="/images/affiliate_logo.gif" width="950" height="80" alt="Travelwell Preferred Partner" />
+<img src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/affiliate_logo.gif" width="950" height="80" alt="Travelwell Preferred Partner" />
 <!-- /TMPL_IF -->
 <div id="topmenu">
 <ul>
-	<li><a href="/">Home</a></li>
-	<li><a href="/themes">Incredible India</a></li>
-	<li><a href="/special_places">Special Places</a></li>
-	<li><a href="/modules">Mini Itineraries</a></li>
-	<li><a href="/tours">Indian Journeys</a></li>
-	<li><a href="/about-us">About Us</a></li>
-	<li><a href="/contact-us">Contact Us</a></li>
+	<li><a href="<!-- TMPL_VAR NAME=BASEPREFIX -->">Home</a></li>
+	<li><a href="<!-- TMPL_VAR NAME=BASEPREFIX -->themes">Incredible India</a></li>
+	<li><a href="<!-- TMPL_VAR NAME=BASEPREFIX -->special_places">Special Places</a></li>
+	<li><a href="<!-- TMPL_VAR NAME=BASEPREFIX -->modules">Mini Itineraries</a></li>
+	<li><a href="<!-- TMPL_VAR NAME=BASEPREFIX -->tours">Indian Journeys</a></li>
+	<li><a href="<!-- TMPL_VAR NAME=BASEPREFIX -->about-us">About Us</a></li>
+	<li><a href="<!-- TMPL_VAR NAME=BASEPREFIX -->contact-us">Contact Us</a></li>
 </ul>
 </div>

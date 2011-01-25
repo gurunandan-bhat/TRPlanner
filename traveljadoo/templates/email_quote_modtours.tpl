@@ -13,7 +13,7 @@
 			<b>Dear <!-- TMPL_VAR NAME=LEADNAME -->,</b>
 		</p>
 		<p>
-			Thank you for making an enquiry through <a href="www.travelers-palm.com">Traveller's Palm</a>.
+			Thank you for making an enquiry through <a href="www.travellers-palm.com">Traveller's Palm</a>.
 			We value your business and look forward to assisting you.
 		</p>
 		<p>

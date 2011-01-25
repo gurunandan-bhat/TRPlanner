@@ -7,7 +7,7 @@
 		<link rel="stylesheet" href="<!-- TMPL_VAR NAME=BASEPREFIX -->css/print.css" type="text/css" media="print"> 
 		<!--[if lt IE 8]><link rel="stylesheet" href="<!-- TMPL_VAR NAME=BASEPREFIX -->css/ie.css" type="text/css" media="screen, projection"><![endif]-->
 		<link rel="stylesheet" href="<!-- TMPL_VAR NAME=BASEPREFIX -->css/newodyssey.css" type="text/css" media="screen, projection">
-		<script type="text/javascript" src="<!-- TMPL_VAR NAME=BASEPREFIX -->js/jquery-1.4.2.min.js"></script>
+		<script type="text/javascript" src="<!-- TMPL_VAR NAME=BASEPREFIX -->js/jquery-1.4.4.min.js"></script>
 		<script type="text/javascript" src="<!-- TMPL_VAR NAME=BASEPREFIX -->js/blk.js"></script>
 		<meta name="description" content="<!-- TMPL_VAR NAME=METADESCRIPTION -->" />
 		<meta name="keywords" content="<!-- TMPL_VAR NAME=METAKEYWORDS -->" />
@@ -39,7 +39,7 @@
 						<li><a href="<!-- TMPL_VAR NAME=BASEPREFIX -->tours">India Journeys</a></li>
 						<li><div id="current"><a id="toplink" href="<!-- TMPL_VAR NAME=BASEPREFIX -->about-us">About Us</a></div>
 							<ul>
-								<li><a class="midlink" href="/meet-the-team">Meet the Team</a></li>
+								<li><a class="midlink" href="<!-- TMPL_VAR NAME=BASEPREFIX -->meet-the-team">Meet the Team</a></li>
 								<li><!-- TMPL_IF NAME=WHYTRAVEL --><div id="current"><!-- TMPL_ELSE--><a class="midlink" href="<!-- TMPL_VAR NAME=BASEPREFIX -->why-travel-with-us"><!-- /TMPL_IF -->Why Travel with Us?<!-- TMPL_IF NAME=WHYTRAVEL --></div><!-- TMPL_ELSE--></a><!-- /TMPL_IF --></li>
 								<li><!-- TMPL_IF NAME=RESPTRAVEL --><div id="current"><!-- TMPL_ELSE--><a class="midlink" href="<!-- TMPL_VAR NAME=BASEPREFIX -->responsible-travel"><!-- /TMPL_IF -->Responsible Travel<!-- TMPL_IF NAME=RESPTRAVEL --></div><!-- TMPL_ELSE--></a><!-- /TMPL_IF --></li>
 								<li><!-- TMPL_IF NAME=WHATEXPECT --><div id="current"><!-- TMPL_ELSE--><a class="midlink" href="<!-- TMPL_VAR NAME=BASEPREFIX -->what-to-expect"><!-- /TMPL_IF -->What to Expect<!-- TMPL_IF NAME=WHATEXPECT --></div><!-- TMPL_ELSE--></a><!-- /TMPL_IF --></li>

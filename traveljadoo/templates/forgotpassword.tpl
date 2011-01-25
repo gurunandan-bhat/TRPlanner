@@ -3,13 +3,13 @@
 	<head>
 		<!-- TMPL_INCLUDE NAME="googletracker.tpl" -->
 		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-		<link rel="stylesheet" href="css/screen.css" type="text/css" media="screen, projection">
-		<link rel="stylesheet" href="css/print.css" type="text/css" media="print"> 
-		<!--[if lt IE 8]><link rel="stylesheet" href="css/ie.css" type="text/css" media="screen, projection"><![endif]-->
-		<link rel="stylesheet" href="css/ch_odyssey.css" type="text/css" media="screen, projection"> 
-		<script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
-		<script type="text/javascript" src="js/jquery.validate.pack.js"></script>
-		<script type="text/javascript" src="js/forgotpasswd.js"></script>
+		<link rel="stylesheet" href="<!-- TMPL_VAR NAME=BASEPREFIX -->css/screen.css" type="text/css" media="screen, projection">
+		<link rel="stylesheet" href="<!-- TMPL_VAR NAME=BASEPREFIX -->css/print.css" type="text/css" media="print"> 
+		<!--[if lt IE 8]><link rel="stylesheet" href="<!-- TMPL_VAR NAME=BASEPREFIX -->css/ie.css" type="text/css" media="screen, projection"><![endif]-->
+		<link rel="stylesheet" href="<!-- TMPL_VAR NAME=BASEPREFIX -->css/ch_odyssey.css" type="text/css" media="screen, projection"> 
+		<script type="text/javascript" src="<!-- TMPL_VAR NAME=BASEPREFIX -->js/jquery-1.4.4.min.js"></script>
+		<script type="text/javascript" src="<!-- TMPL_VAR NAME=BASEPREFIX -->js/jquery.validate.pack.js"></script>
+		<script type="text/javascript" src="<!-- TMPL_VAR NAME=BASEPREFIX -->js/forgotpasswd.js"></script>
 		<title>The Traveller's Palm: Plan your Own Custom Trip!</title>
 	</head>
 	<body>
@@ -18,7 +18,7 @@
 				<div class="banner"><!-- TMPL_INCLUDE NAME="plainbannermenu.tpl" --></div>
 			</div>
 			<div class="span-24 last">
-				<img src="images/planatrip_large.jpg" width="950" height="150" />
+				<img src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/planatrip_large.jpg" width="950" height="150" />
 			</div>
 			<div class="content">
 				<div class="span-4 leftcol">
@@ -45,7 +45,7 @@
 									<label for="userid">Email Address:</label>
 									<input type="text" id="userid" name="userid" /><br />
 								</p>
-								<p><input type="image" src="images/email-new-password.gif" width="203" height="25" border="0" name="mailpasswd" alt="Mail me my New Password" /></p>
+								<p><input type="image" src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/email-new-password.gif" width="203" height="25" border="0" name="mailpasswd" alt="Mail me my New Password" /></p>
 							</fieldset>
 							<input type="hidden" name="mode" value="forgotnewpasswd" />
 						</form>

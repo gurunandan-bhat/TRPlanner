@@ -7,7 +7,7 @@
 		<link rel="stylesheet" href="<!-- TMPL_VAR NAME=BASEPREFIX -->css/print.css" type="text/css" media="print"> 
 		<!--[if lt IE 8]><link rel="stylesheet" href="<!-- TMPL_VAR NAME=BASEPREFIX -->css/ie.css" type="text/css" media="screen, projection"><![endif]-->
 		<link rel="stylesheet" href="<!-- TMPL_VAR NAME=BASEPREFIX -->css/newodyssey.css" type="text/css" media="screen, projection"> 
-		<script type="text/javascript" src="<!-- TMPL_VAR NAME=BASEPREFIX -->js/jquery-1.4.2.min.js"></script>
+		<script type="text/javascript" src="<!-- TMPL_VAR NAME=BASEPREFIX -->js/jquery-1.4.4.min.js"></script>
 		<script type="text/javascript" src="<!-- TMPL_VAR NAME=BASEPREFIX -->js/hotelsearch.js"></script>
 		<script type="text/javascript" src="<!-- TMPL_VAR NAME=BASEPREFIX -->js/blk.js"></script>
 		<title>Odyssey: Hotels of India</title>
@@ -67,10 +67,10 @@
 						</form>
 					</div>
 	         		<p>After browsing through our list of Special Places, we offer the opportunity to create your own personal unique independent itinerary in India 
-					online. In <a href="index.cgi?mode=init">Plan a Trip</a> you simply select the places you wish to visit and your preferred mode of transport. Our 
+					online. In <a href="<!-- TMPL_VAR NAME=BASEPREFIX -->index.cgi?mode=init">Plan a Trip</a> you simply select the places you wish to visit and your preferred mode of transport. Our 
 					Travel Wizard then creates a 
 					suggested itinerary with a costing. You are able to amend the proposed itinerary to arrive at a program of your choice.</p>
-					<p>You can also use our diverse range of <a href="itineraries.cgi">Modules</a> as a guideline. The featured tours follow a logical route and move at a leisurely pace and 
+					<p>You can also use our diverse range of <a href="<!-- TMPL_VAR NAME=BASEPREFIX -->itineraries.cgi">Modules</a> as a guideline. The featured tours follow a logical route and move at a leisurely pace and 
 					give you a good insight into the particular area. Our Travel Wizard allows you to modify the selected itinerary so that you can create your own unique 
 					holiday by combining our ideas with your preferences.</p>
 				</div>

@@ -7,7 +7,7 @@
 		<link rel="stylesheet" href="<!-- TMPL_VAR NAME=BASEPREFIX -->css/print.css" type="text/css" media="print"> 
 		<!--[if lt IE 8]><link rel="stylesheet" href="<!-- TMPL_VAR NAME=BASEPREFIX -->css/ie.css" type="text/css" media="screen, projection"><![endif]-->
 		<link rel="stylesheet" href="<!-- TMPL_VAR NAME=BASEPREFIX -->css/newodyssey.css" type="text/css" media="screen, projection"> 
-		<script type="text/javascript" src="<!-- TMPL_VAR NAME=BASEPREFIX -->js/jquery-1.4.2.min.js"></script>
+		<script type="text/javascript" src="<!-- TMPL_VAR NAME=BASEPREFIX -->js/jquery-1.4.4.min.js"></script>
 		<script type="text/javascript" src="<!-- TMPL_VAR NAME=BASEPREFIX -->js/favourites.js"></script>
 		<script type="text/javascript" src="<!-- TMPL_VAR NAME=BASEPREFIX -->js/blk.js"></script>
 		<title>Odyssey: My Traveller's Palm</title>
@@ -40,7 +40,7 @@
 					<a name="favmods"></a>
 					<h3>Your Favourites Mini Itineraries</h3>
 					<!-- TMPL_LOOP NAME=ITINS -->
-					<h4><a href="itineraries.cgi?mode=describe&id=<!-- TMPL_VAR NAME=ID -->"><!-- TMPL_VAR NAME=NAME --></a></h4>
+					<h4><a href="<!-- TMPL_VAR NAME=BASEPREFIX -->itineraries.cgi?mode=describe&id=<!-- TMPL_VAR NAME=ID -->"><!-- TMPL_VAR NAME=NAME --></a></h4>
 					<h6><!-- TMPL_VAR NAME=ONLINER --></h6>
 					<p><img class="left" src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/modules/mod_<!-- TMPL_VAR NAME=ID -->_small.jpg" width="240" height="150" /> <!-- TMPL_VAR NAME=DESC --><br />
 					<span style="font-size: 10px;"><strong>Duration:</strong> <!-- TMPL_VAR NAME=DURATION --><br /><strong>Cost:</strong> <!-- TMPL_VAR NAME=COST --></p>
@@ -52,7 +52,7 @@
 					<a href="#top">Top</a>
 					<h3>Your Favourite Indian Journeys</h3>
 					<!-- TMPL_LOOP NAME=RTOURS -->
-					<h4><a href="itineraries.cgi?mode=describe&id=<!-- TMPL_VAR NAME=ID -->"><!-- TMPL_VAR NAME=NAME --></a></h4>
+					<h4><a href="<!-- TMPL_VAR NAME=BASEPREFIX -->itineraries.cgi?mode=describe&id=<!-- TMPL_VAR NAME=ID -->"><!-- TMPL_VAR NAME=NAME --></a></h4>
 					<h6><!-- TMPL_VAR NAME=ONLINER --></h6>
 					<p><img class="left" src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/itin_<!-- TMPL_VAR NAME=ID -->_small.jpg" width="240" height="142" /> <!-- TMPL_VAR NAME=DESC --><br />
 					<span style="font-size: 10px;"><strong>Duration:</strong> <!-- TMPL_VAR NAME=DURATION --><br /><strong>Cost:</strong> <!-- TMPL_VAR NAME=COST --></p>
@@ -64,7 +64,7 @@
 					<a href="#top">Top</a>
 					<h3>Your Favourite Hotels</h3>
 					<!-- TMPL_LOOP NAME=HOTELS -->
-					<h4><a href="hotel.cgi?mode=describe&id=<!-- TMPL_VAR NAME=ID -->"><!-- TMPL_VAR NAME=NAME --></a></h4>
+					<h4><a href="<!-- TMPL_VAR NAME=BASEPREFIX -->hotel.cgi?mode=describe&id=<!-- TMPL_VAR NAME=ID -->"><!-- TMPL_VAR NAME=NAME --></a></h4>
 					<p><img class="left" src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/defaulthotel_<!-- TMPL_VAR NAME=ID -->.jpg" width="240" height="142" /> <!-- TMPL_VAR NAME=DESC --></p>
 					<hr />
 					<!-- /TMPL_LOOP -->
@@ -73,7 +73,7 @@
 					<a href="#top">Top</a>
 					<h3>Your Favourite Cities</h3>
 					<!-- TMPL_LOOP NAME=CITIES -->
-					<h4><a href="hotel.cgi?mode=search&subject=city&id=<!-- TMPL_VAR NAME=ID -->"><!-- TMPL_VAR NAME=NAME --></a></h4>
+					<h4><a href="<!-- TMPL_VAR NAME=BASEPREFIX -->hotel.cgi?mode=search&subject=city&id=<!-- TMPL_VAR NAME=ID -->"><!-- TMPL_VAR NAME=NAME --></a></h4>
 					<p><img class="left" src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/city_<!-- TMPL_VAR NAME=ID -->_large_2.jpg" width="240" height="148" /> <!-- TMPL_VAR NAME=DESC --></p>
 					<hr />
 					<!-- /TMPL_LOOP -->
@@ -96,5 +96,3 @@
         </div>
 	</body>
 </html>
-
-			

@@ -75,7 +75,7 @@
 						<!-- /TMPL_IF -->
 						<div class="box">
 							<div class="cityform">
-								<form method=post action="travel.cgi">
+								<form method=post action="<!-- TMPL_VAR NAME=BASEPREFIX -->travel.cgi">
 									<p>I want to stay in <!-- TMPL_VAR NAME=CURRNAME --> for 
 										<select class="optdays" name="days" size="1">
 											<!-- TMPL_LOOP NAME=DAYSLOOP -->
@@ -113,7 +113,7 @@
 								<li><h4><a href="travel.cgi?mode=move_to&srcid=<!-- TMPL_VAR NAME=FROMID -->&destid=<!-- TMPL_VAR NAME=PREID -->"><!-- TMPL_VAR NAME=PRENAME --></a></h4></li>
 								<!-- /TMPL_LOOP -->
 							</ul>
-							<form class="nextcity" method="post" action="travel.cgi">
+							<form class="nextcity" method="post" action="<!-- TMPL_VAR NAME=BASEPREFIX -->travel.cgi">
 								<p><label for="desturl">Or other places further away: </label> 
 									<select id="desturl" name="desturl">
 									<!-- TMPL_LOOP NAME=RANDOMDESTINATION -->

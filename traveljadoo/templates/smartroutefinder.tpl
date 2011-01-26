@@ -28,7 +28,7 @@
 				</div>
 				<div class="span-12 midcol">
 					<h3>Our Smart Route Finder</h3>
-					<form method="post" action="routefinder.cgi">
+					<form method="post" action="<!-- TMPL_VAR NAME=BASEPREFIX -->routefinder.cgi">
 						<fieldset>
 							<legend>Enter your Travel Details</legend>
 							<table cellspacing="0" cellpadding="0">

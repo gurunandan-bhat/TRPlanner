@@ -42,11 +42,13 @@ sub register {
 	use Email::Valid;
 	
 	my $app = shift;
+	my $baseprefix = $app->config_param('default.BasePrefix');
+	
 	my $tpl = $app->load_tmpl('register.tpl', die_on_bad_params => 0);
 	
 	my $righttext = addptags(OdysseyDB::WebText->retrieve(web_id => 29)->writeup);
 	my $lefttext = addptags(OdysseyDB::WebText->retrieve(web_id => 30)->writeup . '<br />
-					<a href="index.cgi?mode=links&id=16">Click here</a> to view our Privacy Policy');
+					<a href="' . $baseprefix . 'index.cgi?mode=links&id=16">Click here</a> to view our Privacy Policy');
 	
 	$tpl->param(
 		LEFTTEXT => $lefttext,
@@ -80,7 +82,7 @@ sub register {
 	}
 
 	$app->session->param(username => $email);
-	$app->redirect('/my-travellers-palm');
+	$app->redirect($baseprefix . 'my-travellers-palm');
 }
 
 sub newpasswd {

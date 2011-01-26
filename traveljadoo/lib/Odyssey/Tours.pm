@@ -51,7 +51,7 @@ sub setup {
 
 sub tours_index {
 	my $app = shift;
-	my $tpl = $app->load_tmpl('tours_index.tpl', die_on_bad_params => 0);
+	my $tpl = $app->load_tmpl('tours_index.tpl', die_on_bad_params => 0, global_vars => 1);
 	
 	my $tourstext = OdysseyDB::WebText->retrieve(web_id => 57)->writeup;
 	my $metatext = OdysseyDB::WebPage->retrieve(webpages_id => 22);
@@ -123,7 +123,7 @@ sub main {
 	
 	my $app = shift;
 	
-	my $tpl = $app->load_tmpl('tours.tpl', die_on_bad_params => 0);
+	my $tpl = $app->load_tmpl('tours.tpl', die_on_bad_params => 0, global_vars => 1);
 	
 	my @tours;
 	foreach (OdysseyDB::Itineraries->search(readytours => 1, {order_by => 'orderno'})) {

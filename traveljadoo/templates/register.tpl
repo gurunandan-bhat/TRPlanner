@@ -33,7 +33,7 @@
 						We require all details below. <!-- TMPL_VAR NAME=SHOWERROR -->. Please try again.
 					</p>
 					<!-- /TMPL_IF -->
-					<form id="register" name="registerform" method="post" action="register.cgi">
+					<form id="register" name="registerform" method="post" action="<!-- TMPL_VAR NAME=BASEPREFIX -->register.cgi">
 						<fieldset id="main" style="border: none;">
 							<ol>
 								<li>

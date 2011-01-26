@@ -332,7 +332,7 @@ sub tour_summary {
 	my $mystatus;
 	return unless (($mystatus = $app->session->param('mystatus')) && (my $quotationid = $mystatus->{quotationid}));
 	
-	my $tpl = $app->load_tmpl('tour_summary.tpl', die_on_bad_params => 0, loop_context_vars => 1);
+	my $tpl = $app->load_tmpl('tour_summary.tpl', die_on_bad_params => 0, loop_context_vars => 1, global_vars => 1);
 	
 	my $paxname = OdysseyDB::Quotation->retrieve($quotationid)->paxname;
 	return unless (my @cities = OdysseyDB::QuotationCity->search(quotations_id => $quotationid));
@@ -392,7 +392,7 @@ sub tour_summary {
 		$datecal[-1]->{HOTEL} = 'Ready to leave: &nbsp;';
 		$datecal[-1]->{CITY} = ''; # Added so that the departure day has no city associated. Terrible! Requires second look. 
 		
-		my $drpdntpl = $app->load_tmpl('randomcities.tpl', die_on_bad_params => 0);
+		my $drpdntpl = $app->load_tmpl('randomcities.tpl', die_on_bad_params => 0, global_vars => 1);
 		my $drpdn;
 		if (my @randomcities = OdysseyDB::City->search_randomcities) {
 			my @randomdestination;
@@ -785,7 +785,7 @@ sub favourites {
 	
 	my $app = shift;
 		
-	my $tpl = $app->load_tmpl('favourites.tpl', die_on_bad_params => 0);
+	my $tpl = $app->load_tmpl('favourites.tpl', die_on_bad_params => 0, global_vars => 1);
 
 	my $favs;
 	my $username = $app->session->param('username');
@@ -895,7 +895,7 @@ sub quotes {
 		return $tpl->output;
 	}
 
-	my $tpl = $app->load_tmpl('quotes.tpl', die_on_bad_params => 0);
+	my $tpl = $app->load_tmpl('quotes.tpl', die_on_bad_params => 0, global_vars => 1);
 
 	my $favs;
 	my @quotes;

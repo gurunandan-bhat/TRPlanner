@@ -106,7 +106,7 @@
 						<!-- TMPL_ELSE -->
 						<a id="addtofav" "href="#" registered="<!-- TMPL_VAR NAME=REGISTERED -->" type="hotel" objid="<!-- TMPL_VAR NAME=HOTELID -->">Add "<!-- TMPL_VAR NAME=HOTELNAME -->" to your favourites</a>
 						<br />
-						<form id="register" method="get" action="/">
+						<form id="register" method="get" action="<!-- TMPL_VAR NAME=BASEPREFIX -->">
 							<fieldset>
 								<legend>Register your Email Address and Add to Favourites</legend>
 								Please provide your email address: <input id="emailaddr" name="emailaddr" value='' /><br />

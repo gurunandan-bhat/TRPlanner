@@ -61,7 +61,7 @@ sub setup {
 sub index {
 	
 	my $app = shift;
-	my $tpl = $app->load_tmpl('new_specialplaces.tpl', die_on_bad_params => 0,);
+	my $tpl = $app->load_tmpl('new_specialplaces.tpl', die_on_bad_params => 0, global_vars => 1);
 
 	my @states;
 	foreach (OdysseyDB::State->search_webhotelstates) {
@@ -116,7 +116,7 @@ sub showdetails {
 	my $app= shift;
 	my $stateid = $app->query->param('stateid');
 	
-	my $tpl = $app->load_tmpl('city_list.tpl', die_on_bad_params => 0);
+	my $tpl = $app->load_tmpl('city_list.tpl', die_on_bad_params => 0, global_vars => 1);
 	
 	my @cities = map {{
 		CITYID => $_->id,
@@ -246,7 +246,7 @@ sub namesearch {
 		};
 	}
 
-	my $tpl = $app->load_tmpl('hotel_search.tpl', die_on_bad_params => 0);
+	my $tpl = $app->load_tmpl('hotel_search.tpl', die_on_bad_params => 0, global_vars => 1);
 
 	$tpl->param(
 		MODHOTELS => \@modhotels,
@@ -347,7 +347,7 @@ sub cityhotels {
 		};
 	}
 	
-	my $tpl = $app->load_tmpl('hotel_search.tpl', die_on_bad_params => 0);
+	my $tpl = $app->load_tmpl('hotel_search.tpl', die_on_bad_params => 0, global_vars => 1);
 	
 	my (@relmods, @reltours);
 	foreach ($city->itineraries) {
@@ -429,6 +429,8 @@ sub statehotels {
 	my $state = $sstates[0];
 	my $stateid = $state->states_id;
 	
+	my $baseprefix = $app->config_param('default.BasePrefix');
+	
 	my @othercities;
 	foreach (OdysseyDB::City->search_webhotelcities_bystate($stateid)) {
 
@@ -461,7 +463,7 @@ sub statehotels {
 		};
 	}
 	
-	my $tpl = $app->load_tmpl('state_search.tpl', die_on_bad_params => 0);
+	my $tpl = $app->load_tmpl('state_search.tpl', die_on_bad_params => 0, global_vars => 1);
 
 	my (@relmods, @reltours);
 	my %included;
@@ -504,7 +506,7 @@ sub statehotels {
 		STATEID => $stateid,
 		STATEONELINER => $state->oneliner,
 		STATEWRITEUP => addptags($state->writeup),
-		STATEWEBWRITEUP => addptags(linkify(boldify($state->webwriteup), $stateid)),
+		STATEWEBWRITEUP => addptags(linkify(boldify($state->webwriteup), $stateid, $baseprefix)),
 		OTHERCITIES => \@othercities,
 		STATES => \@states,
 		CITIES => \@cities,
@@ -534,7 +536,7 @@ sub describe {
 	my $hotel = $shotels[0];
 	my $hotelid = $hotel->addressbook_id;
 	
-	my $tpl = $app->load_tmpl('hotel.tpl', die_on_bad_params => 0);
+	my $tpl = $app->load_tmpl('hotel.tpl', die_on_bad_params => 0, global_vars => 1);
 	
 	my $city = $hotel->cities_id;
 	my $cityid = $city->cities_id;
@@ -796,7 +798,7 @@ sub heritagehotels {
 
 	my $app = shift;
 	
-	my $tpl = $app->load_tmpl('heritagehotels.tpl', die_on_bad_params => 0);
+	my $tpl = $app->load_tmpl('heritagehotels.tpl', die_on_bad_params => 0, global_vars => 1);
 	
 	my $text = OdysseyDB::WebText->retrieve(web_id => 19);
 	my $title = $text->title;
@@ -838,7 +840,7 @@ sub homestays {
 
 	my $app = shift;
 	
-	my $tpl = $app->load_tmpl('homestays.tpl', die_on_bad_params => 0);
+	my $tpl = $app->load_tmpl('homestays.tpl', die_on_bad_params => 0, global_vars => 1);
 	
 	my $text = OdysseyDB::WebText->retrieve(web_id => 20);
 	my $title = $text->title;
@@ -962,13 +964,15 @@ sub linkify {
 	
 	my $str = shift;
 	my $sid = shift;
+	my $baseprefix = shift;
+	
 	my $lstr = '';
 
 	while ( $str =~ /(.*?)\[(.*?)\](.*)/sm ) {
 		my ($name, $id) = split(/\-/, $2);
 		my $city = OdysseyDB::City->retrieve(cities_id => $id);
 		my $url = $city->url;
-		$lstr = $lstr . $1 . " <a href=\"/city/$url\">$name</a>";
+		$lstr = $lstr . $1 . ' <a href="' . $baseprefix . 'city/' . $url . '">$name</a>';
 		$str = $3;
 	}
 	$lstr = $lstr . $str;

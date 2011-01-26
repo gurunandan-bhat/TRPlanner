@@ -41,7 +41,7 @@
 					<p>
 						<em>Remember: Making an enquiry does not put you under any obligation to make a booking.</em>
 					</p>
-					<form action="/acknowledge-quotation" id="quoteformdetails" class="cmxform" method="post">
+					<form action="<!-- TMPL_VAR NAME=BASEPREFIX -->acknowledge-quotation" id="quoteformdetails" class="cmxform" method="post">
 						<p>
 							You have selected the following Modules and Ready Tours:
  						</p>

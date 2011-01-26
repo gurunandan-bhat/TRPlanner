@@ -44,7 +44,7 @@
 						</tr>
 						<!-- /TMPL_LOOP -->
 					</table>
-					<form action="travel.cgi" class="cmxform" method="post">
+					<form action="<!-- TMPL_VAR NAME=BASEPREFIX -->travel.cgi" class="cmxform" method="post">
 						<fieldset>
 							<legend>Special Requests</legend>
 							<p><!-- TMPL_VAR NAME=TEXT2 --></p>

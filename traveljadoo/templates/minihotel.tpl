@@ -29,7 +29,7 @@
 			return; 
 		} 
 
-		var imgName = '<img src="/images/hotel/hotel_' + (currentHotelId) + '_large_' + (currentImageNum+1) + '.jpg" width="400" height="240" alt="' + (currentImageNum+1) + '" />'; 
+		var imgName = '<img src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/hotel/hotel_' + (currentHotelId) + '_large_' + (currentImageNum+1) + '.jpg" width="400" height="240" alt="' + (currentImageNum+1) + '" />'; 
 
 		// add our next slide 
         opts.addSlide(imgName); 

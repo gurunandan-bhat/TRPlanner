@@ -68,7 +68,7 @@ sub setup {
 sub main {
 	my $app = shift;
 	
-	my $tpl = $app->load_tmpl('itineraries.tpl', die_on_bad_params => 0);
+	my $tpl = $app->load_tmpl('itineraries.tpl', die_on_bad_params => 0, global_vars => 1);
 	
 	my @itineraries = map {{
 		ITINID => $_->fixeditin_id,
@@ -125,7 +125,7 @@ sub region {
 			REGIONURL => $_->url,
 		};
 	}
-	my $tpl = $app->load_tmpl('itineraries.tpl', die_on_bad_params => 0);
+	my $tpl = $app->load_tmpl('itineraries.tpl', die_on_bad_params => 0, global_vars => 1);
 
 	my $webpage = OdysseyDB::WebPage->retrieve(webpages_id => 23);
 	my $thisregion = OdysseyDB::Region->retrieve(regions_id => $region);
@@ -169,10 +169,12 @@ sub describe {
 		};
 	}
 	
+	my $baseprefix = $app->config_param('default.BasePrefix');
+	
 	my @tips = map {{
 		TIPID => $_->fixeditintips_id,
 		TIPTITLE => $_->title,
-		TIPTEXT => linkify($_->tip),
+		TIPTEXT => linkify($_->tip, $baseprefix),
 	}} $itin->tips;
 
 	my $sidetext = OdysseyDB::WebText->retrieve(web_id => 10);
@@ -224,7 +226,7 @@ sub describe {
 		ITINNAME => $itin->title,
 		ITINONELINER => $itin->oneliner,
 		ITINDESC => addptags($itin->introduction),
-		ITINDETAILS => addptags(boldify(linkify($itin->itinerary))),
+		ITINDETAILS => addptags(boldify(linkify($itin->itinerary, $baseprefix))),
 		ITINQUOTE => $itin->quotes,
 		ITINHIGHLIGHTS => boldify($hilites),
 		ITINISTOUR => $itin->readytours,
@@ -271,13 +273,13 @@ sub firstpara {
 sub linkify {
 	
 	my $str = shift;
-	my $sid = shift;
+	my $baseprefix = shift;
 #	return $str;
 	my $lstr = '';
 
 	while ( $str =~ /(.*?)\[(.*?)\](.*)/sm ) {
 		my ($name, $id) = split(/\-/, $2);
-		$lstr = $lstr . $1 . " <a href=\"/hotel.cgi?mode=minidescribe&id=$id&height=500&width=420\" title=\"Hotels\" class=\"thickbox\">$name</a>";
+		$lstr = $lstr . $1 . " <a href=\"" . $baseprefix . "hotel.cgi?mode=minidescribe&id=$id&height=500&width=420\" title=\"Hotels\" class=\"thickbox\">$name</a>";
 		$str = $3;
 	}
 	$lstr = $lstr . $str;

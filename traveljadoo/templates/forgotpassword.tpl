@@ -39,7 +39,7 @@
 					</p>
 					<!-- /TMPL_IF -->
 					<div class="prepend-2 append-2 span-8 last ">
-						<form id="newpasswd" name="newpasswd" method="post" action="register.cgi">
+						<form id="newpasswd" name="newpasswd" method="post" action="<!-- TMPL_VAR NAME=BASEPREFIX -->register.cgi">
 							<fieldset id="main" style="background: #fffdf6; border: none">
 								<p>
 									<label for="userid">Email Address:</label>

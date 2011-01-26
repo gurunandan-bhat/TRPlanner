@@ -11,7 +11,7 @@
 	<tr class="summarydetail">
 		<td colspan="5">
 			<p class="summaryhdr"><strong><!-- TMPL_VAR NAME=CITYNAME -->: Day <!-- TMPL_VAR NAME=CITYDAYNUMIN --> to <!-- TMPL_VAR NAME=CITYDAYNUMOUT --></strong></p>
-			<p><img src="images/city_<!-- TMPL_VAR NAME=CITYID -->_movingon.jpg" height="63" width="100" />
+			<p><img src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/city_<!-- TMPL_VAR NAME=CITYID -->_movingon.jpg" height="63" width="100" />
 			<!-- TMPL_VAR NAME=CITYDESC --> You will stay at "<!-- TMPL_VAR NAME=CITYHOTEL -->" for <!-- TMPL_VAR NAME=CITYNIGHTS --> nights</p>
 			<p>You will leave <!-- TMPL_VAR NAME=CITYNAME --> on <!-- TMPL_VAR NAME=DATEOUT --></p>
 		</td>

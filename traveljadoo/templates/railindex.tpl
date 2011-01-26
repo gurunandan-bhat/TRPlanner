@@ -22,7 +22,7 @@
 			</div>
 			<hr class="space" />
 			<div class="prepend-2 span-8 last">
-				<form method="post" action="rail.cgi">
+				<form method="post" action="<!-- TMPL_VAR NAME=BASEPREFIX -->rail.cgi">
 					<fieldset>
 						<legend>Find Trains Traveling between Stations</legend>
 						<p>

@@ -54,7 +54,7 @@
 					<p>
 						<em>Making an enquiry does not put you under any obligation to make a booking.</em>
 					</p>
-					<form action="/confirm-quotation" class="cmxform" method="post" id="quoteform">
+					<form action="<!-- TMPL_VAR NAME=BASEPREFIX -->confirm-quotation" class="cmxform" method="post" id="quoteform">
 						<h4>Mini Itineraries</h4>
 						<!-- TMPL_IF NAME=ITINBASKET -->
 						<p>

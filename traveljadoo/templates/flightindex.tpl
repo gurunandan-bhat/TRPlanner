@@ -21,7 +21,7 @@
 				<img src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/banners/banner_flightfinder.jpg" width="950" height="150" alt="Collage"/>
 			</div>
 			<div class="prepend-2 span-8 last">
-				<form method="post" action="flights.cgi">
+				<form method="post" action="<!-- TMPL_VAR NAME=BASEPREFIX -->flights.cgi">
 					<fieldset>
 						<legend>Find Flights Between Cities</legend>
 						<p>

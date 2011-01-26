@@ -33,7 +33,7 @@ sub setup {
 sub main {
 	my $app = shift;
 	
-	my $tpl = $app->load_tmpl('region.tpl', die_on_bad_params => 0);
+	my $tpl = $app->load_tmpl('region.tpl', die_on_bad_params => 0, global_vars => 1);
 	my $content = OdysseyDB::WebText->retrieve(web_id => 7);
 	
 	my $webpage = OdysseyDB::WebPage->retrieve(webpages_id => 11);

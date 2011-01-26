@@ -1,4 +1,4 @@
-<form id="searchunit" action="/search" method="post">
+<form id="searchunit" action="<!-- TMPL_VAR NAME=BASEPREFIX -->search" method="post">
 	<table>
 		<tr>
 			<td class="headline">Quick Search</td>

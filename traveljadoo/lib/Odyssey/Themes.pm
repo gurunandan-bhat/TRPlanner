@@ -54,7 +54,7 @@ sub main {
 	my @toprow = @themes[0..2];
 	my @botrow = @themes[3..5];
 	
-	my $tpl = $app->load_tmpl('theme_index.tpl', die_on_bad_params => 0, loop_context_vars => 1);
+	my $tpl = $app->load_tmpl('theme_index.tpl', die_on_bad_params => 0, loop_context_vars => 1, global_vars => 1);
 
 	my $webpage = OdysseyDB::WebPage->retrieve(webpages_id => 21);
 	

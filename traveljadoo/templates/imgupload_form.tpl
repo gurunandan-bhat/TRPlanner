@@ -27,7 +27,7 @@
 				</div>
 				<div class="span-12 midcol">
 					<h3>Upload Image</h3>
-					<form action="images.cgi" method="post" enctype="multipart/form-data">
+					<form action="<!-- TMPL_VAR NAME=BASEPREFIX -->images.cgi" method="post" enctype="multipart/form-data">
 						<p>
 							<label for="imgfile">Select an Image: </label>
 							<input type="file" name="imgfile" id="imgfile" /><br />

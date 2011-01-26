@@ -47,7 +47,7 @@
 					If you want a second chance Click "Cleanse Me" and you can start traveling again afresh.<br /><br /> 
 					Nirvana must wait for another day.</p>
 					<p>
-					<form method="post" action="index.cgi">
+					<form method="post" action="<!-- TMPL_VAR NAME=BASEPREFIX -->index.cgi">
 						<input type="hidden" name="mode" value="restart" />
 						<input type="submit" name="nirvana" value="Cleanse Me!" />
 					</form>
@@ -82,7 +82,7 @@
 					<!-- TMPL_ELSE -->
 					<h1>You have Nirvana!.</h1>
 					<p>The cycle of birth and death is over. Rejoice. You are clean and ready to go. Click "Restart" to continue</p>
-					<form method="get" action="index.cgi">
+					<form method="get" action="<!-- TMPL_VAR NAME=BASEPREFIX -->index.cgi">
 						<input type="submit" name="nirvana" value="Restart!" />
 					</form>
 					<!-- /TMPL_IF -->

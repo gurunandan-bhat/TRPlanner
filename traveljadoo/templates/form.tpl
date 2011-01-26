@@ -30,7 +30,7 @@
 				</div>
 				<div class="span-12 midcol">
 					<h3>Tour Booking Form</h3>
-					<form id="planatrip" method="post" action="index.cgi">
+					<form id="planatrip" method="post" action="<!-- TMPL_VAR NAME=BASEPREFIX -->index.cgi">
 						<input type="hidden" name="mode" value="start" />
 						<fieldset id="main">
 							<legend>Details about your Party</legend>

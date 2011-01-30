@@ -29,8 +29,8 @@
 				<div id="imgframe">
 					<div id="frameslideshow">
 						<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,0,0" width="560" height="340" id="statemap">
-							<param name="movie" value="test.swf">
-							<embed src="test.swf" quality=high width="560" height="340" name="statemap" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer">
+							<param name="movie" value="<!-- TMPL_VAR NAME=BASEPREFIX -->test.swf">
+							<embed src="<!-- TMPL_VAR NAME=BASEPREFIX -->test.swf" quality=high width="560" height="340" name="statemap" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer">
 							</embed>
 						</object>
 					</div>

@@ -59,6 +59,9 @@ CGI::Application::Dispatch->dispatch(
 		'success' => {app => 'Payment', rm => 'success'},
 		'failure' => {app => 'Payment', rm => 'failure'},
 		'thanks' => {app => 'Payment', rm => 'thanks'},
+		'upload_quote' => {app => 'Payment', rm => 'upload_quote'},
+		'save_quote' => {app => 'Payment', rm => 'save_quote'},
+		'show_quote/:qid' => {app => 'Payment', rm => 'show_quote'},
 		'form' => {app => 'Init', rm => 'init'},
 	],
 

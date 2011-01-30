@@ -3,10 +3,6 @@
  */
 
  $(document).ready(function() {
-	$("#arrdate").datepicker({dateFormat: 'D, dd M yy', yearRange: '+0:+2', minDate: 0, showStatus: true, onSelect: function() {} });
-	$("#depdate").datepicker({dateFormat: 'D, dd M yy', yearRange: '+0:+2', showStatus: true, beforeShow: customRange, prevText: '', onSelect: function() {}});
+	$('#issuedon0').datepicker({dateFormat: 'dd M yy', yearRange: '-10:+10', changeYear: true, showStatus: true, onSelect: function() {} });
+	$('#expireson0').datepicker({dateFormat: 'dd M yy', yearRange: '-10:+10', changeYear: true, showStatus: true, onSelect: function() {}});
 })
-
-function customRange() {
-	 return {minDate: $('#arrdate').datepicker('getDate')};
-}

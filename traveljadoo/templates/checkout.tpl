@@ -28,15 +28,11 @@
 					<fieldset>
 						<legend>Confirm your Payment</legend>
 						<table>
-							<tr><th>Tour/Module</th><th>Amount (in USD)</th></tr>
-							<tr><td>Kurseong &amp; Darjeeling</td><td>740</td></tr>
-							<tr><td>Ajanta &amp; Ellora</td><td>672</td></tr>
-							<tr><td>Wildlife of Kerala</td><td>2308</td></tr>
-							<tr><td>Kerala Homestays</td><td>1774</td></tr>
-							<tr class="last"><td>The Emerald Isles</td><td>1776</td></tr>
-							<tr><td><strong>Total</strong></td><td><strong>100</strong></td></tr>
+							<tr><th>Party</th><th><!-- TMPL_VAR NAME=lead --></th></tr>
+							<tr><td>Amount to be paid:</td><td><!-- TMPL_VAR NAME=balamt --></td></tr>
+							<tr><td><strong>Total</strong></td><td><strong><!-- TMPL_VAR NAME=balamt --></strong></td></tr>
 						</table>
-						<input type="hidden" name="amount" value="100" />
+						<input type="hidden" name="balamt" value="<!-- TMPL_VAR NAME=balamt -->" />
 						<p style="text-align: center;">
 							<input type="submit" name="checkout" value="I Confirm" />
 						</p> 

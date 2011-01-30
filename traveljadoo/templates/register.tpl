@@ -10,7 +10,7 @@
 		<link rel="stylesheet" href="<!-- TMPL_VAR NAME=BASEPREFIX -->css/odysseyforms.css" type="text/css" media="screen, projection"> 
 		<script type="text/javascript" src="<!-- TMPL_VAR NAME=BASEPREFIX -->js/jquery-1.4.4.min.js"></script>
 		<script type="text/javascript" src="<!-- TMPL_VAR NAME=BASEPREFIX -->js/jquery.validate.pack.js"></script>
-		<script type="text/javascript" src="<!-- TMPL_VAR NAME=BASEPREFIX -->js/register.js"></script>
+		<script type="text/javascript" src="<!-- TMPL_VAR NAME=BASEPREFIX -->js/upload.js"></script>
 		<title>The Traveller's Palm: Plan your Own Custom Trip!</title>
 	</head>
 	<body baseprefix="<!-- TMPL_VAR NAME=BASEPREFIX -->">

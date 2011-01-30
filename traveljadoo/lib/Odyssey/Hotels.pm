@@ -972,7 +972,7 @@ sub linkify {
 		my ($name, $id) = split(/\-/, $2);
 		my $city = OdysseyDB::City->retrieve(cities_id => $id);
 		my $url = $city->url;
-		$lstr = $lstr . $1 . ' <a href="' . $baseprefix . 'city/' . $url . '">$name</a>';
+		$lstr = $lstr . $1 . ' <a href="' . $baseprefix . 'city/' . $url . '">' . $name . '</a>';
 		$str = $3;
 	}
 	$lstr = $lstr . $str;

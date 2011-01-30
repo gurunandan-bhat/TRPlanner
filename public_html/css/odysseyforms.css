@@ -4,6 +4,7 @@ fieldset {
 	width: 100%;
 	margin: 1.5em 0 0 0;
 	padding: 0;
+	position: relative;
 }
 
 legend {
@@ -17,6 +18,7 @@ fieldset ol {
 	padding: 1em 1em 0 1em;
 	list-style: none;
 	float: left;
+	width: 90%;
 }
 
 fieldset li {
@@ -25,6 +27,7 @@ fieldset li {
 	width: 100%;
 	padding-bottom: 1em;
 	position: relative;
+	width: 90%;
 }
 
 fieldset label {
@@ -48,7 +51,7 @@ input.title,
 textarea, 
 select {
 	margin: 0;
-	width: 120px;
+	width: 160px;
 	height: 1.5em;
 	padding: 0;
 	border: 1px solid #e2a441;
@@ -72,7 +75,6 @@ fieldset.submit {
 
 fieldset label.error {
 	position: absolute;
-	left: 0;
 	right: 0;
 	width: 13em;
 	text-align: left;

@@ -53,17 +53,17 @@ $(document).ready(function() {
 				icon: 'markers/image_' + idx + '.png',
 				region: idx
 			});
-			set_redirector(mymarkers[i], data.modules[i]);
+			set_redirector(mymarkers[i], data.modules[i], baseprefix);
 		}
 	});
 });
 
-function set_redirector(marker, idx) {
+function set_redirector(marker, idx, prefix) {
 	google.maps.event.addListener(
 		marker, 
 		'click', 
 		function() {
-			window.location = '/modules/' + idx;
+			window.location = prefix + 'modules/' + idx;
 		}
 	);
 }

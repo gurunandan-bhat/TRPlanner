@@ -95,7 +95,7 @@ sub describe {
 		SUBTHEME_URL => $url . '/' . $_->url,
 	}} $theme->subthemes;
 	
-	my $tpl = $app->load_tmpl('theme_describe.tpl', die_on_bad_params => 0);
+	my $tpl = $app->load_tmpl('theme_describe.tpl', die_on_bad_params => 0, global_vars => 1);
 	
 	$tpl->param(
 		METADESCRIPTION => $theme->metatype,

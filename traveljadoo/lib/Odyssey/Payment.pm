@@ -272,6 +272,8 @@ sub show_quote {
 	my $app = shift;
 	my $qid = $app->param('qid');
 	
+	$app->session->param(qid => $qid);
+	
 	my $sth = $app->dbh->prepare("select * from quotations where id = ?") or die("Cannot prepare select");
 	$sth->execute($qid) or die("Cannot execute select for quotation: $qid");
 	
@@ -302,17 +304,25 @@ sub togateway {
 	my $app = shift;
 	my $q = $app->query;
 	
-	my $qid = $q->param('qid');
+	my $fqid = $q->param('qid');
+	my $qid = $app->session->param('qid');
+	
+	die("Strange Error!") unless ($qid == $fqid);
 	
 	my $sth = $app->dbh->prepare('select * from quotations where id = ?') or die("Cannot prepare select");
 	$sth->execute($qid) or die("Cannot execute select");
 	
+	my $quote = $sth->fetchrow_hashref('NAME_lc');
+
+	my $advamt = $quote->{advamt};
+	my $balamt = $quote->{balamt};
+	my $payable = $advamt || $balamt;
 	
-	
-	my $tourid = $qid;
-	my $amount = 500;
-	my $currency = 356;
-	
+	my $ottcurrency = OdysseyDB::Currency->retrieve(currencies_id => $quote->{currency});	
+	my $merchantid = $ottcurrency->merchantid;
+	my $hdfccode = $ottcurrency->hdfccode;
+	my $terminalid = $ottcurrency->terminalid;
+		
 	my $uuid = new Data::UUID;
 	my $trackid = $uuid->create_str;
 	
@@ -321,12 +331,14 @@ sub togateway {
 		respurl => $app->config_param('ResponseURL'),
 		errurl => $app->config_param('ErrorURL'),
 		rsrcpath => $app->config_param('ResourcePath'),
-		alias => $app->config_param('MerchantAlias'),
-		currency => 25,
-		amount => $app->query->param('balamt'),
+		alias => $terminalid,
+		currency => $hdfccode,
+		amount => $payable,
 		trackid => $trackid,
 		udf1 => $qid,
-		udf2 => $tourid,
+		udf2 => $quote->{lead},
+		udf3 => $quote->{userid},
+		udf4 => $ottcurrency->currencycode,
 	]);
 	
 	if ($resp->is_success) {
@@ -353,11 +365,22 @@ sub success {
 	my $q = $app->query;
 	
 	my $params = $q->Vars;
-	open my $sickfh, ">", "/tmp/HDFCLog.txt";
+	open my $sickfh, ">", "/tmp/HDFCLog_thanks.txt";
 	print $sickfh '<pre>' . Dumper($params) . '</pre>';
 	
-	my $qrystr = join('&', map {$_ . '=' . $params->{$_}} keys %$params);
+	my $qrystr = join('&', map {
+		if (/^\./) {
+			();
+		}
+		else {
+			$_ . '=' . $params->{$_};
+		}
+	} keys %$params);
 	
+	
+	print $sickfh "\n$qrystr\n";
+	close($sickfh);
+
 	return 'REDIRECT=' . 'http://www.travellers-palm.com/thanks' . '?' . $qrystr;
 }
 
@@ -366,8 +389,18 @@ sub thanks {
 	my $app = shift;
 	my $q = $app->query;
 
-	my $params = $q->Vars;
-	return '<p>Thank You</p><br /><pre>' . Dumper($params) . '</pre>';
+	my $tpl = $app->load_tmpl('payment_thanks.tpl');
+	$tpl->param(
+		qid => $q->param('udf1'),
+		lead => $q->param('udf2'),
+		email => $q->param('udf3'),
+		currency => $q->param('udf4'),
+		refid => $q->param('ref'),
+		tranid => $q->param('tranid'),
+		amt => $q->param('amt'),
+	);
+
+	return $tpl->output;
 }
 
 sub failure {

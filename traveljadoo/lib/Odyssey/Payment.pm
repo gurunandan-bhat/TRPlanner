@@ -5,16 +5,17 @@ use warnings;
 
 use LWP::UserAgent;
 use HTTP::Request::Common;
-use Data::Dumper;
 use Regexp::Common qw{URI};
 use Data::UUID;
 use File::Basename qw(fileparse fileparse_set_fstype);
 use File::Copy;
 use HTTP::BrowserDetect;
 use Config::Simple;
+use Email::Valid;
 use MIME::Lite;
 use Data::FormValidator;
 use Data::FormValidator::Constraints::Upload qw(file_format file_max_bytes);
+use Digest::MD5 qw{md5_base64};
 
 use lib qw{../};
 use OdysseyDB::Currency;
@@ -141,27 +142,48 @@ sub upload_quote {
 	my %paycfg;
 	Config::Simple->import_from($txtcpy, \%paycfg);
 
-	my $tpl = $app->load_tmpl('confirm_quote.tpl', die_on_bad_params => 0);
+	if (! %paycfg) {
+		
+		my $tpl = $app->load_tmpl('upload.tpl', die_on_bad_params => 0);
+		$tpl->param(
+			invalid_config => 1,
+			pdffile => $q->param('pdffile'),
+			txtfile => $q->param('txtfile'),
+		);
+		return $tpl->output;
+	}
 
+	my $email;
+	if (! ($email = Email::Valid->address($paycfg{'Lead.Email'}))) {
+		
+		my $tpl = $app->load_tmpl('upload.tpl', die_on_bad_params => 0);
+		$tpl->param(
+			invalid_email => 1,
+			pdffile => $q->param('pdffile'),
+			txtfile => $q->param('txtfile'),
+		);
+		return $tpl->output;
+	} 
+
+	my $tpl = $app->load_tmpl('confirm_quote.tpl', die_on_bad_params => 0);
 	$tpl->param(
 		qid 	=> $paycfg{'Quotation.Id'},
 		lead 	=> $paycfg{'Lead.PartyName'},
-		email 	=> $paycfg{'Lead.Email'},
+		email 	=> $email,
 		pax 	=> $paycfg{'Lead.NumPax'},
 		ratepp 	=> $paycfg{'Quotation.AmountPerPerson'},
 		taxpc 	=> $paycfg{'Quotation.ServiceTaxPercentage'},
 		tax 	=> $paycfg{'Quotation.ServiceTax'},
 		amt 	=> $paycfg{'Quotation.TotalAmt'},
-		advamt 	=> $paycfg{'Payment.AdvanteceAmt'},
+		advamt 	=> $paycfg{'Payment.AdvanceAmt'},
 		advdate => odyssey_date($paycfg{'Payment.AdvanceDueOn'}),
 		balamt 	=> $paycfg{'Payment.BalanceAmt'},
 		baldate => odyssey_date($paycfg{'Payment.BalanceAmtDueOn'}),
-		curr => $paycfg{'Quotation.Currency'},
+		curr 	=> $paycfg{'Quotation.Currency'},
 		currency => OdysseyDB::Currency->retrieve(currencies_id => $paycfg{'Quotation.Currency'})->currencycode,
 	);
 
 	return $tpl->output;
-	
 }
 
 sub save_quote {
@@ -183,12 +205,13 @@ sub save_quote {
 	my $baldate = $q->param('baldate');
 	my $curr = $q->param('curr');
 	my $currency = $q->param('currency');
-	
+
 	my $sth = $app->dbh->prepare("delete from quotations where id = ?")
 		or die({type => 'error', msg => 'Cannot prepare delete of existing quotation'});
 	$sth->execute($qid) 
 		or die({type => 'error', msg => 'Cannot execute delete of existing quotation'});
 	
+	my $digest = md5_base64($qid, $lead, $email);
 	$sth = $app->dbh->prepare("
 		insert into quotations (
 			id,
@@ -204,8 +227,10 @@ sub save_quote {
 			advdate,
 			balamt,
 			baldate
+			digest
 		)
 		values (
+			?,
 			?,
 			?,
 			?,
@@ -221,7 +246,7 @@ sub save_quote {
 			?
 		)"
 	) or die("Cannot prepare insert!" . $app->dbh->errstr);
-	$sth->execute($qid, $email, $lead, $pax, $curr, $ratepp, $taxpc, $tax, $amt, $advamt, $advdate, $balamt, $baldate) 
+	$sth->execute($qid, $email, $lead, $pax, $curr, $ratepp, $taxpc, $tax, $amt, $advamt, $advdate, $balamt, $baldate, $digest) 
 		or die("Cannot execute insert: " . $app->dbh->errstr);
 
 	my $emailtpl = $app->load_tmpl('email_final_quote.tpl', die_on_bad_params => 0);
@@ -241,15 +266,16 @@ sub save_quote {
 		advdate => $advdate,
 		balamt => $balamt,
 		baldate => $baldate,
-		payurl => 'http://www.travellers-palm.com/show_quote/' . $qid,
+		payurl => 'http://www.travellers-palm.com/show_quote/' . "$qid/$digest",
 	);
 	
 	my $msg = MIME::Lite->new(
-		To => 		'hans@odyssey.co.in',
+		To => 		$email,
 		From => 	'Travellers Palm Administrator <webmaster@travellers-palm.com>',
 		Subject => 	'Quotation Sent: ' . $qid,
 		Type => 	'multipart/related',
-		CC => 		'admin@odyssey.co.in, gbhat@pobox.com', 
+		CC => 		'hans@odyssey.co.in, phil@odyssey.co.in',
+		BCC => 		'gbhat@pobox.com', 
 	);
 	
 	
@@ -266,8 +292,12 @@ sub save_quote {
 		AuthPass => 'ip31415',
 		Debug => 1,
 	);
-	
-	$msg->send;
+	eval {
+		$msg->send;
+	};
+	if (@$) {
+		die(type => 'error', msg => "Could not send email to recipients: $@. Aborting!")
+	}
 	
 	my $tpl = $app->load_tmpl('quote_saved.tpl', die_on_bad_params => 0);
 	return $tpl->output;
@@ -277,14 +307,20 @@ sub show_quote {
 	
 	my $app = shift;
 	my $qid = $app->param('qid');
-	
-	$app->session->param(qid => $qid);
+	my $digest = $app->param('digest');
 	
 	my $sth = $app->dbh->prepare("select * from quotations where id = ?") or die("Cannot prepare select");
 	$sth->execute($qid) or die("Cannot execute select for quotation: $qid");
 	
 	my $quote = $sth->fetchrow_hashref('NAME_lc') or die("Cannot fetch fields for quotation: $qid");
-	
+	my $dbdigest = md5_base64($qid, $quote->{lead}, $quote->{email});
+
+	if ($digest ne $dbdigest) {
+		
+		my $tpl = $app->load_tmpl('bad_quotation_request.tpl');
+		return $tpl->output;
+	}
+
 	my $tpl = $app->load_tmpl('form.tpl', die_on_bad_params => 0);
 	$tpl->param(
 		qid => $quote->{id},

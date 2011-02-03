@@ -1,4 +1,4 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+ <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
@@ -41,6 +41,20 @@
 					<!-- TMPL_IF NAME=filecp_errors -->
 					<p class="error">
 						There was an error copying files: <!-- TMPL_VAR NAME=filecp_errors --> 
+					</p>
+					<!-- /TMPL_IF -->
+					<!-- TMPL_IF NAME=invalid_config -->
+					<p class="error">
+						Could not parse the text file <!-- TMPL_VAR NAME=err_txtfile -->.
+						Please check for errors in syntax or spelling in the uploaded file
+						and upload again.
+					</p>
+					<!-- /TMPL_IF -->
+					<!-- TMPL_IF NAME=invalid_email -->
+					<p class="error">
+						Could not find a valid email address in the Email field in the text file.
+						Please check whether the email in the [Lead] section is a valid email address
+						and upload again.
 					</p>
 					<!-- /TMPL_IF -->
 					<form id="uploadform" name="uploadform" enctype="multipart/form-data" method="post" action="<!-- TMPL_VAR NAME=BASEPREFIX -->upload_quote">

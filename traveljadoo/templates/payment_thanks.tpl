@@ -52,7 +52,7 @@
 						</tr>
 						<tr>
 							<td>Payment Date:</td>
-							<td style="text-align: right;"><!-- TMPL_VAR NAME=transdate --></td>
+							<td style="text-align: right;"><!-- TMPL_VAR NAME=trandate --></td>
 						</tr>
 						<tr>
 							<td>Amount Paid</td>

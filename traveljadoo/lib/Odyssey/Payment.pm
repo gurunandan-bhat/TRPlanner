@@ -21,6 +21,10 @@ use OdysseyDB::Currency;
 
 use base qw(Odyssey);
 
+my $months = [
+	qw(Inv Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec)
+];
+
 sub setup {
 	my $app = shift;
 	
@@ -148,10 +152,10 @@ sub upload_quote {
 		taxpc 	=> $paycfg{'Quotation.ServiceTaxPercentage'},
 		tax 	=> $paycfg{'Quotation.ServiceTax'},
 		amt 	=> $paycfg{'Quotation.TotalAmt'},
-		advamt 	=> $paycfg{'Payment.AdvanceAmt'},
-		advdate => $paycfg{'Payment.AdvanceDueOn'},
+		advamt 	=> $paycfg{'Payment.AdvanteceAmt'},
+		advdate => odyssey_date($paycfg{'Payment.AdvanceDueOn'}),
 		balamt 	=> $paycfg{'Payment.BalanceAmt'},
-		baldate => $paycfg{'Payment.BalanceAmtDueOn'},
+		baldate => odyssey_date($paycfg{'Payment.BalanceAmtDueOn'}),
 		curr => $paycfg{'Quotation.Currency'},
 		currency => OdysseyDB::Currency->retrieve(currencies_id => $paycfg{'Quotation.Currency'})->currencycode,
 	);
@@ -234,7 +238,9 @@ sub save_quote {
 		amt => $amt,
 		has_advance => $advamt ? 1 : undef,
 		advamt => $advamt,
+		advdate => $advdate,
 		balamt => $balamt,
+		baldate => $baldate,
 		payurl => 'http://www.travellers-palm.com/show_quote/' . $qid,
 	);
 	
@@ -293,7 +299,9 @@ sub show_quote {
 		amt => $quote->{total},
 		has_advance => $quote->{advamt} ? 1 : undef,
 		advamt => $quote->{advamt},
+		advdate => $quote->{advdate},
 		balamt => $quote->{balamt},
+		baldate => $quote->{baldate},
 	);
 
 	return $tpl->output;
@@ -330,7 +338,7 @@ sub togateway {
 	my $resp = $ua->request(POST $app->config_param('PassthroughURL'), [
 		respurl => $app->config_param('ResponseURL'),
 		errurl => $app->config_param('ErrorURL'),
-		rsrcpath => $app->config_param('ResourcePath'),
+		rsrcpath => $app->config_param('ResourcePath') . "$merchantid/",
 		alias => $terminalid,
 		currency => $hdfccode,
 		amount => $payable,
@@ -386,6 +394,8 @@ sub success {
 
 sub thanks {
 	
+	use POSIX;
+	
 	my $app = shift;
 	my $q = $app->query;
 
@@ -397,6 +407,7 @@ sub thanks {
 		currency => $q->param('udf4'),
 		refid => $q->param('ref'),
 		tranid => $q->param('tranid'),
+		trandate => POSIX::strftime('%d %b %Y', localtime()),
 		amt => $q->param('amt'),
 	);
 
@@ -411,4 +422,17 @@ sub failure {
 	my @params = $q->param();
 	return '<pre>' . Dumper(\@params) . '</pre>';	
 }
+
+sub odyssey_date {
+
+	my $dtstr = shift;
+	my ($y, $m, $d) = split(/\-/, $dtstr);
+	
+	return '' if ($y eq '0000');
+
+	$m =~ s/^0+//;
+	return ("$d " . $months->[$m] . " $y");
+}
+
+
 1;

@@ -38,7 +38,7 @@
 						<tr><td style="text-align: right;">Pax:</td><td><strong><!-- TMPL_VAR NAME=pax --></strong></td></tr>
 						<tr><td style="text-align: right;">Currency:</td><td><strong><!-- TMPL_VAR NAME=currency --></strong></td></tr>
 						<tr class="odd"><td style="text-align: right;">Rate per Person:</td><td><strong><!-- TMPL_VAR NAME=ratepp --></strong></td></tr>
-						<tr><td style="text-align: right;">Tax Percentage:</td><td><strong><!-- TMPL_VAR NAME=taxpc --></strong></td></tr>
+						<tr><td style="text-align: right;">Tax Percentage:</td><td><strong><!-- TMPL_VAR NAME=taxpc -->%</strong></td></tr>
 						<tr class="odd"><td style="text-align: right;">Total Tax:</td><td><strong><!-- TMPL_VAR NAME=tax --></strong></td></tr>
 						<tr><td style="text-align: right;">Total Amount:</td><td><strong><!-- TMPL_VAR NAME=amt --></strong></td></tr>
 						<tr class="odd"><td style="text-align: right;">Advance Amount:</td><td><strong><!-- TMPL_VAR NAME=advamt --></strong></td></tr>

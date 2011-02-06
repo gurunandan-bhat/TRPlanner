@@ -14,8 +14,14 @@ use Config::Simple;
 use Email::Valid;
 use MIME::Lite;
 use Data::FormValidator;
+use Data::FormValidator::Constraints qw(:closures);
 use Data::FormValidator::Constraints::Upload qw(file_format file_max_bytes);
-use Digest::MD5 qw{md5_base64};
+use Digest::MD5 qw{md5_hex};
+use POSIX;
+use URI::Escape;
+
+use Data::Dumper;
+	
 
 use lib qw{../};
 use OdysseyDB::Currency;
@@ -206,13 +212,11 @@ sub save_quote {
 	my $curr = $q->param('curr');
 	my $currency = $q->param('currency');
 
-	my $sth = $app->dbh->prepare("delete from quotations where id = ?")
-		or die({type => 'error', msg => 'Cannot prepare delete of existing quotation'});
-	$sth->execute($qid) 
-		or die({type => 'error', msg => 'Cannot execute delete of existing quotation'});
+	my $ug = new Data::UUID;
+	my $uuid = $ug->create_str;
 	
-	my $digest = md5_base64($qid, $lead, $email);
-	$sth = $app->dbh->prepare("
+	my $digest = md5_hex($qid, $lead, $email, $uuid);
+	my $sth = $app->dbh->prepare("
 		insert into quotations (
 			id,
 			userid,
@@ -226,10 +230,14 @@ sub save_quote {
 			advamt,
 			advdate,
 			balamt,
-			baldate
-			digest
+			baldate,
+			digest,
+			addedon,
+			uuid
 		)
 		values (
+			?,
+			?,
 			?,
 			?,
 			?,
@@ -246,7 +254,7 @@ sub save_quote {
 			?
 		)"
 	) or die("Cannot prepare insert!" . $app->dbh->errstr);
-	$sth->execute($qid, $email, $lead, $pax, $curr, $ratepp, $taxpc, $tax, $amt, $advamt, $advdate, $balamt, $baldate, $digest) 
+	$sth->execute($qid, $email, $lead, $pax, $curr, $ratepp, $taxpc, $tax, $amt, $advamt, $advdate, $balamt, $baldate, $digest, POSIX::strftime('%d %b %Y %H:%M:%S', localtime()), $uuid) 
 		or die("Cannot execute insert: " . $app->dbh->errstr);
 
 	my $emailtpl = $app->load_tmpl('email_final_quote.tpl', die_on_bad_params => 0);
@@ -261,12 +269,12 @@ sub save_quote {
 		taxpc => $taxpc,
 		tax => $tax,
 		amt => $amt,
-		has_advance => $advamt ? 1 : undef,
+		is_advance => $advamt ? 1 : undef,
 		advamt => $advamt,
 		advdate => $advdate,
 		balamt => $balamt,
 		baldate => $baldate,
-		payurl => 'http://www.travellers-palm.com/show_quote/' . "$qid/$digest",
+		payurl => $app->config_param('default.PayURL') . "$qid/$uuid/$digest",
 	);
 	
 	my $msg = MIME::Lite->new(
@@ -274,7 +282,7 @@ sub save_quote {
 		From => 	'Travellers Palm Administrator <webmaster@travellers-palm.com>',
 		Subject => 	'Quotation Sent: ' . $qid,
 		Type => 	'multipart/related',
-		CC => 		'hans@odyssey.co.in, phil@odyssey.co.in',
+		CC => 		'hans@odyssey.co.in',
 		BCC => 		'gbhat@pobox.com', 
 	);
 	
@@ -307,23 +315,33 @@ sub show_quote {
 	
 	my $app = shift;
 	my $qid = $app->param('qid');
+	my $uuid = $app->param('uuid');
 	my $digest = $app->param('digest');
 	
-	my $sth = $app->dbh->prepare("select * from quotations where id = ?") or die("Cannot prepare select");
-	$sth->execute($qid) or die("Cannot execute select for quotation: $qid");
+	my $sth = $app->dbh->prepare("select * from quotations where id = ? and uuid = ? and digest = ?") or die("Cannot prepare select");
+	$sth->execute($qid, $uuid, $digest) or die("Cannot execute select for quotation: $qid");
 	
 	my $quote = $sth->fetchrow_hashref('NAME_lc') or die("Cannot fetch fields for quotation: $qid");
-	my $dbdigest = md5_base64($qid, $quote->{lead}, $quote->{email});
+	
+	my $dbdigest = md5_hex($qid, $quote->{lead}, $quote->{userid}, $uuid);
 
 	if ($digest ne $dbdigest) {
 		
-		my $tpl = $app->load_tmpl('bad_quotation_request.tpl');
+		my $tpl = $app->load_tmpl('bad_quotation_request.tpl', die_on_bad_params => 0);
 		return $tpl->output;
 	}
 
+	$app->session->param(
+		qid => $qid,
+		uuid => $uuid,
+		digest => $digest,
+	);
+	
 	my $tpl = $app->load_tmpl('form.tpl', die_on_bad_params => 0);
 	$tpl->param(
 		qid => $quote->{id},
+		uuid => $uuid,
+		digest => $digest,
 		lead => $quote->{lead},
 		email => $quote->{userid},
 		pax => $quote->{pax},
@@ -333,7 +351,7 @@ sub show_quote {
 		taxpc => $quote->{taxpc},
 		tax => $quote->{tax},
 		amt => $quote->{total},
-		has_advance => $quote->{advamt} ? 1 : undef,
+		is_advance => $quote->{advamt} ? 1 : undef,
 		advamt => $quote->{advamt},
 		advdate => $quote->{advdate},
 		balamt => $quote->{balamt},
@@ -347,14 +365,91 @@ sub togateway {
 	
 	my $app = shift;
 	my $q = $app->query;
-	
+
+	my $dfv = {
+		filters => ['trim'],
+		required_regexp => qr/(^name|^nationality|^passport|^issuedat|^issuedon|^expireson)\d+/,
+		required => [qw{
+				address1
+				city
+				zip
+				state
+				country
+				email
+				travelemail
+				telehome
+				ecorrname
+				eemail
+				etelehome
+				etelecell
+				haveread
+				goodhealth
+			}
+		],
+		constraint_methods => {
+			email => email(),
+			travelemail => email(),
+			eemail => email(),
+			telehome => phone(),
+			etelehome => phone(),
+			etelecell => phone(),
+		},
+		msgs => {
+			prefix => 'err_',
+			any_errors => 'some_errors',
+		},
+	};
+
+	my $results = Data::FormValidator->check($q, $dfv);
+	if ($results->has_invalid or $results->has_missing) {
+		
+		my $qid = $app->session->param('qid');
+		my $uuid = $app->session->param('uuid');
+		my $digest = $app->session->param('digest');
+		
+		my $sth = $app->dbh->prepare("select * from quotations where id = ? and uuid = ? and digest = ?") or die("Cannot prepare select");
+		$sth->execute($qid, $uuid, $digest) or die("Cannot execute select for quotation: $qid");
+		my $quote = $sth->fetchrow_hashref('NAME_lc') or die("Cannot fetch fields for quotation: $qid");
+		
+		my $tpl = $app->load_tmpl('form.tpl', die_on_bad_params => 0);
+		$tpl->param(
+			qid => $quote->{id},
+			uuid => $uuid,
+			digest => $digest,
+			lead => $quote->{lead},
+			email => $quote->{userid},
+			pax => $quote->{pax},
+			ratepp => $quote->{amtpp},
+			currency => OdysseyDB::Currency->retrieve(currencies_id => $quote->{currency})->currencycode,
+			touramt => $quote->{amtpp} * $quote->{pax},
+			taxpc => $quote->{taxpc},
+			tax => $quote->{tax},
+			amt => $quote->{total},
+			is_advance => $quote->{advamt} ? 1 : undef,
+			advamt => $quote->{advamt},
+			advdate => $quote->{advdate},
+			balamt => $quote->{balamt},
+			baldate => $quote->{baldate},
+		);
+		$tpl->param($results->msgs);
+		$tpl->param($results->valid);
+
+		return $tpl->output;
+	}
+
 	my $fqid = $q->param('qid');
-	my $qid = $app->session->param('qid');
+	my $fuuid = $q->param('uuid');
+	my $fdigest = $q->param('digest');
+
+	my $sqid = $app->session->param('qid');
+	my $suuid = $app->session->param('uuid');
+	my $sdigest = $app->session->param('digest');
 	
-	die("Strange Error!") unless ($qid == $fqid);
+	die("Strange Error; Tampering Found")
+		unless (($sqid == $fqid) && ($suuid eq $fuuid) && ($sdigest eq $fdigest));
 	
-	my $sth = $app->dbh->prepare('select * from quotations where id = ?') or die("Cannot prepare select");
-	$sth->execute($qid) or die("Cannot execute select");
+	my $sth = $app->dbh->prepare('select * from quotations where id = ? and uuid = ?') or die("Cannot prepare select");
+	$sth->execute($fqid, $fuuid) or die("Cannot execute select");
 	
 	my $quote = $sth->fetchrow_hashref('NAME_lc');
 
@@ -367,22 +462,20 @@ sub togateway {
 	my $hdfccode = $ottcurrency->hdfccode;
 	my $terminalid = $ottcurrency->terminalid;
 		
-	my $uuid = new Data::UUID;
-	my $trackid = $uuid->create_str;
-	
 	my $ua = LWP::UserAgent->new;
 	my $resp = $ua->request(POST $app->config_param('PassthroughURL'), [
 		respurl => $app->config_param('ResponseURL'),
 		errurl => $app->config_param('ErrorURL'),
 		rsrcpath => $app->config_param('ResourcePath') . "$merchantid/",
 		alias => $terminalid,
-		currency => $hdfccode,
+		currency => sprintf('%03d', $hdfccode),
 		amount => $payable,
-		trackid => $trackid,
-		udf1 => $qid,
-		udf2 => $quote->{lead},
-		udf3 => $quote->{userid},
-		udf4 => $ottcurrency->currencycode,
+		trackid => $fqid,
+		udf1 => $fuuid,
+		udf2 => $quote->{userid},
+		udf3 => 'Contact Numbers Here',
+		udf4 => 'Address Comes Here',
+		udf5 => $ottcurrency->currencycode,
 	]);
 	
 	if ($resp->is_success) {
@@ -409,49 +502,128 @@ sub success {
 	my $q = $app->query;
 	
 	my $params = $q->Vars;
-	open my $sickfh, ">", "/tmp/HDFCLog_thanks.txt";
-	print $sickfh '<pre>' . Dumper($params) . '</pre>';
 	
-	my $qrystr = join('&', map {
-		if (/^\./) {
-			();
-		}
-		else {
-			$_ . '=' . $params->{$_};
-		}
-	} keys %$params);
-	
-	
-	print $sickfh "\n$qrystr\n";
-	close($sickfh);
+	my $sth = $app->dbh->prepare('insert into paymentlog (
+		qid,
+		puuid,
+		lead,
+		userid,
+		tranid,
+		avr,
+		auth,
+		postdate,
+		amt,
+		ref,
+		paymentid,
+		result,
+		contact,
+		address,
+		currency,
+		digest,
+		dtime,
+		uuid
+	)
+	values (
+		?,
+		?,
+		?,
+		?,
+		?,
+		?,
+		?,
+		?,
+		?,
+		?,
+		?,
+		?,
+		?,
+		?,
+		?,
+		?,
+		?,
+		?
+	)') or die("Cannot prepare insert");
 
-	return 'REDIRECT=' . 'http://www.travellers-palm.com/thanks' . '?' . $qrystr;
+	my $qid = $params->{trackid};
+	my $uuid = $params->{udf1};
+	
+	my $digest = md5_hex($params->{udf1}, $params->{udf2}, $params->{udf3}, $params->{udf4}, $params->{udf5}, $params->{result});
+
+	my $pug = new Data::UUID;
+	my $puuid = $pug->create_str;
+
+	$sth->execute(
+		$qid,
+		$puuid,
+		'Custom Tour',
+		$params->{udf2},
+		$params->{tranid},
+		$params->{avr},
+		$params->{auth},
+		$params->{postdate},
+		$params->{amt},
+		$params->{ref},
+		$params->{paymentid},
+		$params->{result},
+		$params->{udf3},
+		$params->{udf4},
+		$params->{udf5},
+		$digest,
+		POSIX::strftime('%Y-%m-%d %H:%M:%S', localtime()),
+		$uuid
+	) or die("Cannot insert into database");
+
+	return 'REDIRECT=' . $app->config_param('default.RedirectURL') . "$qid/$puuid/$digest";
 }
 
 sub thanks {
 	
-	use POSIX;
-	
 	my $app = shift;
-	my $q = $app->query;
 
-	my $tpl = $app->load_tmpl('payment_thanks.tpl');
+	my $qid = $app->param('qid');
+	my $puuid = $app->param('puuid');
+	my $digest = $app->param('digest');
+
+	my $sth = $app->dbh->prepare("select * from paymentlog where qid = ? and puuid = ? and digest = ?")
+		or die("Cannot prepare select");
+		
+	$sth->execute($qid, $puuid, $digest)
+		or die("Cannot execute select");
+	my $plog = $sth->fetchrow_hashref('NAME_lc');
+
+	my $uuid = $plog->{uuid};
+
+	my $sqid = $app->session->param('qid');
+	my $suuid = $app->session->param('uuid');
+	
+	die("Not continuing session") 
+		unless (($qid == $sqid) && ($uuid eq $suuid));
+
+	my $qsth = $app->dbh->prepare("select lead from quotations where id = ? and uuid = ?")
+		or die("Cannot prepare quotations select");
+	$qsth->execute($qid, $uuid);
+	my $qrow = $qsth->fetchrow_hashref('NAME_lc');
+	
+#TODO digest not checked. To be checked here
+	
+	my $ftpl = ($plog->{result} eq 'CAPTURED') ? 'payment_thanks.tpl' : 'payment_regret.tpl';
+	my $tpl = $app->load_tmpl($ftpl, die_on_bad_params => 0);
 	$tpl->param(
-		qid => $q->param('udf1'),
-		lead => $q->param('udf2'),
-		email => $q->param('udf3'),
-		currency => $q->param('udf4'),
-		refid => $q->param('ref'),
-		tranid => $q->param('tranid'),
+		qid => $qid,
+		lead => $qrow->{lead},
+		email => $plog->{userid},
+		currency => $plog->{currency},
+		ref => $plog->{ref},
+		tranid => $plog->{tranid},
+		paymentid => $plog->{paymentid},
 		trandate => POSIX::strftime('%d %b %Y', localtime()),
-		amt => $q->param('amt'),
+		amt => $plog->{amt},
 	);
-
 	return $tpl->output;
 }
 
 sub failure {
-	
+
 	my $app = shift;
 	my $q = $app->query;
 

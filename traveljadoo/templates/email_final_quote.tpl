@@ -46,7 +46,7 @@
 				<td style="text-align: right;"><!-- TMPL_VAR NAME=amt --></td>
 			</tr>
 			<tr>
-			<!-- TMPL_IF NAME=has_advance -->
+			<!-- TMPL_IF NAME=is_advance -->
 				<td>Advance Due Now:</td>
 				<td><!-- TMPL_VAR NAME=currency --></td> 
 				<td style="text-align: right;"><!-- TMPL_VAR NAME=advamt --></td>
@@ -58,7 +58,7 @@
 			</tr>
 		</table>
 		<p>
-		<!-- TMPL_IF NAME=has_advance -->
+		<!-- TMPL_IF NAME=is_advance -->
 			The balance of the holiday cost (<!-- TMPL_VAR NAME=currency --> <!-- TMPL_VAR NAME=balamt -->) must be paid to us
 		 	before <!-- TMPL_VAR NAME=baldate -->. This date will be shown on the confirmation invoice and a reminder will be 
 			sent to you a week before the balance payment is due.
@@ -74,6 +74,10 @@
 			Best regards,<br />
 			Phil Rolph <br />
 			Traveller's Palm
+		</p>
+		<p style="color: red;">
+			Please Note: Please do not reply to this email. It has been sent by an automated booking system 
+			from an address that is not monitored. 
 		</p>
 	</body>
 </html>

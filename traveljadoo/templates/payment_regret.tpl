@@ -24,17 +24,14 @@
 					<h3>Sidebar</h3>
 				</div>
 				<div class="span-12 midcol">
-					<h3>Thank You</h3>
+					<h3>Sorry!</h3>
 					<p>
 						<b>Dear <!-- TMPL_VAR NAME=lead -->,</b>
 					</p>
 					<p>
-						Thank you for making a payment of <!-- TMPL_VAR NAME=currency --> <!-- TMPL_VAR NAME=amt -->. We look forward to assisting you
-						during your tour. Please save the details of your payment for your reference. We have also sent you an email with an acknowledgement
-						of your payment.
-					</p>
-					<p>
-						If you wish to print a receipt for your payment, please click here. Your payment details are as follows:
+						Your payment of <!-- TMPL_VAR NAME=currency --> <!-- TMPL_VAR NAME=amt --> did not go through.
+						This may be because of wrong credit card information or insufficient funds in your account.
+						Please save the details of your attempt to pay for your reference.
 					</p>
 					<table>
 						<tr><th>Item</th><th style="text-align: right;">Reference</th></tr>

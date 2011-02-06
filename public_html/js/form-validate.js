@@ -12,7 +12,11 @@ $(document).ready(function() {
 			issuedon0: {required: true},
 			issuedat0: {required: true},
 			expireson0: {required: true},
-			address: {required: true},
+			address1: {required: true},
+			city: {required: true},
+			zip: {required: true},
+			state: {required: true},
+			country: {required: true},
 			email: {required: true, email: true},
 			travelemail: {required: true, email: true},
 			telehome: {required: true},
@@ -27,12 +31,12 @@ $(document).ready(function() {
 	
 	var paxform = '<p class="paxnumber">Details of Traveller {{nextpax}}</p>' +
 					'<ol id="pax{{currpax}}">' + 
-						'<li><label for="name{{currpax}}">Name (as on passport):</label><input type="text" id="name{{currpax}}" name="name{{currpax}}" /></li>' +
-						'<li><label for="nationality{{currpax}}">Nationality:</label><input type="text" id="nationality{{currpax}}" name="nationality{{currpax}}" /></li>' +
-						'<li><label for="passport{{currpax}}">Passport No:</label><input type="text" id="passport{{currpax}}" name="passport{{currpax}}" /></li>' +
-						'<li><label for="issuedat{{currpax}}">Place of Issue:</label><input type="text" id="issuedat{{currpax}}" name="issuedat{{currpax}}" /></li>' + 
-						'<li><label for="issuedon{{currpax}}">Passport Issue Date:</label><input type="text" id="issuedon{{currpax}}" name="issuedon{{currpax}}" /></li>' +
-						'<li><label for="expireson{{currpax}}">Passport Expiry Date:</label><input type="text" id="expireson{{currpax}}" name="expireson{{currpax}}" /></li>' + 
+						'<li><label for="name{{currpax}}">Name (as on passport):</label> <!-- TMPL_VAR NAME=err_name{{currpax}} --> <input type="text" id="name{{currpax}}" name="name{{currpax}}" /></li>' +
+						'<li><label for="nationality{{currpax}}">Nationality:</label> <!-- TMPL_VAR NAME=err_nationality{{currpax}} --> <input type="text" id="nationality{{currpax}}" name="nationality{{currpax}}" /></li>' +
+						'<li><label for="passport{{currpax}}">Passport No:</label> <!-- TMPL_VAR NAME=err_passport{{currpax}} --> <input type="text" id="passport{{currpax}}" name="passport{{currpax}}" /></li>' +
+						'<li><label for="issuedat{{currpax}}">Place of Issue:</label> <!-- TMPL_VAR NAME=err_issuedat{{currpax}} --> <input type="text" id="issuedat{{currpax}}" name="issuedat{{currpax}}" /></li>' + 
+						'<li><label for="issuedon{{currpax}}">Passport Issue Date:</label> <!-- TMPL_VAR NAME=err_issuedon{{currpax}} --> <input type="text" id="issuedon{{currpax}}" name="issuedon{{currpax}}" /></li>' +
+						'<li><label for="expireson{{currpax}}">Passport Expiry Date:</label> <!-- TMPL_VAR NAME=err_expireson{{currpax}} --> <input type="text" id="expireson{{currpax}}" name="expireson{{currpax}}" /></li>' + 
 					'</ol>';
 	
 	var lastpax = 1;

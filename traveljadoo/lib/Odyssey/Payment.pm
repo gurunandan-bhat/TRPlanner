@@ -401,6 +401,9 @@ sub togateway {
 	};
 
 	my $results = Data::FormValidator->check($q, $dfv);
+	my $msgs = $results->msgs;
+	my $valids = $results->valid;
+	
 	if ($results->has_invalid or $results->has_missing) {
 		
 		my $qid = $app->session->param('qid');
@@ -431,8 +434,8 @@ sub togateway {
 			balamt => $quote->{balamt},
 			baldate => $quote->{baldate},
 		);
-		$tpl->param($results->msgs);
-		$tpl->param($results->valid);
+		$tpl->param($msgs);
+		$tpl->param($valids);
 
 		return $tpl->output;
 	}
@@ -561,7 +564,7 @@ sub success {
 		$params->{avr},
 		$params->{auth},
 		$params->{postdate},
-		$params->{amt},
+		sprintf('%.2f', $params->{amt}),
 		$params->{ref},
 		$params->{paymentid},
 		$params->{result},
@@ -603,9 +606,56 @@ sub thanks {
 		or die("Cannot prepare quotations select");
 	$qsth->execute($qid, $uuid);
 	my $qrow = $qsth->fetchrow_hashref('NAME_lc');
+
 	
 #TODO digest not checked. To be checked here
+	my $emailtpl = $app->load_tmpl('email_payment_thanks.tpl', die_on_bad_params => 0);
+	$emailtpl->param(
+		qid => $qid,
+		lead => $qrow->{lead},
+		email => $plog->{userid},
+		currency => $plog->{currency},
+		ref => $plog->{ref},
+		tranid => $plog->{tranid},
+		paymentid => $plog->{paymentid},
+		trandate => POSIX::strftime('%d %b %Y', localtime()),
+		amt => $plog->{amt},
+	);
 	
+	my $msg = MIME::Lite->new(
+		To => 		$plog->{userid},
+		From => 	'Travellers Palm Administrator <webmaster@travellers-palm.com>',
+		Subject => 	'Your Payment to Travellers Palm for Quotation: ' . $qid,
+		Type => 	'multipart/related',
+		CC => 		'hans@odyssey.co.in',
+		BCC => 		'gbhat@pobox.com', 
+	);
+	
+	$msg->attach(
+		Type => 'text/html',
+		Data => $emailtpl->output,
+	);
+	$msg->attach(
+		Type => 'application/pdf',
+		Path => $app->config_param('default.UserDir') . "/$qid.pdf",
+		Filename => 'Tour_Itinerary.pdf'
+	);
+
+	MIME::Lite->send(
+		'smtp', 
+		'travellers-palm.com', 
+		Timeout => 30,
+		AuthUser => 'webmaster+travellers-palm.com',
+		AuthPass => 'ip31415',
+		Debug => 1,
+	);
+	eval {
+		$msg->send;
+	};
+	if (@$) {
+		die(type => 'error', msg => "Could not send email to recipients: $@. Aborting!")
+	}
+
 	my $ftpl = ($plog->{result} eq 'CAPTURED') ? 'payment_thanks.tpl' : 'payment_regret.tpl';
 	my $tpl = $app->load_tmpl($ftpl, die_on_bad_params => 0);
 	$tpl->param(

@@ -24,28 +24,29 @@
 			<b>Dear <!-- TMPL_VAR NAME=lead -->,</b>
 		</p>
 		<p>
-			Thank you for making an enquiry through <a href="www.travellers-palm.com">Traveller's Palm</a>.
-			We value your business and look forward to assisting you. Please find  our quotation for your
-			tour:
+			Thank you for making an enquiry through <b>Traveller's Palm</b>.
+			We value your business and look forward to assisting you.
+		</p>
+		<p> Please find  our quotation for your tour:
 		</p>
 		<table>
-			<tr><th>Item</th><th>Currency</th><th style="text-align: right;">Amount</th></tr>
-			<tr>
+			<tr style="background: #31316a; color: #fff; font-weight: bold;"><th>Item</th><th>Currency</th><th style="text-align: right;">Amount</th></tr>
+			<tr style="color: #31316a;">
 				<td><!-- TMPL_VAR NAME=pax --> Travellers @ <!-- TMPL_VAR NAME=ratepp --></td>
 				<td><!-- TMPL_VAR NAME=currency --></td>
 				<td style="text-align: right;"><!-- TMPL_VAR NAME=touramt --></td>
 			</tr>
-			<tr>
+			<tr style="color: #31316a;">
 				<td>Service Tax @ <!-- TMPL_VAR NAME=taxpc -->%</td>
 				<td><!-- TMPL_VAR NAME=currency --></td>
 				<td style="text-align: right;"><!-- TMPL_VAR NAME=tax --></td>
 			</tr>
-			<tr>
+			<tr style="color: #31316a;">
 				<td>Total</td>
 				<td><!-- TMPL_VAR NAME=currency --></td>
 				<td style="text-align: right;"><!-- TMPL_VAR NAME=amt --></td>
 			</tr>
-			<tr>
+			<tr style="background: #31316a; color: #fff; font-weight: bold;">
 			<!-- TMPL_IF NAME=is_advance -->
 				<td>Advance Due Now:</td>
 				<td><!-- TMPL_VAR NAME=currency --></td> 
@@ -59,9 +60,8 @@
 		</table>
 		<p>
 		<!-- TMPL_IF NAME=is_advance -->
-			The balance of the holiday cost (<!-- TMPL_VAR NAME=currency --> <!-- TMPL_VAR NAME=balamt -->) must be paid to us
-		 	before <!-- TMPL_VAR NAME=baldate -->. This date will be shown on the confirmation invoice and a reminder will be 
-			sent to you a week before the balance payment is due.
+			The balance of the holiday cost <b><!-- TMPL_VAR NAME=currency --> <!-- TMPL_VAR NAME=balamt --></b> must be paid to us
+		 	before <!-- TMPL_VAR NAME=baldate -->. A reminder will be sent to you a week before the balance payment is due.
 		<!-- TMPL_ELSE -->
 			Full payment is required as your booking is within 3 calendar months prior to the start of
 			your holiday.
@@ -72,8 +72,7 @@
 		</p>
 		<p>
 			Best regards,<br />
-			Phil Rolph <br />
-			Traveller's Palm
+			<b>Traveller's Palm</b>
 		</p>
 		<p style="color: red;">
 			Please Note: Please do not reply to this email. It has been sent by an automated booking system 

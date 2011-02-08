@@ -29,15 +29,11 @@
 						<b>Dear <!-- TMPL_VAR NAME=lead -->,</b>
 					</p>
 					<p>
-						Thank you for making a payment of <!-- TMPL_VAR NAME=currency --> <!-- TMPL_VAR NAME=amt -->. We look forward to assisting you
-						during your tour. Please save the details of your payment for your reference. We have also sent you an email with an acknowledgement
-						of your payment.
-					</p>
-					<p>
-						If you wish to print a receipt for your payment, please click here. Your payment details are as follows:
+						Thank you for making a payment of <b><!-- TMPL_VAR NAME=currency --> <!-- TMPL_VAR NAME=amt --></b> to <b>Travellers Palm</b>. 
+						The details of your payment are as follows:
 					</p>
 					<table>
-						<tr><th>Item</th><th style="text-align: right;">Reference</th></tr>
+						<tr style="background: #31316a; color: #fff; font-weight: bold;"><th>Item</th><th style="text-align: right;">Reference</th></tr>
 						<tr>
 							<td>Quotation No:</td>
 							<td style="text-align: right;"><!-- TMPL_VAR NAME=qid --></td>
@@ -58,14 +54,19 @@
 							<td>Payment Date:</td>
 							<td style="text-align: right;"><!-- TMPL_VAR NAME=trandate --></td>
 						</tr>
-						<tr>
-							<td>Amount Paid</td>
-							<td style="text-align: right;"><!-- TMPL_VAR NAME=currency --> <!-- TMPL_VAR NAME=amt --></td>
+						<tr style="background: #31316a; color: #fff; font-weight: bold;">
+							<th>Amount Paid</th>
+							<th style="text-align: right;"><!-- TMPL_VAR NAME=currency --> <!-- TMPL_VAR NAME=amt --></th>
 						</tr>
 					</table>
 					<p>
+						We have sent you an email acknowledging this payment and your tour itinerary as an attachment.<br />
+						If you wish to print a receipt for your payment, please <a href="#">click here</a>.
+					</p>
+					<p>
+						We look forward to assissting you during your tour.
+					<p>
 						Best regards,<br />
-						<strong>Phil Rolph</strong> <br />
 						<strong>Traveller's Palm</strong>
 					</p>
 				</div>

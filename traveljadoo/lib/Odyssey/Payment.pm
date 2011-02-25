@@ -404,6 +404,7 @@ sub togateway {
 	my $msgs = $results->msgs;
 	my $valids = $results->valid;
 	
+	my $pax;
 	if ($results->has_invalid or $results->has_missing) {
 		
 		my $qid = $app->session->param('qid');
@@ -413,6 +414,7 @@ sub togateway {
 		my $sth = $app->dbh->prepare("select * from quotations where id = ? and uuid = ? and digest = ?") or die("Cannot prepare select");
 		$sth->execute($qid, $uuid, $digest) or die("Cannot execute select for quotation: $qid");
 		my $quote = $sth->fetchrow_hashref('NAME_lc') or die("Cannot fetch fields for quotation: $qid");
+		$pax = $quote->{pax};
 		
 		my $tpl = $app->load_tmpl('form.tpl', die_on_bad_params => 0);
 		$tpl->param(
@@ -421,7 +423,7 @@ sub togateway {
 			digest => $digest,
 			lead => $quote->{lead},
 			email => $quote->{userid},
-			pax => $quote->{pax},
+			pax => $pax,
 			ratepp => $quote->{amtpp},
 			currency => OdysseyDB::Currency->retrieve(currencies_id => $quote->{currency})->currencycode,
 			touramt => $quote->{amtpp} * $quote->{pax},
@@ -451,6 +453,121 @@ sub togateway {
 	die("Strange Error; Tampering Found")
 		unless (($sqid == $fqid) && ($suuid eq $fuuid) && ($sdigest eq $fdigest));
 	
+	my $pug = new Data::UUID;
+	my $puuid = $pug->create_str;
+
+	my $psth = $app->dbh->prepare("insert into party
+		qid,
+		uuid,
+		puuid,
+		lead,
+		addr1,
+		addr2,
+		city,
+		zip,
+		state,
+		country,
+		email,
+		travelemail,
+		telehome,
+		ecorrname,
+		eemail,
+		etelehome,
+		etelecell,
+		iagree,
+		haveread,
+		goodhealth,
+		tstamp
+	)
+	values (
+		?,
+		?,
+		?,
+		?,
+		?,
+		?,
+		?,
+		?,
+		?,
+		?,
+		?,
+		?,
+		?,
+		?,
+		?,
+		?,
+		?,
+		?,
+		?,
+		?,
+		?
+	)") or die("Cannot prepare Party Insert");
+	$psth->execute(
+		$fqid,
+		$fuuid,
+		$puuid,
+		$valids->{addr1},
+		$valids->{addr2},
+		$valids->{city},
+		$valids->{zip},
+		$valids->{'state'},
+		$valids->{country},
+		$valids->{email},
+		$valids->{travelemail},
+		$valids->{telehome},
+		$valids->{ecorrname},
+		$valids->{eemail},
+		$valids->{etelehome},
+		$valids->{etelecell},
+		$valids->{iagree},
+		$valids->{haveread},
+		$valids->{goodhealth},
+		POSIX::strftime('%d %b %Y %H:%M:%S', localtime()),
+	) or die("Cannot Insert Party Details");
+
+	my $pph = $app->dbh->prepare("insert into partypeople
+		qid,
+		uuid,
+		puuid,
+		name,
+		nationality,
+		passport,
+		issuedat,
+		issuedon,
+		expireson,
+		tstamp,
+		peopleid
+	)
+	values (
+		?,
+		?,
+		?,
+		?,
+		?,
+		?,
+		?,
+		?,
+		?,
+		?,
+		?
+	)") or die("Cannot prepare Party people");
+	
+	foreach (0..$pax - 1) {
+		$pph->execute(
+			$fqid,
+			$fuuid,
+			$puuid,
+			$valids->{'name' . $_},
+			$valids->{'nationality' . $_},
+			$valids->{'passport' . $_},
+			$valids->{'issuedat' . $_},
+			$valids->{'issuedon' . $_},
+			$valids->{'expireson' . $_},
+			POSIX::strftime('%d %b %Y %H:%M:%S', localtime()),
+			$_
+		) or die("Cannot insert Party people");
+	}
+	
 	my $sth = $app->dbh->prepare('select * from quotations where id = ? and uuid = ?') or die("Cannot prepare select");
 	$sth->execute($fqid, $fuuid) or die("Cannot execute select");
 	
@@ -464,7 +581,13 @@ sub togateway {
 	my $merchantid = $ottcurrency->merchantid;
 	my $hdfccode = $ottcurrency->hdfccode;
 	my $terminalid = $ottcurrency->terminalid;
-		
+	
+	
+	foreach (qw/addr1 addr2 email telehome etelehome ecell eaddr1 eaddr2 /) {
+		$valids->{$_} =~ s/\Q<>(){}[]?&*~`!#$%^=+|\:'",;\E/\_/g;
+	}
+	my $addrstr = $valids->{addr1} . ' ' . $valids->{addr2} . ' ' . $valids->{city} . ' ' . $valids->{zip} . ' ' . $valids->{'state'} . ' ' . $valids->{country};
+	
 	my $ua = LWP::UserAgent->new;
 	my $resp = $ua->request(POST $app->config_param('PassthroughURL'), [
 		respurl => $app->config_param('ResponseURL'),
@@ -473,11 +596,11 @@ sub togateway {
 		alias => $terminalid,
 		currency => sprintf('%03d', $hdfccode),
 		amount => $payable,
-		trackid => $fqid,
-		udf1 => $fuuid,
-		udf2 => $quote->{userid},
-		udf3 => 'Contact Numbers Here',
-		udf4 => 'Address Comes Here',
+		trackid => $puuid,
+		udf1 => "Tour Payment Against Quotation $fqid",
+		udf2 => $valids->{email},
+		udf3 => $valids->{telehome},
+		udf4 => $addrstr,
 		udf5 => $ottcurrency->currencycode,
 	]);
 	

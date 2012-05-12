@@ -1,0 +1,19 @@
+[Lead]
+PartyName = Hans Tuinman
+Email = gbhat@pobox.com
+NumPax = 2
+
+[Quotation]
+Id = 1626
+No = 134
+Currency = 2
+AmountPerPerson = 582
+ServiceTaxPercentage = 2.575
+ServiceTax = 30
+TotalAmt = 1194
+
+[Payment]
+AdvanceAmt = 291
+AdvanceDueOn = 2011-02-06
+BalanceAmt = 903
+BalanceAmtDueOn = 2011-05-19

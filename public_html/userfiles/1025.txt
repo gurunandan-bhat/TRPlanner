@@ -1,0 +1,20 @@
+[Lead]
+PartyName = Mr & Mrs Tim
+Email = gbhat@pobox.com
+NumPax = 1
+
+[Quotation]
+Id = 1025
+No = 1
+Currency = 25
+AmountPerPerson = 5
+ServiceTaxPercentage = 2.575
+ServiceTax = 8
+TotalAmt = 5
+
+[Payment]
+AdvanceAmt = 0
+AdvanceDueOn = 0000-00-00
+BalanceAmt = 5
+BalanceAmtDueOn = 2010-01-04
+

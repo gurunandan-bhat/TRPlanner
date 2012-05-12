@@ -1,0 +1,19 @@
+[Lead]
+PartyName = Journey through Rajasthan
+Email = hans@odyssey.co.in
+NumPax = 2
+
+[Quotation]
+Id = 1122
+No = 3
+Currency = 2
+AmountPerPerson = 574
+ServiceTaxPercentage = 2.575
+ServiceTax = 30
+TotalAmt = 1178
+
+[Payment]
+AdvanceAmt = 4
+AdvanceDueOn = 2010-06-03
+BalanceAmt = 1174
+BalanceAmtDueOn = 2010-06-03

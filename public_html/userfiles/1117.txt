@@ -1,0 +1,19 @@
+[Lead]
+PartyName = Paula Tuinman
+Email = paulatuinman@casema.nl
+NumPax = 1
+
+[Quotation]
+Id = 1117
+No = 2
+Currency = 25
+AmountPerPerson = 718
+ServiceTaxPercentage = 2.575
+ServiceTax = 19
+TotalAmt = 737
+
+[Payment]
+AdvanceAmt = 5
+AdvanceDueOn = 2010-06-01
+BalanceAmt = 732
+BalanceAmtDueOn = 2010-06-01

@@ -1,0 +1,32 @@
+RewriteEngine On
+  # You may want to change the base if you are using the dispatcher within a
+  # specific directory.
+
+
+  # If an actual file or directory is requested, serve directly
+
+  # Otherwise, pass everything through to the dispatcher
+
+
+RewriteBase /
+RewriteCond %{HTTP_HOST} ^.*\.(com|net|org|co)$
+RewriteCond %{HTTP_HOST} !^www\.travellers\-palm\.com$
+RewriteRule ^(.*)$ "http\:\/\/www\.travellers\-palm\.com\/$1" [L,R=301,QSA]
+RewriteCond %{HTTP_HOST} ^.*\.co\.uk$
+RewriteCond %{HTTP_HOST} !^www\.travellers\-palm\.co\.uk$
+RewriteRule ^(.*)$ "http\:\/\/www\.travellers\-palm\.co\.uk\/$1" [L,R=301,QSA]
+RewriteCond %{HTTP_HOST} ^.*\.in$
+RewriteCond %{HTTP_HOST} !^www\.travellers\-palm\.co\.in$
+RewriteCond %{HTTP_HOST} !^travelwell\.travellers\-palm\.co\.in$
+RewriteRule ^(.*)$ "http\:\/\/www\.travellers\-palm\.co\.in\/$1" [L,R=301,QSA]
+RewriteCond %{HTTP_HOST} ^.*\.nl$
+RewriteCond %{HTTP_HOST} !^www\.reizigersboom\.nl$
+RewriteRule ^(.*)$ "http\:\/\/www\.reizigersboom\.nl\/$1" [L,R=301,QSA]
+RewriteCond %{HTTP_HOST} ^.*\.be$
+RewriteCond %{HTTP_HOST} !^www\.reizigersboom\.be$
+RewriteRule ^(.*)$ "http\:\/\/www\.reizigersboom\.be\/$1" [L,R=301,QSA]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+# RewriteCond %{PATH_INFO} !success
+# RewriteCond %{PATH_INFO} !failure
+RewriteRule ^(.*)$ /index.cgi/$1 [L,QSA]

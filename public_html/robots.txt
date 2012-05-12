@@ -1,0 +1,12 @@
+User-agent: *
+Disallow: /itineraries.cgi
+Disallow: /images.cgi
+Disallow: /hotel.cgi
+Disallow: /theme.cgi
+Disallow: /tours.cgi
+Disallow: /region.cgi
+Disallow: /travel.cgi
+Disallow: /register.cgi
+Disallow: /old_index.cgi
+Allow: /
+

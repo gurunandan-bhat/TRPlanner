@@ -3,7 +3,6 @@ package OdysseyDB::ImageCategories;
 use strict;
 use warnings;
 
-use lib qw{/home3/travelja/myperl/lib /home3/travelja/traveljadoo/lib};
 use lib qw{../};
 
 use base qw(OdysseyDB);

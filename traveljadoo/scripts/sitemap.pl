@@ -1,4 +1,4 @@
-#! /home/guru/perl5/perlbrew/bin/perl
+#!/usr/bin/perl
 
 use strict;
 use warnings;

@@ -13,6 +13,7 @@
 		<script type="text/javascript" src="<!-- TMPL_VAR NAME=BASEPREFIX -->js/intro.js"></script>
 		<script type="text/javascript" src="<!-- TMPL_VAR NAME=BASEPREFIX -->js/blk.js"></script>
 		<script type="text/javascript" src="<!-- TMPL_VAR NAME=BASEPREFIX -->js/jquery.validate.pack.js"></script>
+		<script type="text/javascript" src="<!-- TMPL_VAR NAME=BASEPREFIX -->js/mustache.js"></script>
 		<script type="text/javascript" src="<!-- TMPL_VAR NAME=BASEPREFIX -->js/form-validate.js"></script>
 		<title>The Traveller's Palm: Plan your Own Custom Trip!</title>
 	</head>
@@ -30,201 +31,107 @@
 				</div>
 				<div class="span-12 midcol">
 					<h3>Tour Booking Form</h3>
-					<form id="planatrip" method="post" action="<!-- TMPL_VAR NAME=BASEPREFIX -->index.cgi">
-						<input type="hidden" name="mode" value="start" />
+					<form id="planatrip" method="post" action="<!-- TMPL_VAR NAME=BASEPREFIX -->togateway" maxpax="<!-- TMPL_VAR NAME=pax -->">
+						<!--  TMPL_IF NAME=some_errors  -->
+						<p class="error">There were some errors</p>
+						<!-- /TMPL_IF -->
 						<fieldset id="main">
 							<legend>Details about your Party</legend>
 							<ol>
 								<li>
-									<label for="pax">Number of Travellers: </label>
-									<select class="smallwidth" id="pax" name="pax" size="1">
-										<option value="1">1</option>
-										<option value="2" selected="selected">2</option>
-										<option value="3">3</option>
-										<option value="4">4</option>
-										<option value="5">5</option>
-										<option value="6">6</option>
-										<option value="7">7</option>
-										<option value="8">8</option>
-										<option value="9">9</option>
-										<option value="10">10</option>
-										<option value="11">11</option>
-										<option value="12">12</option>
-										<option value="13">13</option>
-										<option value="14">14</option>
-										<option value="15">15</option>
-										<option value="16">16</option>
-										<option value="17">17</option>
-										<option value="18">18</option>
-										<option value="19">19</option>
-										<option value="20">20</option>
-									</select>
+									<label for="name1">Lead Name (i.e your full name as on your passport):<!-- TMPL_VAR NAME=err_name1 --></label>
+									<input type="text" id="name1" name="name1" />
 								</li>
 								<li>
-									<label for="leadname">Lead Name (i.e your full name as on your passport):</label>
-									<input type="text" id="leadname" name="leadname" />
+									<label for="nationality1">Nationality:<!-- TMPL_VAR NAME=err_nationality1 --></label>
+									<input type="text" id="nationality1" name="nationality1" />
 								</li>
 								<li>
-									<label for="nationality">Nationality:</label>
-									<input type="text" id="nationality" name="nationality" />
+									<label for="passport1">Passport No:<!-- TMPL_VAR NAME=err_passport1 --></label>
+									<input type="text" id="passport1" name="passport1" />
 								</li>
 								<li>
-									<label for="passport">Passport No:</label>
-									<input type="text" id="passport" name="passport" />
+									<label for="issuedon1">Passport Issue Date:<!-- TMPL_VAR NAME=err_issuedon1 --></label>
+									<input type="text" id="issuedon1" name="issuedon1" />
 								</li>
 								<li>
-									<label for="issuedon">Passport Issue Date:</label>
-									<input type="text" id="issuedon" name="issuedon" />
-								</li>
-								<li>
-									<label for="expireson">Passport Expiry Date:</label>
-									<input type="text" id="expireson" name="expires" />
+									<label for="expireson1">Passport Expiry Date:<!-- TMPL_VAR NAME=err_expireson1 --></label>
+									<input type="text" id="expireson1" name="expireson1" />
 								</li>
 								<hr />
-								<a href="#">Click here to add another member to your party</a>
 							</ol>
-						</fieldset>
-						<fieldset id="arrdep">
-							<legend>Your Arrival and Departure Details</legend>
-							<h2>Arrival Details</h2>
-							<ol>
-								<li>
-									<Label for="arrdate">Arrival Date: </Label>
-									<input id="arrdate" name="arrdate" type="text" />
-								</li>
-								<li>
-									<Label for="arrtimehh">Arrival Time HH: MM</Label>
-									<select class="smallwidth" id="arrtimehh" name="arrtimehh" size="1">
-										<option value="">HH</option>
-										<option value="00">00</option>
-										<option value="01">01</option>
-										<option value="02">02</option>
-										<option value="03">03</option>
-										<option value="04">04</option>
-										<option value="05">05</option>
-										<option value="06">06</option>
-										<option value="07">07</option>
-										<option value="08">08</option>
-										<option value="09" selected="selected">09</option>
-										<option value="10">10</option>
-										<option value="11">11</option>
-										<option value="12">12</option>
-										<option value="13">13</option>
-										<option value="14">14</option>
-										<option value="15">15</option>
-										<option value="16">16</option>
-										<option value="17">17</option>
-										<option value="18">18</option>
-										<option value="19">19</option>
-										<option value="20">20</option>
-										<option value="21">21</option>
-										<option value="22">22</option>
-										<option value="23">23</option>
-									</select>
-									<select class="smallwidth" id="arrtimemm" name="arrtimemm" size="1">
-										<option value="">MM</option>
-										<option value="00" selected="selected">00</option>
-										<option value="15">15</option>
-										<option value="30">30</option>
-										<option value="45">45</option>
-									</select>
-								</li>
-								<li>
-									<label for="inflight">Flight No: </label>
-									<input type="text" id="inflight" name="inflight">
-								</li>
-								<li>
-									<label for="inflightcity">Arriving from: </label>
-									<input type="text" id="inflightcity" name="inflightcity">
-								</li>
-								<li>
-									<label for="arrplace">Arriving In (City): </label>
-									<select id="arrplace" name="arrplace" size="1">
-										<!-- TMPL_VAR NAME=ARRCITYOPTIONS -->
-									</select>
-								</li>
-							</ol>
-							<hr />
-							<h2>Departure</h2>
-							<ol>
-								<li>
-									<Label for="depdate">Departure Date: </Label>
-									<input id="depdate" name="depdate" type="text" /><br />
-								</li>
-								<li>
-									<Label for="deptimehh">Departure Time HH: MM</Label>
-									<select class="smallwidth" id="deptimehh" name="deptimehh" size="1">
-										<option value="">HH</option>
-										<option value="00">00</option>
-										<option value="01">01</option>
-										<option value="02">02</option>
-										<option value="03">03</option>
-										<option value="04">04</option>
-										<option value="05">05</option>
-										<option value="06">06</option>
-										<option value="07">07</option>
-										<option value="08">08</option>
-										<option value="09" selected="selected">09</option>
-										<option value="10">10</option>
-										<option value="11">11</option>
-										<option value="12">12</option>
-										<option value="13">13</option>
-										<option value="14">14</option>
-										<option value="15">15</option>
-										<option value="16">16</option>
-										<option value="17">17</option>
-										<option value="18">18</option>
-										<option value="19">19</option>
-										<option value="20">20</option>
-										<option value="21">21</option>
-										<option value="22">22</option>
-										<option value="23">23</option>
-									</select>
-									<select class="smallwidth" id="deptimemm" name="deptimemm" size="1">
-										<option value="">MM</option>
-										<option value="00" selected="selected">00</option>
-										<option value="15">15</option>
-										<option value="30">30</option>
-										<option value="45">45</option>
-									</select>
-								</li>
-								<li>
-									<label for="outflight">Flight No: </label>
-									<input type="text" id="outflight" name="outflight">
-								</li>
-								<li>
-									<label for="destination">Destination: </label>
-									<input type="text" id="destination" name="destination">
-								</li>
-								<li>
-									<label for="depplace">I am departing from: </label>
-									<select id="depplace" name="depplace" size="1">
-										<!-- TMPL_VAR NAME=ARRCITYOPTIONS -->
-									</select>
-								</li>
-							</ol>
+							<!--  TMPL_LOOP NAME=restpax -->
+								<p class="paxnumber">Details of Traveller <!-- TMPL_VAR NAME=paxorder --></p>
+								<ol>
+									<li>
+										<label for="name1">Full name (as on passport): <!-- TMPL_VAR NAME=errorname --></label>
+										<input type="text" id="name<!-- TMPL_VAR NAME=paxorder -->" name="name<!-- TMPL_VAR NAME=paxorder -->" />
+									</li>
+									<li>
+										<label for="nationality<!-- TMPL_VAR NAME=paxorder -->">Nationality: <!-- TMPL_VAR NAME=errornationality --></label>
+										<input type="text" id="nationality<!-- TMPL_VAR NAME=paxorder -->" name="nationality<!-- TMPL_VAR NAME=paxorder -->" />
+									</li>
+									<li>
+										<label for="passport<!-- TMPL_VAR NAME=paxorder -->">Passport No: <!-- TMPL_VAR NAME=errorpassport --></label>
+										<input type="text" id="passport<!-- TMPL_VAR NAME=paxorder -->" name="passport<!-- TMPL_VAR NAME=paxorder -->" />
+									</li>
+									<li>
+										<label for="issuedon<!-- TMPL_VAR NAME=paxorder -->">Passport Issue Date: <!-- TMPL_VAR NAME=errorissuedon --></label>
+										<input type="text" id="issuedon<!-- TMPL_VAR NAME=paxorder -->" name="issuedon<!-- TMPL_VAR NAME=paxorder -->" />
+									</li>
+									<li>
+										<label for="expireson<!-- TMPL_VAR NAME=paxorder -->">Passport Expiry Date: <!-- TMPL_VAR NAME=errordexpireson --></label>
+										<input type="text" id="expireson<!-- TMPL_VAR NAME=paxorder -->" name="expireson<!-- TMPL_VAR NAME=paxorder -->" />
+									</li>
+									<hr />
+								</ol>
+							<!-- /TMPL_LOOP -->
 						</fieldset>
 						<fieldset id="corr">
 							<legend>Who should we correspond with</legend>
 							<ol>
 								<li>
-									<label for="corrname">Name (as on passport):</label>
+									<label for="corrname">Name (as on passport): <!-- TMPL_VAR NAME=err_corrname --></label>
 									<input type="text" id="corrname" name="corrname" />
 								</li>
 								<li>
-									<label for="nationality">Address:</label>
-									<textarea rows="6" style="height: 6em;"></textarea>
+									<label for="corraddress1">Address (Line 1): <!-- TMPL_VAR NAME=err_corraddress1 --></label>
+									<input type="text" id="corraddress1" name="corraddress1" />
 								</li>
 								<li>
-									<label for="email">Email</label>
-									<input type="text" id="email" name="email" />
+									<label for="corraddress2">Address (Line 2):</label>
+									<input type="text" id="corraddress2" name="corraddress2" />
 								</li>
 								<li>
-									<label for="telehome">Telephone (Home)</label>
+									<label for="corrcity">City: <!-- TMPL_VAR NAME=err_corrcity --></label>
+									<input type="text" id="corrcity" name="corrcity" />
+								</li>
+								<li>
+									<label for="corrzip">Zip/Pin: <!-- TMPL_VAR NAME=err_corrzip --></label>
+									<input type="text" id="corrzip" name="corrzip" />
+								</li>
+								<li>
+									<label for="corrstate">State: <!-- TMPL_VAR NAME=err_corrstate --></label>
+									<input type="text" id="corrstate" name="corrstate" />
+								</li>
+								<li>
+									<label for="corrcountry">Country: <!-- TMPL_VAR NAME=err_corrcountry --></label>
+									<input type="text" id="corrcountry" name="corrcountry" />
+								</li>
+								<li>
+									<label for="corremail">Email: <!-- TMPL_VAR NAME=err_corremail --></label>
+									<input type="text" id="corremail" name="corremail" />
+								</li>
+								<li>
+									<label for="travelemail">Email while travelling: <!-- TMPL_VAR NAME=err_travelemail --></label>
+									<input type="text" id="travelemail" name="travelemail" />
+								</li>
+								<li>
+									<label for="telehome">Telephone (Home): <!-- TMPL_VAR NAME=err_telehome --></label>
 									<input type="text" id="telehome" name="telehome" />
 								</li>
 								<li>
-									<label for="telehome">Telephone (Work)</label>
+									<label for="telework">Telephone (Work)</label>
 									<input type="text" id="telework" name="telework" />
 								</li>
 							</ol>
@@ -233,28 +140,43 @@
 							<legend>Emergency Contact Details: Important</legend>
 							<ol>
 								<li>
-									<label for="corrname">Name:</label>
-									<input type="text" id="corrname" name="corrname" />
+									<label for="ename">Name: <!-- TMPL_VAR NAME=err_ename --></label>
+									<input type="text" id="ename" name="ename" />
 								</li>
 								<li>
-									<label for="email">Email</label>
-									<input type="text" id="email" name="email" />
+									<label for="eemail">Email: <!-- TMPL_VAR NAME=err_eemail --></label>
+									<input type="text" id="eemail" name="eemail" />
 								</li>
 								<li>
-									<label for="telehome">Telephone (Home)</label>
-									<input type="text" id="telehome" name="telehome" />
+									<label for="etelehome">Telephone (Home): <!-- TMPL_VAR NAME=err_etelehome --></label>
+									<input type="text" id="etelehome" name="etelehome" />
 								</li>
 								<li>
-									<label for="telehome">Telephone (Work)</label>
-									<input type="text" id="telework" name="telework" />
+									<label for="etelecell">Telephone (Cellphone)</label>
+									<input type="text" id="etelecell" name="etelecell" />
 								</li>
 							</ol>
 						</fieldset>
-						<input type="checkbox" id="agree"><label for="agree">I agree with .....</label>
+						<p>
+							<input type="checkbox" id="haveread" name="haveread" value="1"> 
+							<label for="haveread" style="font-size: 11px; font-weight: normal;">
+								I have read the <a target="_blank" href="<!-- TMPL_VAR NAME=BASEPREFIX -->booking-conditions">conditions of booking</a> and accept them on behalf of all members of my party by 
+								whom I am duly authorised to make this agreement. <!-- TMPL_VAR NAME=err_haveread -->
+							</label>
+						</p>
+						<p>
+							<input type="checkbox" id="goodhealth" name="goodhealth" value="1">
+							<label for="goodhealth"  style="font-size: 11px; font-weight: normal;">
+								 I certify that my / our health and level of fitness is sufficient to complete the itinerary.
+								 <!-- TMPL_VAR NAME=err_goodhealth -->
+							</label>
+						</p>
 						<fieldset class="submit">
 							<input type="submit" name="submit" value="Book my Tour" />
 						</fieldset>
-						<input type="hidden" name="mode" value="start" />
+						<input type="hidden" name="qid" value="<!-- TMPL_VAR NAME=qid -->" />
+						<input type="hidden" name="uuid" value="<!-- TMPL_VAR NAME=uuid -->" />
+						<input type="hidden" name="digest" value="<!-- TMPL_VAR NAME=digest -->" />
 					</form>
 				</div>
 				<div class="span-8 rightcol last">

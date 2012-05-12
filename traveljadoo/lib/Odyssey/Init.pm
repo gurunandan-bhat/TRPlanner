@@ -220,7 +220,7 @@ sub people {
 		ID => $_->consultants_id,
 		NAME => $_->consultant,
 		WRITEUP => $_->writeup,
-	}} OdysseyDB::Consultants->search(addressbook_id => 68);
+	}} OdysseyDB::Consultants->search(addressbook_id => 68, active => 'true');
 
 	my $webpage = OdysseyDB::WebPage->retrieve(webpages_id => 24);
 	$tpl->param(

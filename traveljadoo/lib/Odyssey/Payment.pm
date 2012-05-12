@@ -282,7 +282,7 @@ sub save_quote {
 		From => 	'Travellers Palm Administrator <webmaster@travellers-palm.com>',
 		Subject => 	'Quotation Sent: ' . $qid,
 		Type => 	'multipart/related',
-		CC => 		'hans@odyssey.co.in',
+		CC => 'hans@odyssey.co.in',
 		BCC => 		'gbhat@pobox.com', 
 	);
 	
@@ -338,6 +338,16 @@ sub show_quote {
 	);
 	
 	my $tpl = $app->load_tmpl('form.tpl', die_on_bad_params => 0);
+
+	my @restpax;
+	if ($quote->{pax} > 1) {
+		foreach (1 .. $quote->{pax} - 1) {
+			push @restpax, {
+				paxidx => $_,
+				paxorder => $_ + 1,
+			};
+		}
+	}
 	$tpl->param(
 		qid => $quote->{id},
 		uuid => $uuid,
@@ -345,6 +355,7 @@ sub show_quote {
 		lead => $quote->{lead},
 		email => $quote->{userid},
 		pax => $quote->{pax},
+		restpax => \@restpax,
 		ratepp => $quote->{amtpp},
 		currency => OdysseyDB::Currency->retrieve(currencies_id => $quote->{currency})->currencycode,
 		touramt => $quote->{amtpp} * $quote->{pax},
@@ -368,17 +379,17 @@ sub togateway {
 
 	my $dfv = {
 		filters => ['trim'],
-		required_regexp => qr/(^name|^nationality|^passport|^issuedat|^issuedon|^expireson)\d+/,
+		required_regexp => qr/(^name|^nationality)\d+/,
 		required => [qw{
-				address1
-				city
-				zip
-				state
-				country
-				email
+				corraddress1
+				corrcity
+				corrzip
+				corrstate
+				corrcountry
+				corremail
 				travelemail
 				telehome
-				ecorrname
+				ename
 				eemail
 				etelehome
 				etelecell
@@ -387,7 +398,7 @@ sub togateway {
 			}
 		],
 		constraint_methods => {
-			email => email(),
+			corremail => email(),
 			travelemail => email(),
 			eemail => email(),
 			telehome => phone(),
@@ -404,17 +415,18 @@ sub togateway {
 	my $msgs = $results->msgs;
 	my $valids = $results->valid;
 	
-	my $pax;
+#	use Data::Dumper;
+#	return '<pre>' . Dumper($valids) . 'Missing: ' . Dumper($results->missing) . 'Invalid: ' . Dumper($results->invalid) . '</pre>';
+	
+	my $qid = $app->session->param('qid');
+	my $uuid = $app->session->param('uuid');
+	my $digest = $app->session->param('digest');
+	my $sth = $app->dbh->prepare("select * from quotations where id = ? and uuid = ? and digest = ?") or die("Cannot prepare select");
+	$sth->execute($qid, $uuid, $digest) or die("Cannot execute select for quotation: $qid");
+	my $quote = $sth->fetchrow_hashref('NAME_lc') or die("Cannot fetch fields for quotation: $qid");
+	my $pax = $quote->{pax};
+
 	if ($results->has_invalid or $results->has_missing) {
-		
-		my $qid = $app->session->param('qid');
-		my $uuid = $app->session->param('uuid');
-		my $digest = $app->session->param('digest');
-		
-		my $sth = $app->dbh->prepare("select * from quotations where id = ? and uuid = ? and digest = ?") or die("Cannot prepare select");
-		$sth->execute($qid, $uuid, $digest) or die("Cannot execute select for quotation: $qid");
-		my $quote = $sth->fetchrow_hashref('NAME_lc') or die("Cannot fetch fields for quotation: $qid");
-		$pax = $quote->{pax};
 		
 		my $tpl = $app->load_tmpl('form.tpl', die_on_bad_params => 0);
 		$tpl->param(
@@ -442,21 +454,21 @@ sub togateway {
 		return $tpl->output;
 	}
 
+# We have everything we need in $valids now
+# fxxx are fields from the form
+
 	my $fqid = $q->param('qid');
 	my $fuuid = $q->param('uuid');
 	my $fdigest = $q->param('digest');
 
-	my $sqid = $app->session->param('qid');
-	my $suuid = $app->session->param('uuid');
-	my $sdigest = $app->session->param('digest');
-	
 	die("Strange Error; Tampering Found")
-		unless (($sqid == $fqid) && ($suuid eq $fuuid) && ($sdigest eq $fdigest));
-	
+		unless (($qid == $fqid) && ($uuid eq $fuuid) && ($digest eq $fdigest));
+
+# Generate a new Payment ID (same quotation may have more than one Payment attempt)	
 	my $pug = new Data::UUID;
 	my $puuid = $pug->create_str;
 
-	my $psth = $app->dbh->prepare("insert into party
+	my $psth = $app->dbh->prepare("insert into party (
 		qid,
 		uuid,
 		puuid,
@@ -502,20 +514,22 @@ sub togateway {
 		?,
 		?
 	)") or die("Cannot prepare Party Insert");
+#Insert Payment Detail Form variables into party database	
 	$psth->execute(
 		$fqid,
 		$fuuid,
 		$puuid,
-		$valids->{addr1},
-		$valids->{addr2},
-		$valids->{city},
-		$valids->{zip},
-		$valids->{'state'},
-		$valids->{country},
-		$valids->{email},
+		$valids->{name1},
+		$valids->{corraddress1},
+		$valids->{corraddress2},
+		$valids->{corrcity},
+		$valids->{corrzip},
+		$valids->{corrstate},
+		$valids->{corrcountry},
+		$valids->{corremail},
 		$valids->{travelemail},
 		$valids->{telehome},
-		$valids->{ecorrname},
+		$valids->{ename},
 		$valids->{eemail},
 		$valids->{etelehome},
 		$valids->{etelecell},
@@ -525,7 +539,7 @@ sub togateway {
 		POSIX::strftime('%d %b %Y %H:%M:%S', localtime()),
 	) or die("Cannot Insert Party Details");
 
-	my $pph = $app->dbh->prepare("insert into partypeople
+	my $pph = $app->dbh->prepare("insert into partypeople (
 		qid,
 		uuid,
 		puuid,
@@ -551,7 +565,9 @@ sub togateway {
 		?,
 		?
 	)") or die("Cannot prepare Party people");
-	
+
+
+# Insert Party people into linked child table	
 	foreach (0..$pax - 1) {
 		$pph->execute(
 			$fqid,
@@ -568,25 +584,27 @@ sub togateway {
 		) or die("Cannot insert Party people");
 	}
 	
-	my $sth = $app->dbh->prepare('select * from quotations where id = ? and uuid = ?') or die("Cannot prepare select");
+	$sth = $app->dbh->prepare('select * from quotations where id = ? and uuid = ?') or die("Cannot prepare select");
 	$sth->execute($fqid, $fuuid) or die("Cannot execute select");
 	
-	my $quote = $sth->fetchrow_hashref('NAME_lc');
+	$quote = $sth->fetchrow_hashref('NAME_lc');
 
+# Get the first non-zero amount - that is the payable amount
 	my $advamt = $quote->{advamt};
 	my $balamt = $quote->{balamt};
 	my $payable = $advamt || $balamt;
-	
+
+# Get the HDFC connection parameters 	
 	my $ottcurrency = OdysseyDB::Currency->retrieve(currencies_id => $quote->{currency});	
 	my $merchantid = $ottcurrency->merchantid;
 	my $hdfccode = $ottcurrency->hdfccode;
 	my $terminalid = $ottcurrency->terminalid;
 	
-	
-	foreach (qw/addr1 addr2 email telehome etelehome ecell eaddr1 eaddr2 /) {
+# Replace suspicious charatcters by an underscore	
+	foreach (qw/corraddress1 corraddress2 corremail telehome etelehome ecell /) {
 		$valids->{$_} =~ s/\Q<>(){}[]?&*~`!#$%^=+|\:'",;\E/\_/g;
 	}
-	my $addrstr = $valids->{addr1} . ' ' . $valids->{addr2} . ' ' . $valids->{city} . ' ' . $valids->{zip} . ' ' . $valids->{'state'} . ' ' . $valids->{country};
+	my $addrstr = $valids->{corraddress1} . ' ' . $valids->{corraddress2} . ' ' . $valids->{corrcity} . ' ' . $valids->{corrzip} . ' ' . $valids->{corrstate} . ' ' . $valids->{corrcountry};
 	
 	my $ua = LWP::UserAgent->new;
 	my $resp = $ua->request(POST $app->config_param('PassthroughURL'), [
@@ -598,12 +616,13 @@ sub togateway {
 		amount => $payable,
 		trackid => $puuid,
 		udf1 => "Tour Payment Against Quotation $fqid",
-		udf2 => $valids->{email},
+		udf2 => $valids->{corremail},
 		udf3 => $valids->{telehome},
 		udf4 => $addrstr,
 		udf5 => $ottcurrency->currencycode,
 	]);
-	
+
+# Redirect to Payment Gateway if successful	
 	if ($resp->is_success) {
 		if (my $rdurl = $resp->decoded_content) {
 			if ($rdurl =~ /$RE{URI}{HTTP}{-scheme => 'https'}/) {
@@ -628,6 +647,13 @@ sub success {
 	my $q = $app->query;
 	
 	my $params = $q->Vars;
+
+# Only puuid is returned from the gateway, so use it to find the quotation upload details
+	my $puuid = $params->{trackid};
+	my $psth = $app->dbh->prepare("select qid, uuid from party where puuid = ?");
+	$psth->execute($puuid);
+	my ($qid, $uuid) = $psth->fetchrow_array();
+	
 	
 	my $sth = $app->dbh->prepare('insert into paymentlog (
 		qid,
@@ -670,18 +696,12 @@ sub success {
 		?
 	)') or die("Cannot prepare insert");
 
-	my $qid = $params->{trackid};
-	my $uuid = $params->{udf1};
-	
 	my $digest = md5_hex($params->{udf1}, $params->{udf2}, $params->{udf3}, $params->{udf4}, $params->{udf5}, $params->{result});
-
-	my $pug = new Data::UUID;
-	my $puuid = $pug->create_str;
 
 	$sth->execute(
 		$qid,
 		$puuid,
-		'Custom Tour',
+		$params->{udf1},
 		$params->{udf2},
 		$params->{tranid},
 		$params->{avr},
@@ -699,7 +719,19 @@ sub success {
 		$uuid
 	) or die("Cannot insert into database");
 
-	return 'REDIRECT=' . $app->config_param('default.RedirectURL') . "$qid/$puuid/$digest";
+	my $status = $params->{result};
+	$status =~ s/^\s+//;
+	$status =~ s/\s+$//;
+	
+	if ($status eq 'CAPTURED') {
+		return 'REDIRECT=' . $app->config_param('default.RedirectURL') . "$qid/$puuid/$digest";
+	}
+	elsif ($status eq 'NOT CAPTURED') {
+		return 'REDIRECT=' . $app->config_param('default.FailureURL');
+	}
+	else {
+		return 'REDIRECT=' . $app->config_param('default.FailureURL');
+	}
 }
 
 sub thanks {
@@ -725,7 +757,7 @@ sub thanks {
 	die("Not continuing session") 
 		unless (($qid == $sqid) && ($uuid eq $suuid));
 
-	my $qsth = $app->dbh->prepare("select lead from quotations where id = ? and uuid = ?")
+	my $qsth = $app->dbh->prepare("select * from quotations where id = ? and uuid = ?")
 		or die("Cannot prepare quotations select");
 	$qsth->execute($qid, $uuid);
 	my $qrow = $qsth->fetchrow_hashref('NAME_lc');
@@ -750,13 +782,18 @@ sub thanks {
 		From => 	'Travellers Palm Administrator <webmaster@travellers-palm.com>',
 		Subject => 	'Your Payment to Travellers Palm for Quotation: ' . $qid,
 		Type => 	'multipart/related',
-		CC => 		'hans@odyssey.co.in',
+		CC => 'hans@odyssey.co.in',
 		BCC => 		'gbhat@pobox.com', 
 	);
 	
 	$msg->attach(
 		Type => 'text/html',
 		Data => $emailtpl->output,
+	);
+	$msg->attach(
+		Type => 'image/jpg',
+		Id => 'reciept_banner',
+		Path => $app->config_param('default.ImagePath') . 'tp_email_logo.jpg'
 	);
 	$msg->attach(
 		Type => 'application/pdf',
@@ -779,8 +816,7 @@ sub thanks {
 		die(type => 'error', msg => "Could not send email to recipients: $@. Aborting!")
 	}
 
-	my $ftpl = ($plog->{result} eq 'CAPTURED') ? 'payment_thanks.tpl' : 'payment_regret.tpl';
-	my $tpl = $app->load_tmpl($ftpl, die_on_bad_params => 0);
+	my $tpl = $app->load_tmpl('payment_thanks.tpl', die_on_bad_params => 0);
 	$tpl->param(
 		qid => $qid,
 		lead => $qrow->{lead},
@@ -792,16 +828,116 @@ sub thanks {
 		trandate => POSIX::strftime('%d %b %Y', localtime()),
 		amt => $plog->{amt},
 	);
+
+	my $inisth = $app->dbh->prepare("select * from party where uuid = ? and puuid = ?")
+		or die("Cannot Prepare Party Details");
+	$inisth->execute($uuid, $puuid);
+	my $inirow = $inisth->fetchrow_hashref('NAME_lc');
+	
+	my $ppsth = $app->dbh->prepare("select * from partypeople where uuid = ? and puuid = ? order by peopleid");
+	$ppsth->execute($uuid, $puuid);
+	my $pprow = $ppsth->fetchrow_hashref('NAME_lc');
+			
+	my $inidata = {
+		qid => $qid,
+		uuid => $uuid,
+		puuid => $puuid,
+		name0 => $inirow->{name0},
+		amt => $plog->{amt},
+		occ => $qrow->{currency},
+		hdfccc => OdysseyDB::Currency->retrieve(currencies_id => $qrow->{currency})->hdfccode,
+		isadvance => 1,
+		pdate => POSIX::strftime('%Y-%m-%d', localtime()),
+		hdfcpid => $plog->{paymentid},
+		hdfctid => $plog->{tranid},
+		hdfcrid => $plog->{ref},
+		name0 => $pprow->{name},
+		nationality0 => $pprow->{nationality},
+		passport0 => $pprow->{passport},
+		issuedat0 => $pprow->{issuedat},
+		issuedon0 => $pprow->{issuedon},
+		expireson0 => $pprow->{expireson},
+		addr1 => $inirow->{addr1},
+		addr2 => $inirow->{addr2},
+		city => $inirow->{city},
+		'state' => $inirow->{'state'},
+		zip => $inirow->{zip},
+		country => $inirow->{country},
+		email => $inirow->{email},
+		travelemail => $inirow->{travelemail},
+		telehome => $inirow->{telehome},
+		ecorrname => $inirow->{ecorrname},
+		eemail => $inirow->{eemail},
+		etelehome => $inirow->{etelehome},
+		etelecell => $inirow->{etelecell},
+	};
+	
+	my @more;
+	my $idx = 2;
+	while($pprow = $ppsth->fetchrow_hashref('NAME_lc')) {
+		push @more, {
+			paxidx => 'Pax' . $idx,
+			name => $pprow->{name},
+			nationality => $pprow->{nationality},
+			passport => $pprow->{passport},
+			issuedat => $pprow->{issuedat},
+			issuedon => $pprow->{issuedon},
+			expireson => $pprow->{expireson},
+		};
+		++$idx;
+	}
+	$inidata->{paxes} = \@more;
+	my $initpl = $app->load_tmpl('odyssey_payment_notify.tpl', die_on_bad_params => 0);
+	$initpl->param($inidata);
+	
+	my $inistr = $initpl->output;
+	open(my $tmpini, '>', '/tmp/quote.ini') or die $!;
+	print $tmpini $inistr;
+	close $tmpini;
+	
+	$msg = MIME::Lite->new(
+		To => 		'gbhat@pobox.com',
+		From => 	'Travellers Palm Administrator <webmaster@travellers-palm.com>',
+		Subject => 	'Payment to Travellers Palm for Quotation: ' . $qid,
+		Type => 	'multipart/related',
+		CC => 'hans@odyssey.co.in',
+		BCC => 		'bhat.gurunandan@gmail.com', 
+	);
+	
+	$msg->attach(
+		Type => 'text/html',
+		Data => '<p>The ini file is attached</p>',
+	);
+	$msg->attach(
+		Type => 'text/plain',
+		Path => '/tmp/quote.ini',
+		Filename => $qid . '.ini',
+		Disposition => 'attachment',
+	);
+
+	MIME::Lite->send(
+		'smtp', 
+		'travellers-palm.com', 
+		Timeout => 30,
+		AuthUser => 'webmaster+travellers-palm.com',
+		AuthPass => 'ip31415',
+		Debug => 1,
+	);
+	eval {
+		$msg->send;
+	};
+	if (@$) {
+		die(type => 'error', msg => "Could not send ini email to recipients: $@. Aborting!")
+	}
+	
 	return $tpl->output;
 }
 
 sub failure {
 
 	my $app = shift;
-	my $q = $app->query;
-
-	my @params = $q->param();
-	return '<pre>' . Dumper(\@params) . '</pre>';	
+	my $tpl = $app->load_tmpl('payment_regret.tpl', die_on_bad_params => 0);
+	return $tpl->output;
 }
 
 sub odyssey_date {

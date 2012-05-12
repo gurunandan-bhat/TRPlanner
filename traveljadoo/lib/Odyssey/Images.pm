@@ -209,7 +209,6 @@ sub compress_image {
 	my $quality;
 	my $last_quality;
 
-	local *IMAGE;
 	my $blob;
 
 	die __PACKAGE__ . " compress_image() required image file name missing.\n"
@@ -270,10 +269,11 @@ sub compress_image {
 	undef $image;
 
 	if (defined($blob))	{
-		open(IMAGE, ">$target_file") or die
+		open(my $imgfh, ">", $target_file) or die
 		  "Can't open $target_file for writing: $!\n";
-		print IMAGE $blob;
-		close(IMAGE) or die "Failed to close $target_file: $!\n";
+
+		print $imgfh $blob;
+		close($imgfh) or die "Failed to close $target_file: $!\n";
 	}
 	elsif ($image_file ne $target_file)	{
 		copy($image_file, $target_file) or

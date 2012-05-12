@@ -61,7 +61,6 @@
 					</table>
 					<p>
 						We have sent you an email acknowledging this payment and your tour itinerary as an attachment.<br />
-						If you wish to print a receipt for your payment, please <a href="#">click here</a>.
 					</p>
 					<p>
 						We look forward to assissting you during your tour.

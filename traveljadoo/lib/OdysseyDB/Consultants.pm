@@ -15,5 +15,7 @@ __PACKAGE__->columns(Others => qw{
 	email
 	addressbook_id
 	writeup
+	pwd
+	active
 });
 1;

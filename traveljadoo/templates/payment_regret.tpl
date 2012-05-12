@@ -26,43 +26,11 @@
 				<div class="span-12 midcol">
 					<h3>Sorry!</h3>
 					<p>
-						<b>Dear <!-- TMPL_VAR NAME=lead -->,</b>
-					</p>
-					<p>
 						Your payment of <!-- TMPL_VAR NAME=currency --> <!-- TMPL_VAR NAME=amt --> did not go through.
 						This may be because of wrong credit card information or insufficient funds in your account.
-						Please save the details of your attempt to pay for your reference.
 					</p>
-					<table>
-						<tr><th>Item</th><th style="text-align: right;">Reference</th></tr>
-						<tr>
-							<td>Quotation No:</td>
-							<td style="text-align: right;"><!-- TMPL_VAR NAME=qid --></td>
-						</tr>
-						<tr>
-							<td>Transaction No:</td>
-							<td style="text-align: right;"><!-- TMPL_VAR NAME=tranid --></td>
-						</tr>
-						<tr>
-							<td>Bank Payment Reference No:</td>
-							<td style="text-align: right;"><!-- TMPL_VAR NAME=ref --></td>
-						</tr>
-						<tr>
-							<td>Bank Payment Id:</td>
-							<td style="text-align: right;"><!-- TMPL_VAR NAME=paymentid --></td>
-						</tr>
-						<tr>
-							<td>Payment Date:</td>
-							<td style="text-align: right;"><!-- TMPL_VAR NAME=trandate --></td>
-						</tr>
-						<tr>
-							<td>Amount Paid</td>
-							<td style="text-align: right;"><!-- TMPL_VAR NAME=currency --> <!-- TMPL_VAR NAME=amt --></td>
-						</tr>
-					</table>
 					<p>
 						Best regards,<br />
-						<strong>Phil Rolph</strong> <br />
 						<strong>Traveller's Palm</strong>
 					</p>
 				</div>

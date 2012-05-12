@@ -6,7 +6,7 @@ use warnings;
 use File::Copy;
 use Image::Magick;
 
-my $imgdirname = '/home/guru/mod_127';
+my $imgdirname = '/home/tpcom/mod_127';
 opendir my $imgdir, $imgdirname or die "Cannot open $imgdirname: $!";
 
 my @imgfiles = grep {/\.jpg$/} readdir($imgdir);

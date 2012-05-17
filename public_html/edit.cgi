@@ -3,7 +3,7 @@
 use strict;
 use warnings;
 
-use lib qw {/../traveljadoo/lib/};
+use lib qw {../traveljadoo/lib/};
 
 use Odyssey::Amend;
 use Odyssey::Constants;

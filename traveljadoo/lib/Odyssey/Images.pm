@@ -122,7 +122,7 @@ sub fiximage {
 	my $srno = $2;
 	die({type => 'error', msg => 'Numbers cannot begin with a 0'})
 		if $srno =~ /^0/;
-		
+	$srno = $srno | 0;
 	my $imgfname = qq{$imgdir/$leafname}; 
 	my $imgfh = $q->upload('imgfile');
 	$imgfh = $imgfh->handle;
@@ -165,34 +165,52 @@ sub fiximage {
 	my $alttag = _get_metadata($imgcat, $objid);
 	
 	my @images = OdysseyDB::Image->search(imagename => $leafname);
+	my $dbh = OdysseyDB::Image->db_Main();
+	$dbh->{odbc_ignore_named_placeholders} = 1;
 	if (@images) {
+
 		foreach (@images) {
-			$_->set(
-				imagename => $leafname,
-				imagecategories_id => $imgcat,
-				imagetypes_id => $imgtype,
-				imageobjectid => $objid,
-				filesize => $filesize,
-				alttag => $alttag,
-				title => $alttag,
-				srno => ($srno ? $srno : 0),
-			);
-			$_->update;
+			my $recid = $_->images_id;
+			my $altalttag = 'Title ' + $alttag;
+			my $sth = $dbh->prepare("update images set
+					imagename = " . $dbh->quote($leafname) .
+					", imagecategories_id = $imgcat,
+					imagetypes_id = $imgtype,
+					imageobjectid = $objid,
+					filesize = $filesize,
+					alttag = " . $dbh->quote($alttag) .
+					", title = " . $dbh->quote($altalttag) .
+					", srno = $srno
+				where 
+					images_id = $recid
+			");
+			$sth->execute;
 		}
 	}
 	else {
-		my $newrec = OdysseyDB::Image->insert({
-			imagename => $leafname,
-			imagecategories_id => $imgcat,
-			imagetypes_id => $imgtype,
-			imageobjectid => $objid,
-			filesize => $filesize,
-			alttag => $alttag,
-			title => $alttag,
-			srno => ($srno ? $srno : 0),
-		});
+	    my $altalttag = 'Title ' + $alttag;
+		my $sth = $dbh->prepare("insert into images (
+				imagename,
+				imagecategories_id,
+				imagetypes_id,
+				imageobjectid,
+				filesize,
+				alttag,
+				title,
+				srno
+			)
+			values (
+				" . $dbh->quote($leafname) . ",
+				$imgcat,
+				$imgtype,
+				$objid,
+				$filesize, " .
+				$dbh->quote($alttag) . ",
+				" . $dbh->quote($altalttag) . ",
+				$srno
+			)");
+		$sth->execute;
 	}
-	
 	$app->redirect('images.cgi');
 }
 
@@ -209,6 +227,7 @@ sub compress_image {
 	my $quality;
 	my $last_quality;
 
+	local *IMAGE;
 	my $blob;
 
 	die __PACKAGE__ . " compress_image() required image file name missing.\n"
@@ -269,11 +288,10 @@ sub compress_image {
 	undef $image;
 
 	if (defined($blob))	{
-		open(my $imgfh, ">", $target_file) or die
+		open(IMAGE, ">$target_file") or die
 		  "Can't open $target_file for writing: $!\n";
-
-		print $imgfh $blob;
-		close($imgfh) or die "Failed to close $target_file: $!\n";
+		print IMAGE $blob;
+		close(IMAGE) or die "Failed to close $target_file: $!\n";
 	}
 	elsif ($image_file ne $target_file)	{
 		copy($image_file, $target_file) or

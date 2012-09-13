@@ -379,31 +379,19 @@ sub togateway {
 
 	my $dfv = {
 		filters => ['trim'],
-		required_regexp => qr/(^name|^nationality)\d+/,
 		required => [qw{
+				name1
 				corraddress1
 				corrcity
 				corrzip
-				corrstate
 				corrcountry
 				corremail
-				travelemail
-				telehome
-				ename
-				eemail
-				etelehome
-				etelecell
 				haveread
 				goodhealth
 			}
 		],
 		constraint_methods => {
 			corremail => email(),
-			travelemail => email(),
-			eemail => email(),
-			telehome => phone(),
-			etelehome => phone(),
-			etelecell => phone(),
 		},
 		msgs => {
 			prefix => 'err_',
@@ -477,29 +465,13 @@ sub togateway {
 		addr2,
 		city,
 		zip,
-		state,
 		country,
 		email,
-		travelemail,
-		telehome,
-		ecorrname,
-		eemail,
-		etelehome,
-		etelecell,
-		iagree,
 		haveread,
 		goodhealth,
 		tstamp
 	)
 	values (
-		?,
-		?,
-		?,
-		?,
-		?,
-		?,
-		?,
-		?,
 		?,
 		?,
 		?,
@@ -524,16 +496,8 @@ sub togateway {
 		$valids->{corraddress2},
 		$valids->{corrcity},
 		$valids->{corrzip},
-		$valids->{corrstate},
 		$valids->{corrcountry},
 		$valids->{corremail},
-		$valids->{travelemail},
-		$valids->{telehome},
-		$valids->{ename},
-		$valids->{eemail},
-		$valids->{etelehome},
-		$valids->{etelecell},
-		$valids->{iagree},
 		$valids->{haveread},
 		$valids->{goodhealth},
 		POSIX::strftime('%d %b %Y %H:%M:%S', localtime()),
@@ -568,21 +532,20 @@ sub togateway {
 
 
 # Insert Party people into linked child table	
-	foreach (0..$pax - 1) {
-		$pph->execute(
-			$fqid,
-			$fuuid,
-			$puuid,
-			$valids->{'name' . $_},
-			$valids->{'nationality' . $_},
-			$valids->{'passport' . $_},
-			$valids->{'issuedat' . $_},
-			$valids->{'issuedon' . $_},
-			$valids->{'expireson' . $_},
-			POSIX::strftime('%d %b %Y %H:%M:%S', localtime()),
-			$_
-		) or die("Cannot insert Party people");
-	}
+	# foreach (0..$pax - 1) {
+	# 	$pph->execute(
+	# 		$fqid,
+	# 		$fuuid,
+	# 		$valids->{'name' . $_},
+	# 		$valids->{'nationality' . $_},
+	# 		$valids->{'passport' . $_},
+	# 		$valids->{'issuedat' . $_},
+	# 		$valids->{'issuedon' . $_},
+	# 		$valids->{'expireson' . $_},
+	# 		POSIX::strftime('%d %b %Y %H:%M:%S', localtime()),
+	# 		$_
+	# 	) or die("Cannot insert Party people");
+	# }
 	
 	$sth = $app->dbh->prepare('select * from quotations where id = ? and uuid = ?') or die("Cannot prepare select");
 	$sth->execute($fqid, $fuuid) or die("Cannot execute select");
@@ -601,10 +564,14 @@ sub togateway {
 	my $terminalid = $ottcurrency->terminalid;
 	
 # Replace suspicious charatcters by an underscore	
-	foreach (qw/corraddress1 corraddress2 corremail telehome etelehome ecell /) {
-		$valids->{$_} =~ s/\Q<>(){}[]?&*~`!#$%^=+|\:'",;\E/\_/g;
+	foreach (qw/corraddress1 corraddress2 corrzip corrcity corrcountry/) {
+		$valids->{$_} =~ s/[^a-zA-Z0-9]+/\_/g;
 	}
-	my $addrstr = $valids->{corraddress1} . ' ' . $valids->{corraddress2} . ' ' . $valids->{corrcity} . ' ' . $valids->{corrzip} . ' ' . $valids->{corrstate} . ' ' . $valids->{corrcountry};
+	my $addrstr = $valids->{corraddress1} . ' ' . 
+		$valids->{corraddress2} . ' ' . 
+		$valids->{corrcity} . ' ' . 
+		$valids->{corrzip} . ' ' . 
+		$valids->{corrcountry};
 	
 	my $ua = LWP::UserAgent->new;
 	my $resp = $ua->request(POST $app->config_param('PassthroughURL'), [
@@ -617,7 +584,7 @@ sub togateway {
 		trackid => $puuid,
 		udf1 => "Tour Payment Against Quotation $fqid",
 		udf2 => $valids->{corremail},
-		udf3 => $valids->{telehome},
+		udf3 => '1234567890',
 		udf4 => $addrstr,
 		udf5 => $ottcurrency->currencycode,
 	]);

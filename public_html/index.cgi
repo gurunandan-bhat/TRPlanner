@@ -1,15 +1,15 @@
-#!/usr/bin/perl
+#!/usr/bin/env perl
 
 use lib qw{../traveljadoo/lib/};
 
 use strict;
 use warnings;
 
-use CGI::Application::Dispatch;
+use CGI::Application::Dispatch::PSGI;
 
 use Odyssey::Constants;
 
-CGI::Application::Dispatch->dispatch(
+CGI::Application::Dispatch::PSGI->as_psgi(
 
 	prefix => 'Odyssey',
 	args_to_new => {
@@ -66,5 +66,4 @@ CGI::Application::Dispatch->dispatch(
 	],
 
 	debug => 1,
-	
 );

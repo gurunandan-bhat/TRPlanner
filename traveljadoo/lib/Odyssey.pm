@@ -519,9 +519,11 @@ sub getmappath {
 }
 
 sub end_tour {
+
 	my $app = shift;
 
-	my $quotationid = $app->session->param('mystatus')->{quotationid};
+	my $status = $app->session->param('mystatus');
+	my $quotationid = $status->{quotationid};
 
 	$app->redirect('index.cgi?mode=restart') unless $quotationid;
 

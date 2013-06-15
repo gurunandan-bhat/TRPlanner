@@ -18,14 +18,17 @@
 			<div class="column span-24 last city">
 				<div class="column span-16">
 					<div id="slideshow" class="mainimg">
-						<img src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/error_image_2.jpg" width="600" height="370" alt="Errors are Fun, No?" />
+						<img src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/style/error_image_2.jpg" width="600" height="370" alt="Errors are Fun, No?" />
 					</div>
 				</div>
 				<div class="column span-8 last description">
 					<h2>Hang On There! Dont Panic!!</h2>
-					<p>This application is still in Beta and we are doing our best to fix problems.
-					Don't give up. And we will tell you when we are done.</p><p>In the meanwhile see if 
-					refreshing your Browser helps!</p>
+					<p>
+						We are sorry - there seems to be a problem accessing your page. We will try and find out 
+						why this happened and fix it at the earliest. In case you have an urgent request please email
+						<tt>webmaster@odyssey.co.in</tt> and we will respond
+					</p>
+					<p>Apologies! and Thanks for bearing with us</p>
 					<div class="<!-- TMPL_VAR NAME=CLASS -->">
 						<p><!-- TMPL_VAR NAME=MSG --></p>
 					</div>

@@ -42,11 +42,11 @@
 			</div>
 			<hr class="space" />
 			<div class="content" style="background: none;">
-			<div style="background: url('images/plantrip_bg.gif') repeat-y; float: left;">
+			<div style="background: url('images/style/plantrip_bg.gif') repeat-y; float: left;">
 				<div class="prepend-1 span-12 append-1 midcol">
 					<h3>Interesting Places to go to from <!-- TMPL_VAR NAME=CURRNAME --></h3>
 					<!-- TMPL_LOOP NAME=NEARCITIES -->					
-					<p class="imgholder"><img class="left" src="images/city_<!-- TMPL_VAR NAME=ID -->_movingon.jpg" width="220" height="138" /></p>
+					<p class="imgholder"><img class="left" src="images/city/city_<!-- TMPL_VAR NAME=ID -->_movingon.jpg" width="220" height="138" /></p>
 					<a href="travel.cgi?mode=move_to&srcid=<!-- TMPL_VAR NAME=CURRID -->&destid=<!-- TMPL_VAR NAME=ID -->"><h4><!-- TMPL_VAR NAME=NAME --></h4></a>
 					<h5><!-- TMPL_VAR NAME=ONELINER --></h5> 
 					<p><!-- TMPL_VAR NAME=WRITEUP --><br />

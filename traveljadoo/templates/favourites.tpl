@@ -54,7 +54,7 @@
 					<!-- TMPL_LOOP NAME=RTOURS -->
 					<h4><a href="<!-- TMPL_VAR NAME=BASEPREFIX -->itineraries.cgi?mode=describe&id=<!-- TMPL_VAR NAME=ID -->"><!-- TMPL_VAR NAME=NAME --></a></h4>
 					<h6><!-- TMPL_VAR NAME=ONLINER --></h6>
-					<p><img class="left" src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/itin_<!-- TMPL_VAR NAME=ID -->_small.jpg" width="240" height="142" /> <!-- TMPL_VAR NAME=DESC --><br />
+					<p><img class="left" src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/favourites/itin_<!-- TMPL_VAR NAME=ID -->_small.jpg" width="240" height="142" /> <!-- TMPL_VAR NAME=DESC --><br />
 					<span style="font-size: 10px;"><strong>Duration:</strong> <!-- TMPL_VAR NAME=DURATION --><br /><strong>Cost:</strong> <!-- TMPL_VAR NAME=COST --></p>
 					<p class="addquote" style="font-size: 10px;"><!-- TMPL_VAR NAME=ADDQUOTE --></p>
 					<p class="showquote" style="font-size: 10px;"><!-- TMPL_VAR NAME=SHOWQUOTE --></p>
@@ -65,7 +65,7 @@
 					<h3>Your Favourite Hotels</h3>
 					<!-- TMPL_LOOP NAME=HOTELS -->
 					<h4><a href="<!-- TMPL_VAR NAME=BASEPREFIX -->hotel.cgi?mode=describe&id=<!-- TMPL_VAR NAME=ID -->"><!-- TMPL_VAR NAME=NAME --></a></h4>
-					<p><img class="left" src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/defaulthotel_<!-- TMPL_VAR NAME=ID -->.jpg" width="240" height="142" /> <!-- TMPL_VAR NAME=DESC --></p>
+					<p><img class="left" src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/hotel/defaulthotel_<!-- TMPL_VAR NAME=ID -->.jpg" width="240" height="142" /> <!-- TMPL_VAR NAME=DESC --></p>
 					<hr />
 					<!-- /TMPL_LOOP -->
 					<hr />
@@ -74,7 +74,7 @@
 					<h3>Your Favourite Cities</h3>
 					<!-- TMPL_LOOP NAME=CITIES -->
 					<h4><a href="<!-- TMPL_VAR NAME=BASEPREFIX -->hotel.cgi?mode=search&subject=city&id=<!-- TMPL_VAR NAME=ID -->"><!-- TMPL_VAR NAME=NAME --></a></h4>
-					<p><img class="left" src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/city_<!-- TMPL_VAR NAME=ID -->_large_2.jpg" width="240" height="148" /> <!-- TMPL_VAR NAME=DESC --></p>
+					<p><img class="left" src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/city/city_<!-- TMPL_VAR NAME=ID -->_large_2.jpg" width="240" height="148" /> <!-- TMPL_VAR NAME=DESC --></p>
 					<hr />
 					<!-- /TMPL_LOOP -->
 				</div>
@@ -82,7 +82,7 @@
 					<h3><a href="<!-- TMPL_VAR NAME=BASEPREFIX -->itineraries.cgi?mode=quotes">Request a Quote</a></h3>
 					<p class="box"><!-- TMPL_VAR NAME=ADTEXT1 --><br /><a href="<!-- TMPL_VAR NAME=BASEPREFIX -->itineraries.cgi?mode=quotes">Request a Quote</a></p>
 					<h3><a href="<!-- TMPL_VAR NAME=BASEPREFIX -->index.cgi?mode=contact">Get in touch with us</a></h3>
-					<p class="box"><img class="left" src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/getintouchwithus.gif" width="125" height="116" /><!-- TMPL_VAR NAME=ADTEXT2 --><br /><a href="index.cgi?mode=contact">Contact Us</a></p>
+					<p class="box"><img class="left" src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/style/getintouchwithus.gif" width="125" height="116" /><!-- TMPL_VAR NAME=ADTEXT2 --><br /><a href="index.cgi?mode=contact">Contact Us</a></p>
 					<hr />
 				</div>
 			</div>

@@ -17,7 +17,7 @@
 				<!-- TMPL_INCLUDE NAME="bannermenu_planatrip.tpl" -->
 			</div>
 			<div class="span-24 last">
-				<img src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/planatrip_large.jpg" width="950" height="150" />
+				<img src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/style/planatrip_large.jpg" width="950" height="150" />
 			</div>
 			<div class="content">
 				<div class="span-4 leftcol">
@@ -26,8 +26,30 @@
 				<div class="span-12 midcol">
 					<h3>Sorry!</h3>
 					<p>
-						Your payment of <!-- TMPL_VAR NAME=currency --> <!-- TMPL_VAR NAME=amt --> did not go through.
-						This may be because of wrong credit card information or insufficient funds in your account.
+						Unfortunately, your Payment has been declined.
+					</p>
+					<p>
+						To protect your security and privacy, your bank cannot provide us with information about why your payment was declined. 
+						It may be that you have insufficient funds in your account, that your card has been blocked because of unusual or suspicious 
+						activity, or that the details you have provided do not match those held by your issuing bank.
+					</p>
+					<p>
+						If your card is being declined, the best course of action is to call your credit card company using the number on the back 
+						of the card to inquire about the problem. Typically, your credit card vendor will be able to sort out the problem and ensure 
+						that your next attempt to make an online payment is successful.
+					</p>
+					<p>
+						If you want to try again with a different card or confirm your details are correct by retrying your current card, please do the following:
+					</p>
+					<ul>
+						<li>Go back to the e-mail we sent you and click again on the link we provided to return to our Booking Form.</li>
+						<li>Enter the Details about your Party again</li>
+						<li>Retry your current card or try a different card</li>
+					</ul>
+					<p>
+						Just one last thing: your credit card could be genuine, have more than sufficient funds available to pay for your purchase, 
+						but for some unknown reason, your transaction might still not be authorized and the payment not accepted. In this case, please 
+						contact us so that we can give you instructions for making a telegraphic bank transfer to our account.
 					</p>
 					<p>
 						Best regards,<br />

@@ -1,3 +1,6 @@
+<p style="padding: 10px 25px 5px 25px;">
+	<a href="/Odyssey_Before_You_Go.pdf" target="_blank">Download a PDF version</a> of this page and read offline
+</p> 
 <ul class="mlevel1">
 	<li>
 		<a href="#gettingready">Getting Ready</a>

@@ -17,7 +17,7 @@
 				<!-- TMPL_INCLUDE NAME="bannermenu.tpl" -->
 			</div>
 			<div class="span-24 last">
-				<img src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/aboutus_large.jpg" width="950" height="150" alt="Collage"/>
+				<img src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/style/aboutus_large.jpg" width="950" height="150" alt="Collage"/>
 			</div>
 			<div class="content">
 				<div class="span-4 leftcol">

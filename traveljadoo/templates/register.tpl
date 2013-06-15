@@ -19,7 +19,7 @@
 				<div class="banner"><!-- TMPL_INCLUDE NAME="bannermenu.tpl" --></div>
 			</div>
 			<div class="span-24 last">
-				<img src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/planatrip_large.jpg" width="950" height="150" />
+				<img src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/style/planatrip_large.jpg" width="950" height="150" />
 			</div>
 			<div class="content">
 				<div class="span-4 leftcol">
@@ -43,7 +43,7 @@
 							</ol>
 						</fieldset>
 						<fieldset class="submit">
-							<input type="image" src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/register-me.gif" width="203" height="25" name="submit" border="0" value="Register Me" />
+							<input type="image" src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/style/register-me.gif" width="203" height="25" name="submit" border="0" value="Register Me" />
 						</fieldset>
 					</form>
 				</div>

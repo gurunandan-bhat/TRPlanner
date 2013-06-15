@@ -88,11 +88,11 @@
 						<!-- TMPL_VAR NAME=RT5BODY -->
 						<hr class="space" />
 						<p>
-							<a href="http://facebook.com/#!/pages/Travellers-Palm/152821658071605?ref=ts/" target="_blank"><img src="images/facebook.png" width="24" height="24" alt="facebook" /></a>
-							<a href="http://flickr.com/photos/travellers-palm/sets/" target="_blank"><img src="images/flickr.png" width="24" height="24" alt="flickr" /></a>
-							<a href="http://travellers-palm.blogspot.com/" target="_blank"><img src="images/blogger.png" width="24" height="24" alt="blogger" /></a>
-							<a href="http://twitter.com/travellers_palm" target="_blank"><img src="images/twitter.png" width="24" height="24" alt="twitter" /></a>
-							<!-- <a href="http://youtube.com/user/mytravellerspalm" target="_blank"><img src="images/youtube.png" width="24" height="24" alt="youtube.com" /></a> -->
+							<a href="http://facebook.com/#!/pages/Travellers-Palm/152821658071605?ref=ts/" target="_blank"><img src="images/style/facebook.png" width="24" height="24" alt="facebook" /></a>
+							<a href="http://flickr.com/photos/travellers-palm/sets/" target="_blank"><img src="images/style/flickr.png" width="24" height="24" alt="flickr" /></a>
+							<a href="http://travellers-palm.blogspot.com/" target="_blank"><img src="images/style/blogger.png" width="24" height="24" alt="blogger" /></a>
+							<a href="http://twitter.com/travellers_palm" target="_blank"><img src="images/style/twitter.png" width="24" height="24" alt="twitter" /></a>
+							<!-- <a href="http://youtube.com/user/mytravellerspalm" target="_blank"><img src="images/style/youtube.png" width="24" height="24" alt="youtube.com" /></a> -->
 						</p>
 					</div>
 					

@@ -25,7 +25,7 @@
 				<!-- TMPL_INCLUDE NAME="bannermenu_contact.tpl" -->					
 			</div>
 			<div class="span-24 last">
-				<img src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/contactus_large.jpg" width="950" height="150" alt="Collage"/>
+				<img src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/style/contactus_large.jpg" width="950" height="150" alt="Collage"/>
 			</div>
 			<hr class="space" />
 			<div class="content" style="background: none;">

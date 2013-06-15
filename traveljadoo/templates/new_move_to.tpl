@@ -24,8 +24,8 @@
 			<div class="span-16 frame">
 				<div id="imgframe">
 					<div id="frameslideshow" thiscity="<!-- TMPL_VAR NAME=CURRID -->" maxcityimages="<!-- TMPL_VAR NAME=NUMIMAGES -->">
-						<img src="images/city_<!-- TMPL_VAR NAME=CURRID -->_large_1.jpg" width="560" height="340" alt="1" />
-						<img src="images/city_<!-- TMPL_VAR NAME=CURRID -->_large_2.jpg" width="560" height="340" alt="2" />
+						<img src="images/city/city_<!-- TMPL_VAR NAME=CURRID -->_large_1.jpg" width="560" height="340" alt="1" />
+						<img src="images/city/city_<!-- TMPL_VAR NAME=CURRID -->_large_2.jpg" width="560" height="340" alt="2" />
 					</div>
 				</div>
 			</div>
@@ -43,23 +43,23 @@
 			</div>
 			<hr class="space">
 			<div class="content" style="background: none;">
-			<div style="background: url('images/plantrip_bg.gif') repeat-y; float: left;">
+			<div style="background: url('images/style/plantrip_bg.gif') repeat-y; float: left;">
 				<div class="prepend-1 span-12 midcol append-1">
 					<h3>Special Places in <!-- TMPL_VAR NAME=CURRNAME --></h3>
-					<p class="imgholder"><img class="left" src="images/defaulthotel_<!-- TMPL_VAR NAME=DEFAULTHOTELID -->.jpg" width="220" height="150" /></p>
+					<p class="imgholder"><img class="left" src="images/city/defaulthotel_<!-- TMPL_VAR NAME=DEFAULTHOTELID -->.jpg" width="220" height="150" /></p>
 					<h4><!-- TMPL_VAR NAME=DEFAULTHOTELNAME --> (<!-- TMPL_VAR NAME=DEFAULTHOTELCOSTCATEGORY -->)</h4>
 					<p><!-- TMPL_VAR NAME=DEFAULTHOTELDESCRIPTIONSMALL --></p>
 					<p><a href="hotel.cgi?mode=minidescribe&id=<!-- TMPL_VAR NAME=DEFAULTHOTELID -->&height=550&width=420" title="A Peep into our Hotels" class="thickbox">Read More &raquo;</a></p>
 					<hr />
 					<!-- TMPL_LOOP NAME=OTHERHOTELS -->
-					<p class="imgholder"><img class="left" src="images/defaulthotel_<!-- TMPL_VAR NAME=HOTELID -->.jpg" width="220" height="150" /></p>
+					<p class="imgholder"><img class="left" src="images/city/defaulthotel_<!-- TMPL_VAR NAME=HOTELID -->.jpg" width="220" height="150" /></p>
 					<h4><!-- TMPL_VAR NAME=HOTELNAME --> (<!-- TMPL_VAR NAME=HOTELCATEGORY -->)</h4>
 					<p><!-- TMPL_VAR NAME=HOTELDESCRIPTION --></p>
 					<p><a href="hotel.cgi?mode=minidescribe&id=<!-- TMPL_VAR NAME=HOTELID -->&height=550&width=420" title="A Peep into our Hotels" class="thickbox">Read More &raquo;</a></p>
 					<hr />
 					<!-- /TMPL_LOOP -->
 					<h3>Things To See and Do in <!-- TMPL_VAR NAME=CURRNAME --></h3>
-					<img src="images/city_<!-- TMPL_VAR NAME=CURRID -->_collage_1.gif" width="470" height="514" alt="Image Not Available" />
+					<img src="images/city/city_<!-- TMPL_VAR NAME=CURRID -->_collage_1.gif" width="470" height="514" alt="Image Not Available" />
 					<!-- TMPL_VAR NAME=CURRWEBWRITEUP -->
 				</div>
 				<div class="span-9 rightcol append-1 last">

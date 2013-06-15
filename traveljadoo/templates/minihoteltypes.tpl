@@ -2,7 +2,7 @@
 	h3.inset {
 		padding: 8px 0 24px 0;
 		border-top: 1px solid #ddcdae;
-		background: url('images/hr-bg-tan.gif') center bottom no-repeat;
+		background: url('images/style/hr-bg-tan.gif') center bottom no-repeat;
 		text-align: center;
 		margin-bottom: 0px;
 	}

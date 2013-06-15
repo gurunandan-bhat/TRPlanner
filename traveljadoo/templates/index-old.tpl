@@ -18,8 +18,8 @@
 			<div class="column span-24 last banner">
 				<div class="flasher">
 				<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0" height="120" id="MyFirstChart" >
-					<param name="movie" value="images/Jadoo.swf" />
-					<embed src="images/Jadoo.swf" quality="high" height="120" name="MyFirstChart" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" />
+					<param name="movie" value="images/style/Jadoo.swf" />
+					<embed src="images/style/Jadoo.swf" quality="high" height="120" name="MyFirstChart" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" />
 				</object>
 				</div>
 				<ul>
@@ -34,7 +34,7 @@
 			<div class="column span-24 last city">
 				<div class="column span-16">
 					<div id="slideshow" class="mainimg">
-						<img src="images/city_2_large_02.jpg" width="600" height="370" alt="1" />
+						<img src="images/style/city_2_large_02.jpg" width="600" height="370" alt="1" />
 					</div>
 				</div>
 				<div class="column span-8 last description">

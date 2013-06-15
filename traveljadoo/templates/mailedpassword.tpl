@@ -15,7 +15,7 @@
 				<!-- TMPL_INCLUDE NAME="plainbannermenu.tpl" -->
 			</div>
 			<div class="span-24 last">
-				<img src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/planatrip_large.jpg" width="950" height="150" />
+				<img src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/style/planatrip_large.jpg" width="950" height="150" />
 			</div>
 			<div class="content">
 				<div class="span-4 leftcol">

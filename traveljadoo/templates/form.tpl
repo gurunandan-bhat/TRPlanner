@@ -23,7 +23,7 @@
 				<!-- TMPL_INCLUDE NAME="bannermenu_planatrip.tpl" -->
 			</div>
 			<div class="span-24 last">
-				<img src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/planatrip_large.jpg" width="950" height="150" />
+				<img src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/style/planatrip_large.jpg" width="950" height="150" />
 			</div>
 			<div class="content">
 				<div class="span-4 leftcol">
@@ -31,7 +31,7 @@
 				</div>
 				<div class="span-12 midcol">
 					<h3>Tour Booking Form</h3>
-					<form id="planatrip" method="post" action="<!-- TMPL_VAR NAME=BASEPREFIX -->togateway" maxpax="<!-- TMPL_VAR NAME=pax -->">
+					<form id="planatrip" method="post" action="<!-- TMPL_VAR NAME=BASEPREFIX -->togateway" maxpax="1">
 						<!--  TMPL_IF NAME=some_errors  -->
 						<p class="error">There were some errors</p>
 						<!-- /TMPL_IF -->
@@ -41,58 +41,6 @@
 								<li>
 									<label for="name1">Lead Name (i.e your full name as on your passport):<!-- TMPL_VAR NAME=err_name1 --></label>
 									<input type="text" id="name1" name="name1" />
-								</li>
-								<li>
-									<label for="nationality1">Nationality:<!-- TMPL_VAR NAME=err_nationality1 --></label>
-									<input type="text" id="nationality1" name="nationality1" />
-								</li>
-								<li>
-									<label for="passport1">Passport No:<!-- TMPL_VAR NAME=err_passport1 --></label>
-									<input type="text" id="passport1" name="passport1" />
-								</li>
-								<li>
-									<label for="issuedon1">Passport Issue Date:<!-- TMPL_VAR NAME=err_issuedon1 --></label>
-									<input type="text" id="issuedon1" name="issuedon1" />
-								</li>
-								<li>
-									<label for="expireson1">Passport Expiry Date:<!-- TMPL_VAR NAME=err_expireson1 --></label>
-									<input type="text" id="expireson1" name="expireson1" />
-								</li>
-								<hr />
-							</ol>
-							<!--  TMPL_LOOP NAME=restpax -->
-								<p class="paxnumber">Details of Traveller <!-- TMPL_VAR NAME=paxorder --></p>
-								<ol>
-									<li>
-										<label for="name1">Full name (as on passport): <!-- TMPL_VAR NAME=errorname --></label>
-										<input type="text" id="name<!-- TMPL_VAR NAME=paxorder -->" name="name<!-- TMPL_VAR NAME=paxorder -->" />
-									</li>
-									<li>
-										<label for="nationality<!-- TMPL_VAR NAME=paxorder -->">Nationality: <!-- TMPL_VAR NAME=errornationality --></label>
-										<input type="text" id="nationality<!-- TMPL_VAR NAME=paxorder -->" name="nationality<!-- TMPL_VAR NAME=paxorder -->" />
-									</li>
-									<li>
-										<label for="passport<!-- TMPL_VAR NAME=paxorder -->">Passport No: <!-- TMPL_VAR NAME=errorpassport --></label>
-										<input type="text" id="passport<!-- TMPL_VAR NAME=paxorder -->" name="passport<!-- TMPL_VAR NAME=paxorder -->" />
-									</li>
-									<li>
-										<label for="issuedon<!-- TMPL_VAR NAME=paxorder -->">Passport Issue Date: <!-- TMPL_VAR NAME=errorissuedon --></label>
-										<input type="text" id="issuedon<!-- TMPL_VAR NAME=paxorder -->" name="issuedon<!-- TMPL_VAR NAME=paxorder -->" />
-									</li>
-									<li>
-										<label for="expireson<!-- TMPL_VAR NAME=paxorder -->">Passport Expiry Date: <!-- TMPL_VAR NAME=errordexpireson --></label>
-										<input type="text" id="expireson<!-- TMPL_VAR NAME=paxorder -->" name="expireson<!-- TMPL_VAR NAME=paxorder -->" />
-									</li>
-									<hr />
-								</ol>
-							<!-- /TMPL_LOOP -->
-						</fieldset>
-						<fieldset id="corr">
-							<legend>Who should we correspond with</legend>
-							<ol>
-								<li>
-									<label for="corrname">Name (as on passport): <!-- TMPL_VAR NAME=err_corrname --></label>
-									<input type="text" id="corrname" name="corrname" />
 								</li>
 								<li>
 									<label for="corraddress1">Address (Line 1): <!-- TMPL_VAR NAME=err_corraddress1 --></label>
@@ -111,10 +59,6 @@
 									<input type="text" id="corrzip" name="corrzip" />
 								</li>
 								<li>
-									<label for="corrstate">State: <!-- TMPL_VAR NAME=err_corrstate --></label>
-									<input type="text" id="corrstate" name="corrstate" />
-								</li>
-								<li>
 									<label for="corrcountry">Country: <!-- TMPL_VAR NAME=err_corrcountry --></label>
 									<input type="text" id="corrcountry" name="corrcountry" />
 								</li>
@@ -122,39 +66,7 @@
 									<label for="corremail">Email: <!-- TMPL_VAR NAME=err_corremail --></label>
 									<input type="text" id="corremail" name="corremail" />
 								</li>
-								<li>
-									<label for="travelemail">Email while travelling: <!-- TMPL_VAR NAME=err_travelemail --></label>
-									<input type="text" id="travelemail" name="travelemail" />
-								</li>
-								<li>
-									<label for="telehome">Telephone (Home): <!-- TMPL_VAR NAME=err_telehome --></label>
-									<input type="text" id="telehome" name="telehome" />
-								</li>
-								<li>
-									<label for="telework">Telephone (Work)</label>
-									<input type="text" id="telework" name="telework" />
-								</li>
-							</ol>
-						</fieldset>
-						<fieldset id="corr">
-							<legend>Emergency Contact Details: Important</legend>
-							<ol>
-								<li>
-									<label for="ename">Name: <!-- TMPL_VAR NAME=err_ename --></label>
-									<input type="text" id="ename" name="ename" />
-								</li>
-								<li>
-									<label for="eemail">Email: <!-- TMPL_VAR NAME=err_eemail --></label>
-									<input type="text" id="eemail" name="eemail" />
-								</li>
-								<li>
-									<label for="etelehome">Telephone (Home): <!-- TMPL_VAR NAME=err_etelehome --></label>
-									<input type="text" id="etelehome" name="etelehome" />
-								</li>
-								<li>
-									<label for="etelecell">Telephone (Cellphone)</label>
-									<input type="text" id="etelecell" name="etelecell" />
-								</li>
+								<hr />
 							</ol>
 						</fieldset>
 						<p>

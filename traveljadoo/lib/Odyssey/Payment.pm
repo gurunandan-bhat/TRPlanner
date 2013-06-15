@@ -279,11 +279,11 @@ sub save_quote {
 	
 	my $msg = MIME::Lite->new(
 		To => 		$email,
-		From => 	'Travellers Palm Administrator <webmaster@travellers-palm.com>',
+		From => 	'Travellers Palm Administrator <noreply@travellers-palm.com>',
 		Subject => 	'Quotation Sent: ' . $qid,
 		Type => 	'multipart/related',
-		CC => 'hans@odyssey.co.in',
-		BCC => 		'gbhat@pobox.com', 
+		CC => 		'hans@odyssey.co.in',
+		BCC => 		'accounts@odyssey.co.in, ivan@odyssey.co.in', 
 	);
 	
 	
@@ -746,11 +746,11 @@ sub thanks {
 	
 	my $msg = MIME::Lite->new(
 		To => 		$plog->{userid},
-		From => 	'Travellers Palm Administrator <webmaster@travellers-palm.com>',
+		From => 	'Travellers Palm Administrator <noreply@travellers-palm.com>',
 		Subject => 	'Your Payment to Travellers Palm for Quotation: ' . $qid,
 		Type => 	'multipart/related',
-		CC => 'hans@odyssey.co.in',
-		BCC => 		'gbhat@pobox.com', 
+		CC => 		'hans@odyssey.co.in',
+		BCC => 		'accounts@odyssey.co.in, ivan@odyssey.co.in', 
 	);
 	
 	$msg->attach(
@@ -863,12 +863,12 @@ sub thanks {
 	close $tmpini;
 	
 	$msg = MIME::Lite->new(
-		To => 		'gbhat@pobox.com',
-		From => 	'Travellers Palm Administrator <webmaster@travellers-palm.com>',
+		To => 		'accounts@odyssey.co.in, ivan@odyssey.co.in',
+		From => 	'Travellers Palm Administrator <noreply@travellers-palm.com>',
 		Subject => 	'Payment to Travellers Palm for Quotation: ' . $qid,
 		Type => 	'multipart/related',
-		CC => 'hans@odyssey.co.in',
-		BCC => 		'bhat.gurunandan@gmail.com', 
+		CC =>		'hans@odyssey.co.in',
+		#BCC => 	'bhat.gurunandan@gmail.com', 
 	);
 	
 	$msg->attach(

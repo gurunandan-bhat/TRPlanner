@@ -21,36 +21,36 @@
 			<div class="span-24 last thememenu">
 				<div class="span-4 border">
 					<h3>Beaches</h3>
-					<img src="images/red_block.gif" width="150" height="115" />
+					<img src="images/style/red_block.gif" width="150" height="115" />
 					<p>It is a long established fact that a reader will be distracted by the readable content.
 					<br /><a href="#">Explore Beaches</a></p>
 				</div>
 				<div class="span-4 border">
 					<h3>Wildlife</h3>
-					<img src="images/red_block.gif" width="150" height="115" />
+					<img src="images/style/red_block.gif" width="150" height="115" />
 					<p>It is a long established fact that a reader will be distracted by the readable content.
 					<br /><a href="#">Explore Wildlife</a></p>
 				</div>
 				<div class="span-4 border current">
 					<h3>Landscape</h3>
-					<img src="images/red_block.gif" width="150" height="115" />
+					<img src="images/style/red_block.gif" width="150" height="115" />
 					<p>It is a long established fact that a reader will be distracted by the readable content.
 				</div>
 				<div class="span-4 border">
 					<h3>Adventure</h3>
-					<img src="images/red_block.gif" width="150" height="115" />
+					<img src="images/style/red_block.gif" width="150" height="115" />
 					<p>It is a long established fact that a reader will be distracted by the readable content.
 					<br /><a href="#">Explore Adventure</a></p>
 				</div>
 				<div class="span-4 border">
 					<h3>Religion</h3>
-					<img src="images/red_block.gif" width="150" height="115" />
+					<img src="images/style/red_block.gif" width="150" height="115" />
 					<p>It is a long established fact that a reader will be distracted by the readable content.
 					<br /><a href="#">Explore Religion</a></p>
 				</div>
 				<div class="span-4 last">
 					<h3>Monuments</h3>
-					<img src="images/red_block.gif" width="150" height="115" />
+					<img src="images/style/red_block.gif" width="150" height="115" />
 					<p>It is a long established fact that a reader will be distracted by the readable content.
 					<br /><a href="#">Explore Monuments</a></p>
 				</div>

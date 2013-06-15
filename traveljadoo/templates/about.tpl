@@ -25,7 +25,7 @@
 				<!-- TMPL_INCLUDE NAME="bannermenu_aboutus.tpl" -->					
 			</div>
 			<div class="span-24 last">
-				<img src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/aboutus_large.jpg" width="950" height="150" alt="Collage"/>
+				<img src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/style/aboutus_large.jpg" width="950" height="150" alt="Collage"/>
 			</div>
 			<hr class="space" />
 			<div class="content">
@@ -58,7 +58,7 @@
 				<div class="span-8 rightcol last">
 					<h3>Meet our Team</h3>
 					<div class="box">
-						<img src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/team.jpg" width="280" height="137" alt="Team Odyssey" />
+						<img src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/style/team.jpg" width="280" height="137" alt="Team Odyssey" />
 						<p><!-- TMPL_VAR NAME=ABOUTTEAM --><br /><br /><a href="<!-- TMPL_VAR NAME=BASEPREFIX -->meet-the-team">Read more about our Team</a></p>
 					</div>
 					<h3>Traveller's Palm</h3>

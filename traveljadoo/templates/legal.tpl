@@ -33,9 +33,9 @@
 					<h3>Membership</h3>
 					<div class="box">
 						<p style="text-align: center">
-							<img src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/lato.jpg" width="58" height="78" alt="LATO Logo" /><br /><br />
-							<img src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/taai.jpg" width="68" height="58" alt="TAAI Logo" /><br /><br />
-							<img src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/pata.gif" width="70" height="81" alt="PATA Logo" />
+							<img src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/style/iato.jpg" width="58" height="78" alt="IATO Logo" /><br /><br />
+							<img src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/style/taai.jpg" width="68" height="58" alt="TAAI Logo" /><br /><br />
+							<img src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/style/pata.gif" width="70" height="81" alt="PATA Logo" />
 						</p>
 					</div>
 				</div>
@@ -47,7 +47,7 @@
 					<hr />
 				</div>
 				<div class="span-8 rightcol last">
-					<img class="box" src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/odyssey_card.gif" width="246" height="150" alt="Odyssey Business Card" />
+					<img class="box" src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/style/odyssey_card.gif" width="246" height="150" alt="Odyssey Business Card" />
 				</div>
 			</div>
 		</div>

@@ -1,0 +1,100 @@
+Air/Flights.pm:		select distinct
+Air/Flights.pm:	my $qry = "select distinct
+Air/Flights.pm:		select distinct
+Odyssey/Payment.pm:	my $sth = $app->dbh->prepare("select * from quotations where id = ? and uuid = ? and digest = ?") or die("Cannot prepare select");
+Odyssey/Payment.pm:	$sth->execute($qid, $uuid, $digest) or die("Cannot execute select for quotation: $qid");
+Odyssey/Payment.pm:	my $sth = $app->dbh->prepare("select * from quotations where id = ? and uuid = ? and digest = ?") or die("Cannot prepare select");
+Odyssey/Payment.pm:	$sth->execute($qid, $uuid, $digest) or die("Cannot execute select for quotation: $qid");
+Odyssey/Payment.pm:	$sth = $app->dbh->prepare('select * from quotations where id = ? and uuid = ?') or die("Cannot prepare select");
+Odyssey/Payment.pm:	$sth->execute($fqid, $fuuid) or die("Cannot execute select");
+Odyssey/Payment.pm:	my $psth = $app->dbh->prepare("select qid, uuid from party where puuid = ?");
+Odyssey/Payment.pm:	my $sth = $app->dbh->prepare("select * from paymentlog where qid = ? and puuid = ? and digest = ?")
+Odyssey/Payment.pm:		or die("Cannot prepare select");
+Odyssey/Payment.pm:		or die("Cannot execute select");
+Odyssey/Payment.pm:	my $qsth = $app->dbh->prepare("select * from quotations where id = ? and uuid = ?")
+Odyssey/Payment.pm:		or die("Cannot prepare quotations select");
+Odyssey/Payment.pm:	my $inisth = $app->dbh->prepare("select * from party where uuid = ? and puuid = ?")
+Odyssey/Payment.pm:	my $ppsth = $app->dbh->prepare("select * from partypeople where uuid = ? and puuid = ? order by peopleid");
+Odyssey/Itineraries.pm:		my $sth = $app->dbh->prepare("select count(*) from favourites where username = '$username' and type = 'itin' and id = $itinid");
+Odyssey/Itineraries.pm:		my $sth = $app->dbh->prepare("select count(*) from quotes where username = '$username' and id = $itinid");
+Odyssey/Register.pm:	my $chkqry = 'select rowid from users where username = ' . $app->dbh->quote($email);
+Odyssey/Register.pm:	my $qry = "select username from users where rowid = $userid";
+Odyssey/Register.pm:	my $qry = "select rowid from users where username = ?";
+Odyssey/Payment_Full.pm:	my $sth = $app->dbh->prepare("select * from quotations where id = ? and uuid = ? and digest = ?") or die("Cannot prepare select");
+Odyssey/Payment_Full.pm:	$sth->execute($qid, $uuid, $digest) or die("Cannot execute select for quotation: $qid");
+Odyssey/Payment_Full.pm:	my $sth = $app->dbh->prepare("select * from quotations where id = ? and uuid = ? and digest = ?") or die("Cannot prepare select");
+Odyssey/Payment_Full.pm:	$sth->execute($qid, $uuid, $digest) or die("Cannot execute select for quotation: $qid");
+Odyssey/Payment_Full.pm:	$sth = $app->dbh->prepare('select * from quotations where id = ? and uuid = ?') or die("Cannot prepare select");
+Odyssey/Payment_Full.pm:	$sth->execute($fqid, $fuuid) or die("Cannot execute select");
+Odyssey/Payment_Full.pm:	my $psth = $app->dbh->prepare("select qid, uuid from party where puuid = ?");
+Odyssey/Payment_Full.pm:	my $sth = $app->dbh->prepare("select * from paymentlog where qid = ? and puuid = ? and digest = ?")
+Odyssey/Payment_Full.pm:		or die("Cannot prepare select");
+Odyssey/Payment_Full.pm:		or die("Cannot execute select");
+Odyssey/Payment_Full.pm:	my $qsth = $app->dbh->prepare("select * from quotations where id = ? and uuid = ?")
+Odyssey/Payment_Full.pm:		or die("Cannot prepare quotations select");
+Odyssey/Payment_Full.pm:	my $inisth = $app->dbh->prepare("select * from party where uuid = ? and puuid = ?")
+Odyssey/Payment_Full.pm:	my $ppsth = $app->dbh->prepare("select * from partypeople where uuid = ? and puuid = ? order by peopleid");
+Odyssey/Init.pm:		# optionlist is set in _get_routes. select the first option.
+Odyssey/Init.pm:		my @selectedoption;
+Odyssey/Init.pm:		# move option number 1 to selected option and reset arrival 
+Odyssey/Init.pm:			push @selectedoption, $_;
+Odyssey/Init.pm:		my $dateout = $selectedoption[0]->{departure};
+Odyssey/Init.pm:		for (@selectedoption) {
+Odyssey/Init.pm:	my $qry = "select cities_id, city, airport, case cities_id when 103 then 'selected=\"selected\"' else '' end as selected from cities where nighthalt = 1 order by city";
+Odyssey/Itinerary.pm:		my $dayselected = ($defaultdays == $_) ? 1 : 0;
+Odyssey/Itinerary.pm:			DAYSELECTED => $dayselected
+Odyssey/Itinerary.pm:	# Get arrivaldate of last leg of (possibly) multiple hop route selected 	
+Odyssey/Itinerary.pm:	my @selectedoption;
+Odyssey/Itinerary.pm:		push @selectedoption, $_;
+Odyssey/Itinerary.pm:	my $arrival = $selectedoption[-1]->{arrival};
+Odyssey/Itinerary.pm:	for (@selectedoption) {
+Odyssey/Hotels.pm:		my $sth = $app->dbh->prepare("select count(*) from favourites where username = '$username' and type = 'city' and id = $cityid");
+Odyssey/Hotels.pm:		my $sth = $app->dbh->prepare("select count(*) from favourites where username = '$username' and type = 'hotel' and id = $hotelid");
+Odyssey/Images.pm.bak:	die({type => 'error', msg => 'You must select an Image Category'})
+Odyssey/Images.pm.bak:	die({type => 'error', msg => 'You must select an Image Type'})
+Odyssey/Images.pm.bak:	die({type => 'error', msg => 'You must select a File to Upload'})
+OdysseyDB/State.pm:	select distinct
+OdysseyDB/City.pm:	select distinct
+OdysseyDB/City.pm:	select distinct
+OdysseyDB/City.pm:	select distinct
+OdysseyDB/Hotel.pm:	select 
+OdysseyDB/Hotel.pm:	select
+OdysseyDB/Hotel.pm:		select
+OdysseyDB/Hotel.pm:	select
+OdysseyDB/Hotel.pm:	select
+OdysseyDB/Hotel.pm:	select
+OdysseyDB/Hotel.pm:	select
+OdysseyDB/Hotel.pm:	select
+OdysseyDB/Hotel.pm:	select 
+OdysseyDB/Hotel.pm:	select 
+OdysseyDB/Hotel.pm:	select 
+OdysseyOL.pm:		my $sth = $app->dbh->prepare("select count(*) from favourites where username = '$username' and id = $itin");
+OdysseyOL.pm:		$sth = $app->dbh->prepare("select count(*) from favourites where username = '$username'");
+OdysseyOL.pm:		my $sth = $app->dbh->prepare("select count(*) from quotes where username = '$username' and id = $itin");
+OdysseyOL.pm:		$sth = $app->dbh->prepare("select count(*) from quotes where username = '$username'");
+OdysseyOL.pm:		my $sth = $app->dbh->prepare("select count(*) from favourites where username = '$username' and id = $itin");
+OdysseyOL.pm:		my $sth = $app->dbh->prepare("select count(*) from quotes where username = '$username' and id = $itin");
+OdysseyOL.pm:		my $sth = $app->dbh->prepare("select id, type, addedon from favourites where username = '$username' order by type, addedon");
+OdysseyOL.pm:			my $sth = $app->dbh->prepare("select count(*) from quotes where username = '$username' and id = " . $_->{id});
+OdysseyOL.pm:			my $sth = $app->dbh->prepare("select count(*) from quotes where username = '$username' and id = " . $_->{id});
+OdysseyOL.pm:		my $sth = $app->dbh->prepare("select id, type, addedon from favourites where username = '$username' order by type, addedon");
+OdysseyOL.pm:		$sth = $app->dbh->prepare("select id, addedon from quotes where username = '$username' order by addedon desc");
+OdysseyOL.pm:		my $sth = $app->dbh->prepare("select id, type, addedon from favourites where username = '$username' order by type, addedon");
+Odyssey.pm:		my $sth = $app->dbh->prepare("select count(*) from favourites where username = '$username' and id = $itin");
+Odyssey.pm:		$sth = $app->dbh->prepare("select count(*) from favourites where username = '$username'");
+Odyssey.pm:		my $sth = $app->dbh->prepare("select count(*) from quotes where username = '$username' and id = $itin");
+Odyssey.pm:		$sth = $app->dbh->prepare("select count(*) from quotes where username = '$username'");
+Odyssey.pm:		my $sth = $app->dbh->prepare("select count(*) from favourites where username = '$username' and id = $id and type = '$type'");
+Odyssey.pm:		my $sth = $app->dbh->prepare("select count(*) from quotes where username = '$username' and id = $itin");
+Odyssey.pm:	my $sth = $app->dbh->prepare("select id, type, addedon from favourites where username = '$username' order by type, addedon");
+Odyssey.pm:		my $sth = $app->dbh->prepare("select count(*) from quotes where username = '$username' and id = " . $_->{id});
+Odyssey.pm:		my $sth = $app->dbh->prepare("select count(*) from quotes where username = '$username' and id = " . $_->{id});
+Odyssey.pm:	my $sth = $app->dbh->prepare("select id, type, addedon from favourites where username = '$username' order by type, addedon");
+Odyssey.pm:	$sth = $app->dbh->prepare("select id, addedon from favourites where username = '$username' and type = 'itin' order by addedon desc");
+Odyssey.pm:		my $sth = $app->dbh->prepare("select id, type, addedon from favourites where username = '$username' order by type, addedon");
+Odyssey.pm:		select
+Rail/Miner.pm:		select
+Rail/Trains.pm:		select distinct
+Rail/Trains.pm:		select
+Rail/Trains.pm:		select distinct
+Rail/Trains.pm:	$qry = qq{select city from cities where cities_id = ?};

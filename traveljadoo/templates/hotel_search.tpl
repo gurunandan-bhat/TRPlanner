@@ -53,7 +53,7 @@
 			</div>
 			<!-- TMPL_ELSE -->
 			<div class="span-24 last">
-				<img src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/aboutus_large.jpg" width="950" height="150" alt="Collage"/>
+				<img src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/style/aboutus_large.jpg" width="950" height="150" alt="Collage"/>
 			</div>
 			<!-- /TMPL_IF -->
 			<hr class="space">
@@ -176,12 +176,12 @@
 					<!-- /TMPL_IF -->
 					<h3><!-- TMPL_VAR NAME=ALTTITLE --></h3>
 					<div class="box">
-						<img class="left" src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/plantheperfecttrip.gif" width="114" height="114" />
+						<img class="left" src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/style/plantheperfecttrip.gif" width="114" height="114" />
 						<div class="hansbold"><!-- TMPL_VAR NAME=ALTTEXT --><br /><a href="<!-- TMPL_VAR NAME=BASEPREFIX -->modules">Plan your Trip now...</a></div>
 					</div>
 					<h3><!-- TMPL_VAR NAME=ADTITLE --></h3>
 					<div class="box">
-						<img class="left" src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/getintouchwithus.gif" width="114" height="114" />
+						<img class="left" src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/style/getintouchwithus.gif" width="114" height="114" />
 						<div class="hansbold"><!-- TMPL_VAR NAME=ADTEXT --></div>
 					</div>
 				<!-- /TMPL_IF -->

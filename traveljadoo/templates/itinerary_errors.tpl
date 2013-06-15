@@ -18,7 +18,7 @@
 				<!-- TMPL_INCLUDE NAME="bannermenu.tpl" -->
 			</div>
 			<div class="span-24 last">
-				<img src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/aboutus_large.jpg" width="950" height="150" alt="Collage"/>
+				<img src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/style/aboutus_large.jpg" width="950" height="150" alt="Collage"/>
 			</div>
 			<div class="content">
 				<div class="span-4 leftcol">
@@ -54,7 +54,7 @@
 						</fieldset>
 						<input type="hidden" name="mode" value="send_email" />
 						<p><!-- TMPL_VAR NAME=TEXT3 --></p>
-						<p><input type="image" src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/proceed-to-quote.gif" width="203" height="25" value="Proceed with my Quote Request" /></p>
+						<p><input type="image" src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/style/proceed-to-quote.gif" width="203" height="25" value="Proceed with my Quote Request" /></p>
 					</form>
 					<div style="display: none;">
 						<h1 style="margin-top: 10px;">Detailed Itinerary</h1>

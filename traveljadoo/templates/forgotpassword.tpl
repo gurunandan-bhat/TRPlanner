@@ -18,7 +18,7 @@
 				<div class="banner"><!-- TMPL_INCLUDE NAME="plainbannermenu.tpl" --></div>
 			</div>
 			<div class="span-24 last">
-				<img src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/planatrip_large.jpg" width="950" height="150" />
+				<img src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/style/planatrip_large.jpg" width="950" height="150" />
 			</div>
 			<div class="content">
 				<div class="span-4 leftcol">
@@ -45,7 +45,7 @@
 									<label for="userid">Email Address:</label>
 									<input type="text" id="userid" name="userid" /><br />
 								</p>
-								<p><input type="image" src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/email-new-password.gif" width="203" height="25" border="0" name="mailpasswd" alt="Mail me my New Password" /></p>
+								<p><input type="image" src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/style/email-new-password.gif" width="203" height="25" border="0" name="mailpasswd" alt="Mail me my New Password" /></p>
 							</fieldset>
 							<input type="hidden" name="mode" value="forgotnewpasswd" />
 						</form>

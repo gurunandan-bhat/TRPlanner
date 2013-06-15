@@ -63,7 +63,7 @@
 				<td colspan="2">
 					<p>
 						Please find attached your Tour Itinerary.<br />
-						We look forward to assissting you during your tour.
+						We look forward to assisting you during your tour.
 					<p>
 						Best regards,<br />
 						<b>Traveller's Palm</b>

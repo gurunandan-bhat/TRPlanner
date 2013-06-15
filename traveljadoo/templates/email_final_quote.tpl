@@ -75,7 +75,7 @@
 			<b>Traveller's Palm</b>
 		</p>
 		<p style="color: red;">
-			Please Note: Please do not reply to this email. It has been sent by an automated booking system 
+			Please do not reply to this email. It has been sent by an automated booking system 
 			from an address that is not monitored. 
 		</p>
 	</body>

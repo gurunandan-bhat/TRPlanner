@@ -22,7 +22,7 @@
 				</div>
 			</div>
 			<div class="span-24 broadbanner">
-				<img src="images/banner05.jpg" width="950" height="150"/>
+				<img src="images/style/banner05.jpg" width="950" height="150"/>
 			</div>
 			<hr class="bigspacer"/>
 			<div class="span-5 chatter">
@@ -33,7 +33,7 @@
 			</div>
 			<div class="span-14 append-5 last">
 				<h1>Design your Own Tour!</h1>
-				<p><img src="images/puzzle.jpg" width="160" height="148" style="float: right; padding-top: -10px; margin-top: -10px;" />
+				<p><img src="images/style/puzzle.jpg" width="160" height="148" style="float: right; padding-top: -10px; margin-top: -10px;" />
 				We have created a unique Travel Wizard that lets you put together a customised tour online. You simply choose the places you wish to visit, 
 				and select your preferred mode of transport. Our Travel Wizard then creates a suggested itinerary with a costing. You are able to amend the 
 				proposed itinerary to arrive at a program of your choice.</p>

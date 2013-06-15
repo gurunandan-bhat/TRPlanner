@@ -9,7 +9,7 @@
 			<td><input type="password" name="authen_password" size="20" /></td>
 		</tr>
 	</table>
-	<div id="submitbutton"><input type="image" src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/signin.gif" name="authen_loginbutton" value="Sign In" /></div>
+	<div id="submitbutton"><input type="image" src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/style/signin.gif" name="authen_loginbutton" value="Sign In" /></div>
 	<div id="registerlink">or <a href="<!-- TMPL_VAR NAME=BASEPREFIX -->register.cgi">Register</a></div>
 	<input type="hidden" name="destination" value="<!-- TMPL_VAR NAME=THISURL -->" />
 	<input type="hidden" name="rm" value="authen_login" />

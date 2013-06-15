@@ -19,7 +19,7 @@
 			<div class="column span-24 last city">
 				<div class="column span-16">
 					<div id="slideshow" class="mainimg">
-						<img src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/dalailama.jpg" width="600" height="370" alt="Errors are Fun, No?" />
+						<img src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/style/dalailama.jpg" width="600" height="370" alt="Errors are Fun, No?" />
 					</div>
 					<!-- TMPL_IF NAME=NOTCLEAN -->
 					<div class="ticketslist">

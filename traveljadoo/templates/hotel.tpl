@@ -149,12 +149,12 @@
 					</div>
 					<h3><!-- TMPL_VAR NAME=ALTTITLE --></h3>
 					<div class="box">
-						<img class="left" src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/plantheperfecttrip.gif" width="114" height="114" />
+						<img class="left" src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/style/plantheperfecttrip.gif" width="114" height="114" />
 						<div class="hansbold"><!-- TMPL_VAR NAME=ALTTEXT --><br /><a href="<!-- TMPL_VAR NAME=BASEPREFIX -->modules">Plan your Trip now...</a></div>
 					</div>
 					<h3><!-- TMPL_VAR NAME=ADTITLE --></h3>
 					<div class="box">
-						<img class="left" src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/getintouchwithus.gif" width="114" height="114" />
+						<img class="left" src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/style/getintouchwithus.gif" width="114" height="114" />
 						<div class="hansbold"><!-- TMPL_VAR NAME=ADTEXT --><br /></div>
 					</div>
 				</div>

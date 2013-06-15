@@ -1,5 +1,5 @@
 <!-- TMPL_IF NAME=AFFILIATE -->
-<img src="<!-- TMPL_VAR NAME=BASEPREFIX -->/images/affiliate_logo.gif" width="950" height="80" alt="Travelwell Preferred Partner" />
+<img src="<!-- TMPL_VAR NAME=BASEPREFIX -->/images/style/affiliate_logo.gif" width="950" height="80" alt="Travelwell Preferred Partner" />
 <!-- /TMPL_IF -->
 <div class="banner">
 	<div id="topmenu">

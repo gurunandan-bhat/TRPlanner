@@ -18,7 +18,7 @@
 				<!-- TMPL_INCLUDE NAME="bannermenu_splaces.tpl" -->					
 			</div>
 			<div class="span-24 last">
-				<img src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/specialplaces_large.jpg" width="950" height="150" alt="Collage"/>
+				<img src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/style/specialplaces_large.jpg" width="950" height="150" alt="Collage"/>
 			</div>
 			<hr class="space" />
 			<div class="content">
@@ -76,13 +76,13 @@
 				</div>
 				<div class="span-8 rightcol last">
 					<h3>Plan the Perfect Trip</h3>
-					<p class="box"><img class="left" src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/plantheperfecttrip.gif" width="125" height="116" /> In easy to follow steps, you can build your own custom-made itinerary in our unique Trip Planner. Planning a trip to India has never been so easy!</p>
+					<p class="box"><img class="left" src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/style/plantheperfecttrip.gif" width="125" height="116" /> In easy to follow steps, you can build your own custom-made itinerary in our unique Trip Planner. Planning a trip to India has never been so easy!</p>
 					<h3>Train Finder</h3>
-					<p class="box"><img class="left" src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/trainfinder.jpg" width="125" height="90" /> Looking for the best train connection? Our innovative Train Finder provides the most powerful search engine for the vast Indian Railways system.</p>
+					<p class="box"><img class="left" src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/style/trainfinder.jpg" width="125" height="90" /> Looking for the best train connection? Our innovative Train Finder provides the most powerful search engine for the vast Indian Railways system.</p>
 					<h3>Flight Finder</h3>
-					<p class="box"><img class="left" src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/flightfinder.jpg" width="125" height="90" /> Traveller's Palm presents the fastest Flight Finder in India. Tell us your starting point and destination and we will give you the most convenient flight plan.</p>
+					<p class="box"><img class="left" src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/style/flightfinder.jpg" width="125" height="90" /> Traveller's Palm presents the fastest Flight Finder in India. Tell us your starting point and destination and we will give you the most convenient flight plan.</p>
 					<h3>Smart Route Finder</h3>
-					<p class="box"><img class="left" src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/smartroutefinder.jpg" width="125" height="90" /> Traveller's Palm's  firecracker is the Smart Route Finder, an astonishing tool that tells you how to travel from A to B in the best combination of trains, drives and flights!</p> 
+					<p class="box"><img class="left" src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/style/smartroutefinder.jpg" width="125" height="90" /> Traveller's Palm's  firecracker is the Smart Route Finder, an astonishing tool that tells you how to travel from A to B in the best combination of trains, drives and flights!</p> 
 					<hr />
 				</div>
 			</div>

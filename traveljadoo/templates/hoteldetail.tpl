@@ -1,5 +1,5 @@
 <div class="hotelimages">
-	<img src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/hotel_<!-- TMPL_VAR NAME=HOTELID -->_collage_1.jpg" width="590" height="160" alt="Image Not Available" />
+	<img src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/hotel/hotel_<!-- TMPL_VAR NAME=HOTELID -->_collage_1.jpg" width="590" height="160" alt="Image Not Available" />
 </div>
 <div class="overview">
 	<div class="summary">
@@ -12,7 +12,7 @@
 	</div>
 </div>
 <div class="accommodation">
-	<p><img src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/hotel_<!-- TMPL_VAR NAME=HOTELID -->_collage_2.jpg" width="590" height="160" alt="Image Not Available" /></p>
+	<p><img src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/hotel/hotel_<!-- TMPL_VAR NAME=HOTELID -->_collage_2.jpg" width="590" height="160" alt="Image Not Available" /></p>
 	<div class="summary">
 		&nbsp;
 	</div>	

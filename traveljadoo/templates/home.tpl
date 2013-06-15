@@ -21,7 +21,7 @@
 			<div class="column span-24 last city">
 				<div class="column span-16">
 					<div id="slideshow" class="mainimg" thishotel="<!-- TMPL_VAR NAME=HOTELID -->" maxhotelimages="<!-- TMPL_VAR NAME=NUMIMAGES -->">
-						<img src="images/index_main.jpg" width="600" height="370" alt="1" />
+						<img src="images/style/index_main.jpg" width="600" height="370" alt="1" />
 					</div>
 				</div>
 				<div class="column span-8 last description">
@@ -41,7 +41,7 @@
 			<div class="span-8 outerbox">
 				<div class="homebox">
 					<div class="hometext">
-						<img src="images/places.jpg" width="120" height="70" />
+						<img src="images/style/places.jpg" width="120" height="70" />
 						<a href="hotel.cgi"><h1>Places to Stay</h1></a>				
 						<p>In India, you find an enormously wide range of accommodation with options to suit all budgets. 
 						Where possible, we have selected hotels which offer ambience, atmosphere and personalised service or, 
@@ -53,7 +53,7 @@
 			<div class="span-8 outerbox">
 				<div class="homebox">
 					<div class="hometext">
-						<img src="images/design.jpg" width="120" height="70" />
+						<img src="images/style/design.jpg" width="120" height="70" />
 						<h1>Modules</h1>
 						<p>If you are the type of person who prefers to travel at your own pace with maximum flexibility, we have a wide range 
 						of original tours for you to choose from. Depending on your interest and the time you have at your disposal, you may 
@@ -65,7 +65,7 @@
 			<div class="span-8 outerbox last">
 				<div class="homebox">
 					<div class="hometext">
-						<img src="images/ready.jpg" width="120" height="70" />
+						<img src="images/style/ready.jpg" width="120" height="70" />
 						<a href="index.cgi?mode=init"><h1>Design your Own Tour</h1></a>				
 						<p>An interactive tool, the itinerary planner helps you to design an itinerary from scratch, tailor-made to suit your interests. 
 						It helps you decide which places in India you want to see, and in what order, even giving you the time it would take you to travel 

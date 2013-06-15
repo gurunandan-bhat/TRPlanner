@@ -19,7 +19,7 @@
 				</div>
 			</div>
 			<div class="span-24 last">
-				<img src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/planatrip_large.jpg" width="950" height="150" />
+				<img src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/style/planatrip_large.jpg" width="950" height="150" />
 			</div>
 			<div class="content" style="background: none;">
 				<div class="prepend-1 span-12 append-1">
@@ -46,7 +46,7 @@
 									<label for="authen_rememberuser"><input tabindex="3" type="checkbox" name="authen_rememberuser" value="1" /> Remember Me:</label>
 								</p>
 								<p class="buttonContainer">
-									<input type="image" name="authen_loginbutton" value="Sign In" src="images/signin.gif" />
+									<input type="image" name="authen_loginbutton" value="Sign In" src="images/style/signin.gif" />
 								</p>
 								<p>
 									If you have not registered, <a href="register.cgi">click here</a>.

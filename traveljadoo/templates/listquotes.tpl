@@ -17,7 +17,7 @@
 			<div class="column span-24 last city">
 				<div class="column span-16">
 					<div id="slideshow" class="mainimg">
-						<img src="images/dalailama.jpg" width="600" height="370" alt="Errors are Fun, No?" />
+						<img src="images/style/dalailama.jpg" width="600" height="370" alt="Errors are Fun, No?" />
 					</div>
 				</div>
 				<div class="column span-8 last description">

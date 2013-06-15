@@ -26,7 +26,7 @@
 				<!-- TMPL_INCLUDE NAME="bannermenu_tours.tpl" -->					
 			</div>
 			<div class="span-24 last">
-				<img src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/itineraries_large.jpg" width="950" height="150" alt="Collage"/>
+				<img src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/style/itineraries_large.jpg" width="950" height="150" alt="Collage"/>
 			</div>
 			<hr class="space" />
 			<div class="content">
@@ -59,7 +59,7 @@
 						<h5 class="listmods"><!-- TMPL_VAR NAME=TOURONELINER --></h5>
 					</div>
 					<p>
-						<a href="<!-- TMPL_VAR NAME=BASEPREFIX -->tourdetails/<!-- TMPL_VAR NAME=TOURURL -->"><img src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/rt_<!-- TMPL_VAR NAME=TOURID -->_small.jpg" width="220" height="151" class="left" /></a>
+						<a href="<!-- TMPL_VAR NAME=BASEPREFIX -->tourdetails/<!-- TMPL_VAR NAME=TOURURL -->"><img src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/tours/rt_<!-- TMPL_VAR NAME=TOURID -->_small.jpg" width="220" height="151" class="left" /></a>
 						<!-- TMPL_VAR NAME=TOURINTRO -->
 					</p>
 					<p class="box">
@@ -75,7 +75,7 @@
 				<div class="span-8 rightcol last">
 					<h3><!-- TMPL_VAR NAME=SIDETITLE --></h3>
 					<div class="box">
-						<img src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/GWEN02.jpg" width="240" height="150" /> 	
+						<img src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/style/team.jpg" width="240" height="150" /> 	
 						<div style="font-style: italic;"><!-- TMPL_VAR NAME=SIDETEXT --></div>
 					</div>
 					<hr class="space" />

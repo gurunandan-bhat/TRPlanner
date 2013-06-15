@@ -20,6 +20,7 @@ use URI;
 use Email::Valid;
 
 use Date::Manip;
+
 use MIME::Lite;
 
 use OdysseyDB::WebText;
@@ -132,11 +133,11 @@ sub errhndlr {
 	
 	
 	my $msg = MIME::Lite->new(
-		To => 		'hans@odyssey.co.in',
+		To => 		'admin@odyssey.co.in',
 		From => 	'Travellers Palm Administrator <webmaster@travellers-palm.com>',
 		Subject => 	'Error Happened!',
 		Type => 	'multipart/related',
-		CC => 		'admin@odyssey.co.in, bhat.gurunandan@gmail.com', 
+		CC => 		'bhat.gurunandan@gmail.com', 
 	);
 	
 	$msg->attach(
@@ -252,7 +253,6 @@ sub _get_routes {
 			departure => $res->{departure},
 			arrival => $res->{arrival},
 		};
-
 		if ( $res->{optionno} == $last_option ) {
 			++$child_idx;
 		}

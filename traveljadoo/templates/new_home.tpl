@@ -21,8 +21,8 @@
 			<div class="span-16 frame">
 				<div class="box">
 					<div id="slideshow" maxitinimages="19">
-						<img src="images/hp_1.jpg" width="580" height="340" alt="1" />
-						<img src="images/hp_2.jpg" width="580" height="340" alt="2" />
+						<img src="images/style/hp_1.jpg" width="580" height="340" alt="1" />
+						<img src="images/style/hp_2.jpg" width="580" height="340" alt="2" />
 					</div>
 				</div>
 			</div>
@@ -33,21 +33,21 @@
 			<hr style="color: #fff; background: #fff; margin-bottom: 3px;" />
 			<div class="span-8">
 				<div class="box leader" goto="region.cgi">
-					<p><img class="left" src="images/menu3.jpg" width="110" height="75" /></p>
+					<p><img class="left" src="images/style/menu3.jpg" width="110" height="75" /></p>
 					<h3><a href="theme.cgi" style="text-decoration: none;">Themes</a></h3>
 					<p><!-- TMPL_VAR NAME=THEMETEXT --></p>
 				</div>
 			</div>
 			<div class="span-8">
 				<div class="box leader" goto="hotel.cgi">
-					<p><img class="left" src="images/menu1.jpg" width="110" height="75" /></p>
+					<p><img class="left" src="images/style/menu1.jpg" width="110" height="75" /></p>
 					<h3><a href="hotel.cgi" style="text-decoration: none;">Special Places</a></h3>
 					<p><!-- TMPL_VAR NAME=SPECIALPLACESTEXT --></p>
 				</div>
 			</div>
 			<div class="span-8 last">
 				<div class="box leader" goto="region.cgi">
-					<p><img class="left" src="images/menu2.jpg" width="110" height="75" /></p>
+					<p><img class="left" src="images/style/menu2.jpg" width="110" height="75" /></p>
 					<h3><a href="region.cgi" style="text-decoration: none;">Journey Ideas</a></h3>
 					<p><!-- TMPL_VAR NAME=JOURNEYIDEASTEXT --></p>
 				</div>
@@ -77,13 +77,13 @@
 					<h3>Our Latest Modules</h3>
 					<h4><!-- TMPL_VAR NAME=ITINNAME --></h4>
 					<h5><!-- TMPL_VAR NAME=ITINONELINER --></h5>
-					<img src="images/itin_<!-- TMPL_VAR NAME=ITINID -->_collage_1.jpg" width="470" height="180" />
+					<img src="images/style/itin_<!-- TMPL_VAR NAME=ITINID -->_collage_1.jpg" width="470" height="180" />
 					<p><!-- TMPL_VAR NAME=ITINDESC --></p>
 					<p class="morelink"><a href="itineraries.cgi?mode=describe&id=<!-- TMPL_VAR NAME=ITINID -->">Explore this Module</a></p>
 					<div class="span-6">
 						<h3>Special Place of the Week</h3>
 						<h4><!-- TMPL_VAR NAME=HOTELNAME --></h4>
-						<img src="images/defaulthotel_<!-- TMPL_VAR NAME=HOTELID -->_left.jpg" width="230" height="159" />
+						<img src="images/style/defaulthotel_<!-- TMPL_VAR NAME=HOTELID -->_left.jpg" width="230" height="159" />
 						<p><!-- TMPL_VAR NAME=HOTELDESC --></p>
 						<p><a href="hotel.cgi?mode=describe&id=<!-- TMPL_VAR NAME=HOTELID -->">Read More</a></p>
 					</div>
@@ -91,7 +91,7 @@
 						<h3>Theme of the Week</h3>
 						<h4><!-- TMPL_VAR NAME=THEMENAME --></h4>
 						<h5><!-- TMPL_VAR NAME=THEMEONELINER --></h5>
-						<img src="images/theme_<!-- TMPL_VAR NAME=THEMEID -->_front.jpg" width="230" height="159" />
+						<img src="images/style/theme_<!-- TMPL_VAR NAME=THEMEID -->_front.jpg" width="230" height="159" />
 						<p><!-- TMPL_VAR NAME=THEMEDESC --></p>
 						<p><a href="theme.cgi?mode=describe&id=<!-- TMPL_VAR NAME=THEMEID -->">Explore this Theme</a></p>
 					</div>
@@ -99,19 +99,19 @@
 				</div>
 				<div class="span-8 rightcol last">
 					<h3>Plan the Perfect Trip</h3>
-					<p class="box"><img class="left" src="images/puzzle.jpg" width="125" height="116" /> In easy to follow steps, you can build 
+					<p class="box"><img class="left" src="images/style/puzzle.jpg" width="125" height="116" /> In easy to follow steps, you can build 
 					your own custom-made itinerary in our unique Trip Planner. Planning a trip to India has never been so easy!</p>
 					<h3>Train Finder</h3>
-					<p class="box"><img src="images/trainfinder.jpg" width="125" height="90" class="left" /> Looking for the best train connection? Our innovative Train Finder provides the most powerful search engine 
+					<p class="box"><img src="images/style/trainfinder.jpg" width="125" height="90" class="left" /> Looking for the best train connection? Our innovative Train Finder provides the most powerful search engine 
 					for the vast Indian Railways system.</p>
 					<h3>Flight Finder</h3>
-					<p class="box"><img src="images/flightfinder.jpg" width="125" height="90" class="left" /> Traveller's Palm presents the fastest Flight Finder in India. Tell us your starting point and destination 
+					<p class="box"><img src="images/style/flightfinder.jpg" width="125" height="90" class="left" /> Traveller's Palm presents the fastest Flight Finder in India. Tell us your starting point and destination 
 					and we will give you the most convenient flight plan.</p>
 					<h3>Smart Route Finder</h3>
-					<p class="box"><img src="images/smartroutefinder.jpg" width="125" height="90" class="left" /> Traveller's Palm's  firecracker is the Smart Route Finder, an astonishing tool that tells you how to travel 
+					<p class="box"><img src="images/style/smartroutefinder.jpg" width="125" height="90" class="left" /> Traveller's Palm's  firecracker is the Smart Route Finder, an astonishing tool that tells you how to travel 
 					from A to B in the best combination of trains, drives and flights!</p>
 					<h3>Get in touch with us</h3>
-					<p class="box"><img class="left" src="images/getintouchwithus.gif" width="125" height="116" />
+					<p class="box"><img class="left" src="images/style/getintouchwithus.gif" width="125" height="116" />
 					Get advice from our travel experts. Send us an e-mail, talk to us on Skype or Yahoo messenger or give 
 					us a call to put together a personal itinerary for you.<br /><a href="#">Read more</a></p>
 					<hr />

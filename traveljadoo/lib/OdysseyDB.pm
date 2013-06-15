@@ -5,7 +5,7 @@ use warnings;
 
 use lib qw{../lib};
 
-use base qw(Class::DBI::Sybase);
+use base qw(Class::DBI);
 
 use Config::Simple;
 use Odyssey::Constants;
@@ -17,18 +17,16 @@ my $cfg = new Config::Simple($Odyssey::Constants::confdir . 'Odyssey.conf');
 my $dbserver = $cfg->param('default.DBServer');
 my $dbname 	 = $cfg->param('default.DBName');
 my $dbuser	 = $cfg->param('default.User');
-
 my $dbpasswd = $cfg->param('default.Password');
-# $dbpasswd = '';
 
-my $dsn = "dbi:Sybase:server=$dbserver;database=$dbname";
+my $dsn = "dbi:ODBC:OdysseyDB";
 
 __PACKAGE__->set_db(
 	'Main',
 	$dsn,
 	$dbuser,
 	$dbpasswd,
-	{AutoCommit => 1, RaiseError => 0, PrintError => 0,},
+	{AutoCommit => 1, RaiseError => 0, PrintError => 0,LongReadLen => 102400},
 );
 
 # Preloaded methods go here.

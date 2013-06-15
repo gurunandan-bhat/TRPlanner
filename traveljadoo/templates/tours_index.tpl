@@ -27,7 +27,7 @@
 			<div class="span-16">
 				<div id="imgframe">
 					<div id="frameslideshow">
-						<img src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/tours_main.jpg" width="560" height="340" />
+						<img src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/style/tours_main.jpg" width="560" height="340" />
 					</div>
 				</div>
 			</div>
@@ -81,7 +81,7 @@
 				<div class="span-8 rightcol last">
 					<h3><!-- TMPL_VAR NAME=SIDETITLE --></h3>
 					<div class="box">
-						<img src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/GWEN02.jpg" width="240" height="150" /> 	
+						<img src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/style/team.jpg" width="240" height="150" /> 	
 						<div style="font-style: italic;"><!-- TMPL_VAR NAME=SIDETEXT --></div>
 					</div>
 					<hr class="space" />

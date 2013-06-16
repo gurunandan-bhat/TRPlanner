@@ -3,3 +3,5 @@ traveljadoo/localdb/userdb
 traveljadoo/localdb/webdb
 traveljadoo/conf/Odyssey.conf
 traveljadoo/lib/Odyssey/Constants.pm
+*~
+\#*

@@ -107,7 +107,7 @@ sub errhndlr {
 	my $err = shift;
 
 	my $url = $app->query->url();
-	my $remoteip = $ENV{REMOTE_ADDR};
+	my $remoteip = $ENV{REMOTE_ADDR} || 'unknown';
 	
 	my $tpl = $app->load_tmpl('error.tpl');
 

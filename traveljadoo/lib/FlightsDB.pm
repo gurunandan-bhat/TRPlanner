@@ -3,7 +3,7 @@ package FlightsDB;
 use strict;
 use warnings;
 
-use base qw(Class::DBI::Sybase);
+use base qw(Class::DBI);
 
 our $VERSION = '0.01';
 

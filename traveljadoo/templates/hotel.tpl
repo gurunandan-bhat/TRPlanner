@@ -64,6 +64,13 @@
 												<!-- /TMPL_LOOP -->
 												<!-- /TMPL_IF -->
 											</ul>
+											<!-- TMPL_IF NAME=COMFORTHOTELS -->
+												<ul>
+												<!-- TMPL_LOOP NAME=COMFORTHOTELS -->
+													<li><a href="<!-- TMPL_VAR NAME=BASEPREFIX -->hotel/<!-- TMPL_VAR NAME=HOTELURL -->"><!-- TMPL_VAR NAME=HOTELNAME --> ($)</a></li>
+												<!-- /TMPL_LOOP -->
+												</ul>
+											<!-- /TMPL_IF -->
 											<!-- TMPL_IF NAME=SUPHOTELS -->
 												<ul>
 												<!-- TMPL_LOOP NAME=SUPHOTELS -->

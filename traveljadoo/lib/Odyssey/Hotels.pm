@@ -284,6 +284,16 @@ sub cityhotels {
 		};
 	}
 	
+    my @comforthotels;
+    foreach (OdysseyDB::Hotel->search_comfortable_bycity($cityid)) {
+        push @modhotels, {
+            HOTELID => $_->addressbook_id,
+            HOTELNAME => $_->organisation,
+            HOTELWRITEUP => firstpara($_->description),
+            HOTELURL => $_->url,
+        };
+    }
+    
 	my @suphotels;
 	foreach (OdysseyDB::Hotel->search_superior_bycity($cityid)) {
 		push @suphotels, {
@@ -398,6 +408,7 @@ sub cityhotels {
 		CITYWEBWRITEUP => addptags($city->webwriteup),
 		OTHERCITIES => \@othercities,
 		MODHOTELS => \@modhotels,
+		COMFORTHOTELS => \@comforthotels,
 		SUPHOTELS => \@suphotels,
 		LUXHOTELS =>\@luxhotels,
 		TOPHOTELS =>\@tophotels,
@@ -587,6 +598,19 @@ sub describe {
 		};
 	}
 	
+    my @comforthotels;
+    foreach (OdysseyDB::Hotel->search_comfortable_bycity($cityid)) {
+        if ($_->addressbook_id == $hotelid) {
+            $hotelcategory = '($)';
+            next;
+        }
+        push @modhotels, {
+            HOTELID => $_->addressbook_id,
+            HOTELNAME => $_->organisation,
+            HOTELURL => $_->url,
+        };
+    }
+    
 	my @suphotels;
 	foreach (OdysseyDB::Hotel->search_superior_bycity($cityid)) {
 		if ($_->addressbook_id == $hotelid) {
@@ -681,6 +705,7 @@ sub describe {
 		HOTELCATEGORY => $hotelcategory,
 		OTHERHOTELS => scalar(@modhotels || @suphotels || @luxhotels) || 0,
 		MODHOTELS => \@modhotels || undef,
+		COMFORTHOTELS => \@comforthotels || undef,
 		SUPHOTELS => \@suphotels || undef,
 		LUXHOTELS => \@luxhotels || undef,
 		TOPHOTELS => \@tophotels || undef,
@@ -905,7 +930,7 @@ sub gettariff {
 	my $asofdt = sprintf("%02d/%02d/%04d", $month+1, $day, $year+1900);
 
 	my $dbh = OdysseyDB::Hotel->db_Main();
-	$dbh->syb_date_fmt('ISO');
+	# $dbh->syb_date_fmt('ISO');
 
 	my @tariff;
 	my $testh = $dbh->prepare("Exec p_HotelPriceList '10/01/2008', '', '', 1, 27, 1, 2, 0, $hotelid, '$asofdt'");

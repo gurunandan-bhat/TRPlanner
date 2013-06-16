@@ -87,12 +87,19 @@
 				</div>
 				<div class="span-12 midcol">
 					<h3><!-- TMPL_IF NAME=SEARCH -->Your Search Results<!-- TMPL_ELSE -->Special Places to Stay in <!-- TMPL_VAR NAME=CITYNAME --><!-- /TMPL_IF --></h3>
-					<p class="hotelcatnotice">'$' Signs against Hotels indicate its <a href="<!-- TMPL_VAR NAME=BASEPREFIX -->hotel.cgi?mode=minihoteltypes&height=500&width=400" title="Hotel Categories" class="thickbox">Category</a></p>
+					<p class="hotelcatnotice">'$' Signs against Hotels indicate its <a href="<!-- TMPL_VAR NAME=BASEPREFIX -->hotelcatsbox" title="Hotel Categories" class="thickbox">Category</a></p>
 					<!-- TMPL_IF NAME=NORESULTS -->
 					<p>Sorry. We were not able to find any Hotels that matched your Search. Enter another Search term and try again.</p>
 					<div id="relsearchunit"><!-- TMPL_INCLUDE NAME=new_hotelsearchform.tpl --></div>
 					<!-- /TMPL_IF -->
 					<!-- TMPL_LOOP NAME=MODHOTELS -->
+					<p class="imgholder"><a href="<!-- TMPL_VAR NAME=BASEPREFIX -->hotel/<!-- TMPL_VAR NAME=HOTELURL -->"><img class="left" src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/hotel/defaulthotel_<!-- TMPL_VAR NAME=HOTELID -->.jpg" width="220" height="150" /></a></p>
+					<a href="<!-- TMPL_VAR NAME=BASEPREFIX -->hotel/<!-- TMPL_VAR NAME=HOTELURL -->"><h4><!-- TMPL_VAR NAME=HOTELNAME --> ($)</h4></a>
+					<p class="hansbold"><!-- TMPL_VAR NAME=HOTELWRITEUP --></p>
+					<p><a class="hotellink" href="<!-- TMPL_VAR NAME=BASEPREFIX -->hotel/<!-- TMPL_VAR NAME=HOTELURL -->">Read More &raquo;</a></p>
+					<hr />
+					<!-- /TMPL_LOOP -->
+					<!-- TMPL_LOOP NAME=COMFORTHOTELS -->
 					<p class="imgholder"><a href="<!-- TMPL_VAR NAME=BASEPREFIX -->hotel/<!-- TMPL_VAR NAME=HOTELURL -->"><img class="left" src="<!-- TMPL_VAR NAME=BASEPREFIX -->images/hotel/defaulthotel_<!-- TMPL_VAR NAME=HOTELID -->.jpg" width="220" height="150" /></a></p>
 					<a href="<!-- TMPL_VAR NAME=BASEPREFIX -->hotel/<!-- TMPL_VAR NAME=HOTELURL -->"><h4><!-- TMPL_VAR NAME=HOTELNAME --> ($)</h4></a>
 					<p class="hansbold"><!-- TMPL_VAR NAME=HOTELWRITEUP --></p>

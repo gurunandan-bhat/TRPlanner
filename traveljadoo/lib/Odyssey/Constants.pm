@@ -3,6 +3,6 @@ package Odyssey::Constants;
 use strict;
 use warnings;
 
-our $confdir = '/var/www/travellers-palm.com/private/traveljadoo/conf/';
+our $confdir = '/home/nandan/Workspace/TRPlanner/traveljadoo/conf/';
 
 1;

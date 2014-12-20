@@ -1,6 +1,6 @@
 public_html/images
-traveljadoo/localdb/userdb
-traveljadoo/localdb/webdb
+traveljadoo/localdb
+traveljadoo/localdb
 traveljadoo/conf/Odyssey.conf
 traveljadoo/lib/Odyssey/Constants.pm
 *~

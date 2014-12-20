@@ -12,6 +12,9 @@ RewriteBase /
 RewriteCond %{HTTP_HOST} ^.*\.(com|net|org|co)$
 RewriteCond %{HTTP_HOST} !^www\.travellers\-palm\.com$
 RewriteRule ^(.*)$ "http\:\/\/www\.travellers\-palm\.com\/$1" [L,R=301,QSA]
+RewriteCond %{HTTP_HOST} ^.*\.(com|co)\.(au|nz)$
+RewriteCond %{HTTP_HOST} !^www\.travellers\-palm\.com\.au$
+RewriteRule ^(.*)$ "http\:\/\/www\.travellers\-palm\.com\.au\/$1" [L,R=301,QSA]
 RewriteCond %{HTTP_HOST} ^.*\.co\.uk$
 RewriteCond %{HTTP_HOST} !^www\.travellers\-palm\.co\.uk$
 RewriteRule ^(.*)$ "http\:\/\/www\.travellers\-palm\.co\.uk\/$1" [L,R=301,QSA]

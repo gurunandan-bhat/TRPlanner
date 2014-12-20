@@ -1,7 +1,7 @@
 #tabs {
 	float:left;
 	width:100%;
-/*	background:#DAE0D2 url("../images/bg.gif") repeat-x bottom; */
+/*	background:#DAE0D2 url("../images/style/css/bg.gif") repeat-x bottom; */
 	line-height:normal;
 	margin-left: 40px;
 }
@@ -15,7 +15,7 @@
 
 #tabs li {
 	float:left;
-	background:url("../images/left.gif") no-repeat left top;
+	background:url("../images/style/css/left.gif") no-repeat left top;
 	margin:0;
 	padding:0 0 0 9px;
 }
@@ -23,7 +23,7 @@
 #tabs a {
 	float:left;
 	display:block;
-	background:url("../images/right.gif") no-repeat right top;
+	background:url("../images/style/css/right.gif") no-repeat right top;
 	padding:5px 15px 4px 6px;
 	text-decoration:none;
 	font-weight:bold;
@@ -49,11 +49,11 @@
 }
 
 #tabs #current {
-	background-image:url("../images/left_on.gif");
+	background-image:url("../images/style/css/left_on.gif");
 }
 
 #tabs #current a {
-	background-image:url("../images/right_on.gif");
+	background-image:url("../images/style/css/right_on.gif");
 	color:#333;
 	padding-bottom:5px;
 	font-style: normal;

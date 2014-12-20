@@ -1,21 +1,21 @@
 @CHARSET "UTF-8";
 
 body {
-	background: url('../images/bg-repeat.gif') repeat;
+	background: url('../images/style/css/bg-repeat.gif') repeat;
 	font-size: 62.5%;
 	font-family: Arial, Helvetica, sans-serif;
 	margin-bottom: 20px;
 }
 
 .container {
-	background: #fff url('../images/bg-decorative.gif')  right 150px no-repeat;
+	background: #fff url('../images/style/css/bg-decorative.gif')  right 150px no-repeat;
 	padding: 0 10px;
 }
 
 .banner {
 	height: 150px;
 	border-bottom: 1px solid rgb(226, 164, 65);
-	background: #fffdf6 url('../images/new_banner.gif') top left no-repeat;
+	background: #fffdf6 url('../images/style/css/new_banner.gif') top left no-repeat;
 }
 
 #topmenu ul {
@@ -78,7 +78,7 @@ body {
 }
 
 #imgstack {
-	background: url('../images/photo-stack.gif') no-repeat;
+	background: url('../images/style/css/photo-stack.gif') no-repeat;
 	height: 380px;
 	position: relative;
 }
@@ -104,7 +104,7 @@ body {
 }
 
 #imgframe {
-	background: url('../images/photo-frame.gif') no-repeat;
+	background: url('../images/style/css/photo-frame.gif') no-repeat;
 	height: 380px;
 	position: relative;
 }
@@ -124,7 +124,7 @@ body {
 
 #writeup {
 	height: 370px;
-	background: url('../images/inside-bg-rules.gif') no-repeat;
+	background: url('../images/style/css/inside-bg-rules.gif') no-repeat;
 	padding: 10px 15px 0 10px;
 	position: relative;
 	margin-top: 5px;
@@ -216,7 +216,7 @@ form#searchunit input[type="submit"] {
 }
 
 .content {
-	background: url('../images/strip.gif') repeat-y;
+	background: url('../images/style/css/strip.gif') repeat-y;
 	float: left;
 }
 
@@ -260,7 +260,7 @@ form#searchunit input[type="submit"] {
 }
 
 .leftcol ul li a#toplink {
-	background: url('../images/triangle.jpg') left center no-repeat;
+	background: url('../images/style/css/triangle.jpg') left center no-repeat;
 	padding-left: 15px;
 	display: block;
 	color: #dea242;
@@ -300,7 +300,7 @@ form#searchunit input[type="submit"] {
 }
 
 .leftcol ul li ul li a#midlink {
-	background: url('../images/rightdot.gif') 0 9px no-repeat;
+	background: url('../images/style/css/rightdot.gif') 0 9px no-repeat;
 	padding-left: 13px;
 	display: block;
 }
@@ -415,7 +415,7 @@ p.hotelcatnotice {
 }
 
 #footer {
-	background: rgb(77,89,39) url('../images/footer-bottom.gif') bottom center no-repeat;
+	background: rgb(77,89,39) url('../images/style/css/footer-bottom.gif') bottom center no-repeat;
 	float: left;
 	margin: 0 0 0 -10px;
 	width: 970px;
@@ -440,7 +440,7 @@ p.hotelcatnotice {
 }
 
 #footer li {
-	background: url('../images/bullet.jpg') left center no-repeat;
+	background: url('../images/style/css/bullet.jpg') left center no-repeat;
 	padding-left: 10px;
 	line-height: 18px;
 	color: #fff;
@@ -481,7 +481,7 @@ p.hotelcatnotice {
 	margin-bottom: 3px;
 	font-style: italic;
 	padding-left: 12px;
-	background: url('../images/rightdot.gif') 0 4px no-repeat;
+	background: url('../images/style/css/rightdot.gif') 0 4px no-repeat;
 }
 
 .itinbox {

@@ -1,12 +1,12 @@
 body {
-	background: url('../images/bg-repeat.gif') repeat;
+	background: url('../images/style/css/bg-repeat.gif') repeat;
 	font-size: 62.5%;
 	font-family: Arial, Helvetica, sans-serif;
 	margin-bottom: 20px;
 }
 
 .container {
-	background: #fff url('../images/bg-decorative.gif')  right 150px no-repeat;
+	background: #fff url('../images/style/css/bg-decorative.gif')  right 150px no-repeat;
 	padding: 0 10px;
 }
 
@@ -15,14 +15,14 @@ body {
 }
 
 .frame .box {
-	background: url('../images/shadow.gif') top left no-repeat !important;
+	background: url('../images/style/css/shadow.gif') top left no-repeat !important;
 }
 
 
 .banner {
 	height: 150px;
 	border-bottom: 1px solid rgb(226, 164, 65);
-	background: #fffdf6 url('../images/new_banner.gif') top left no-repeat;
+	background: #fffdf6 url('../images/style/css/new_banner.gif') top left no-repeat;
 }
 
 #topmenu ul {
@@ -116,7 +116,7 @@ body {
 .intro {
 	height: 405px;
 	position: relative;
-	background: url('../images/inside-bg-rules.gif') no-repeat;
+	background: url('../images/style/css/inside-bg-rules.gif') no-repeat;
 	margin-top: 15px;
 }
 
@@ -229,27 +229,27 @@ h2.hassubhead {
 }
 
 .content {
-	background: url('../images/strip.gif') left top repeat-y;
+	background: url('../images/style/css/strip.gif') left top repeat-y;
 	float: left;
 }
 
 .content-onesided {
-	background: url('../images/strip_onesided.gif') left top repeat-y;
+	background: url('../images/style/css/strip_onesided.gif') left top repeat-y;
 	float: left;
 }
 
 .content-leftsided {
-	background: url('../images/leftsided_strip.gif') left top repeat-y;
+	background: url('../images/style/css/leftsided_strip.gif') left top repeat-y;
 	float: left;
 }
 
 .contentform {
-	background: url('../images/form_strip.gif') left top repeat-y;
+	background: url('../images/style/css/form_strip.gif') left top repeat-y;
 	float: left;
 }
 
 .content-2 {
-	background: url('../images/strip-single.gif') left top repeat-y;
+	background: url('../images/style/css/strip-single.gif') left top repeat-y;
 	float: left;
 }
 
@@ -311,7 +311,7 @@ div.box img.left {
 	line-height: 1.5;
 	margin-bottom: 2px;
 	margin-top: 10px;
-	background: url('../images/icon-fstar.gif') 0% 12% no-repeat;
+	background: url('../images/style/css/icon-fstar.gif') 0% 12% no-repeat;
 	padding-left: 15px;
 	margin-left: 0px;
 }
@@ -332,7 +332,7 @@ div.box img.left {
 .content-2 h3, .contentform h3, .subcategory h3 {
 	padding: 8px 0 24px 0;
 	border-top: 1px solid #ddcdae;
-	background: url('../images/hr-bg-tan.gif') center bottom no-repeat;
+	background: url('../images/style/css/hr-bg-tan.gif') center bottom no-repeat;
 	text-align: center;
 	margin-bottom: 12px;
 	clear: left;
@@ -381,7 +381,7 @@ h1, h2, h3, h4, h5 {
 .thememenu .current h3 {
 	font-weight: bold;
 	color: #ab2b2b;
-	background: url('../images/arrowhead.gif') left center no-repeat;
+	background: url('../images/style/css/arrowhead.gif') left center no-repeat;
 }
 
 .current p {
@@ -573,7 +573,7 @@ dl#assure dt a {
 }
 
 .leftcol ul li a#toplink {
-	background: url('../images/triangle.jpg') left center no-repeat;
+	background: url('../images/style/css/triangle.jpg') left center no-repeat;
 	padding-left: 15px;
 	display: block;
 	color: #dea242;
@@ -613,7 +613,7 @@ dl#assure dt a {
 }
 
 .leftcol ul li ul li a#midlink {
-	background: url('../images/rightdot.gif') 0 9px no-repeat;
+	background: url('../images/style/rightdot.gif') 0 9px no-repeat;
 	padding-left: 13px;
 	display: block;
 }
@@ -806,7 +806,7 @@ p.imgholder {
 
 
 #footer {
-	background: rgb(77,89,39) url('../images/footer-bottom.gif') bottom center no-repeat;
+	background: rgb(77,89,39) url('../images/style/css/footer-bottom.gif') bottom center no-repeat;
 	float: left;
 	margin: 0 0 0 -10px;
 	width: 970px;
@@ -831,7 +831,7 @@ p.imgholder {
 }
 
 #footer li {
-	background: url('../images/bullet.jpg') left center no-repeat;
+	background: url('../images/style/css/bullet.jpg') left center no-repeat;
 	padding-left: 10px;
 	line-height: 18px;
 	color: #fff;
@@ -871,7 +871,7 @@ p.imgholder {
 	font-weight: bold;
 	font-family: "Times New Roman", Times, serif;
 	display: block;
-	background: url('../images/triangle.jpg') left center no-repeat;
+	background: url('../images/style/css/triangle.jpg') left center no-repeat;
 	padding-left: 15px;
 	margin-bottom: 0.5em;
 }
@@ -882,7 +882,7 @@ p.imgholder {
 	font-family: Arial, Helvetica, sans-serif;
 	font-style: italic;
 	font-weight: normal;
-	background: url('../images/rightdot.gif') left center no-repeat;
+	background: url('../images/style/css/rightdot.gif') left center no-repeat;
 	padding-left: 13px;
 	display: block;
 	margin-bottom: 0;

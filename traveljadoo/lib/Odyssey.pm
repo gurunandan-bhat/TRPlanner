@@ -107,7 +107,7 @@ sub errhndlr {
 	my $err = shift;
 
 	my $url = $app->query->url();
-	my $remoteip = $ENV{REMOTE_ADDR} || 'unknown';
+	my $remoteip = $ENV{REMOTE_ADDR};
 	
 	my $tpl = $app->load_tmpl('error.tpl');
 
@@ -120,6 +120,8 @@ sub errhndlr {
 	else {
 		$errstr .= "Unexpected System Error at $url: $err<br />";
 	}
+
+	print STDERR "$errstr\n";
 
 	$tpl->param(
 		CLASS => $errcat,
@@ -145,29 +147,30 @@ sub errhndlr {
 		Data => "<p>$errstr</p>",
 	);
 
-	MIME::Lite->send(
-		'smtp', 
-		'travellers-palm.com', 
-		Timeout => 30,
-		AuthUser => 'webmaster+travellers-palm.com',
-		AuthPass => 'ip31415',
-		Debug => 1,
-	);
+#	MIME::Lite->send(
+#		'smtp', 
+#		'travellers-palm.com', 
+#		Timeout => 30,
+#		AuthUser => 'webmaster@travellers-palm.com',
+#		AuthPass => 'ip31415',
+#		Debug => 1,
+#	);
 	
-	$msg->send;
+#	$msg->send;
 
 	return $tpl->output;
 }
 
-sub cgiapp_get_query {
-
-	use CGI::Simple;
-
-	$CGI::Simple::DISABLE_UPLOADS = 0;
-	$CGI::Simple::POST_MAX = 12048000;
-
-	return CGI::Simple->new()
-}
+#sub cgiapp_get_query {
+#
+#	use CGI::Simple;
+#
+#	$CGI::Simple::DISABLE_UPLOADS = 0;
+#	$CGI::Simple::POST_MAX = 10485760; # 10MB
+#
+#	return CGI::Simple->new()
+#}
+#
 
 sub cgiapp_postrun {
 	my $app = shift;
@@ -1158,7 +1161,7 @@ sub quote_modtours {
 			'smtp', 
 			'travellers-palm.com', 
 			Timeout => 30,
-			AuthUser => 'admin@travellers-palm.com',
+			AuthUser => 'webmaster@travellers-palm.com',
 			AuthPass => 'ip31415',
 			Debug => 1,
 		);

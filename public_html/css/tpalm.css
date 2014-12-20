@@ -147,13 +147,13 @@ h1.columns {
 	font-weight: bold;
 	text-align: center;
 	padding: 10px 10px 20px 0;
-	background: url('../images/hr-bg-tan.gif') bottom center no-repeat;
+	background: url('../images/style/css/hr-bg-tan.gif') bottom center no-repeat;
 	margin-right: 5px;
 	border-top: 1px solid #ddcdae;
 }
 
 .content {
-	background: url('../images/strip.gif') top left repeat-y;
+	background: url('../images/style/css/strip.gif') top left repeat-y;
 }
 
 h1.maincolumn {

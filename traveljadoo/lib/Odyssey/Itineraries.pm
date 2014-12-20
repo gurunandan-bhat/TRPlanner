@@ -11,11 +11,14 @@ use OdysseyDB::Itineraries;
 use OdysseyDB::Region;
 use OdysseyDB::WebText;
 use OdysseyDB::WebPage;
+#use Odyssey::Sessions('cookie');
+
+use Data::Dumper;
 
 use Date::Manip;
 use JSON;
-use URI;
-
+#use URI;
+#use CGI qw(:standard);
 
 our $VERSION = '0.01';
 
@@ -92,9 +95,12 @@ sub region {
 	
 	my $region = $sregions[0]->regions_id || 1;
 
-	my $uri = URI->new($app->query->url(-base => 1));
-	my $tld = ($uri->host =~ /(.*)\.(.*)/) ? $2 : 'com';
-	my $currency = (exists $currencies->{$tld}) ? $currencies->{$tld} : 'USD';
+        # my $uri = URI->new($app->query->url(-base => 1));
+	# my $tld = ($uri->host =~ /(.*)\.(.*)/) ? $2 : 'com';
+        # my $currency = (exists $currencies->{$tld}) ? $currencies->{$tld} : 'USD';
+        my $uri_host = $app->query->psgi_header('HTTP_X_FORWARDED_SERVER');
+	my $tld = ($uri_host =~ /(.*)\.(.*)/) ? $2 : 'com';
+        my $currency = (exists $currencies->{$tld}) ? $currencies->{$tld} : 'USD';
 
 	my @itins;	
 	foreach (OdysseyDB::Region->retrieve(regions_id => $region)->itineraries) {
@@ -148,11 +154,20 @@ sub describe {
 	my $app = shift;
 
 	my $itinurl = $app->param('tour') || die({type => 'error', msg => 'No Itinerary ID Found'});
+	#
+	my @fields = split /;/, $itinurl;
+	my ($itinurl, $valuta, $changed) = @fields[0, 1, 2];
+	my $test = 'USD';
+        # my $ok = cookie();
+
 	my @sitins = OdysseyDB::Itineraries->search(url => $itinurl);
 	
 	my $itin = $sitins[0];
+        if (! defined $itin) {
+	     die({type => 'error', msg => "The string '<b>$itinurl</b>' is an invalid tour."})
+	};
+
 	my $itinid = $itin->fixeditin_id;
-	
 	my $region = $itin->regions_id;
 	my @itins = $region ? $region->itineraries : OdysseyDB::Itineraries->search(readytours => 1, {order_by => 'orderno'});
 	
@@ -195,7 +210,7 @@ sub describe {
 	}
 	
 	my $tpl = $app->load_tmpl('itinerary.tpl', die_on_bad_params => 0, loop_context_vars => 1, global_vars => 1);
-	
+
 	(my $hilites = $itin->triphighlights) =~ s/\*/\<br \/\>/g;
 
 	my $itintype = $itin->readytours ? 'Tour' : 'Module';
@@ -205,12 +220,15 @@ sub describe {
 	
 	my $itinheaders = OdysseyDB::WebText->retrieve(web_id => 59);
 	
-	my $uri = URI->new($app->query->url(-base => 1));
-	my $tld = ($uri->host =~ /(.*)\.(.*)/) ? $2 : 'com';
-	my $currency = (exists $currencies->{$tld}) ? $currencies->{$tld} : 'USD';
-	
-	
-	
+        # my $uri = URI->new($app->query->url(-base => 1));
+	# my $tld = ($uri->host =~ /(.*)\.(.*)/) ? $2 : 'com';
+        # my $currency = (exists $currencies->{$tld}) ? $currencies->{$tld} : 'USD';
+        my $uri_host = $app->query->header('HTTP_X_FORWARDED_SERVER');
+	my $tld = ($uri_host =~ /(.*)\.(.*)/) ? $2 : 'com';
+        my $currency = (exists $currencies->{$tld}) ? $currencies->{$tld} : 'USD';
+
+        print Dumper($app->query);
+        
 	$tpl->param(
 		METADESCRIPTION => $itin->metatype || firstpara($itin->introduction),
 		METAKEYWORDS => $itin->keywords || $itin->title,
@@ -234,12 +252,14 @@ sub describe {
 		ITININCLUSIONS => boldify($itin->inclusions),
 		ITINPRICE => 'From ' . $app->itincost($itinid, $currency) . ' per person - based on 2 people sharing',
 		ITINTIPSHEADER => $itinheaders->title,
+                ITINDURATION => $itin->duration,
 		ITINTIPSINTRO => $itinheaders->writeup,
 		ITINTIPS => \@tips,
 		SIDETITLE => $sidetext->title,
 		SIDETEXT => $sidetext->writeup,
 		REGISTERED => $username ? 1 : 0,
 		ISFAVOURITE => $isfav,
+                CURRENCY => $test,
 	);
 	
 	return $tpl->output;

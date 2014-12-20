@@ -10,6 +10,7 @@
 		<script type="text/javascript" src="<!-- TMPL_VAR NAME=BASEPREFIX -->js/jquery-1.4.4.min.js"></script>
 		<script type="text/javascript" src="<!-- TMPL_VAR NAME=BASEPREFIX -->js/favourites.js"></script>
 		<script type="text/javascript" src="<!-- TMPL_VAR NAME=BASEPREFIX -->js/blk.js"></script>
+
 		<meta name="description" content="<!-- TMPL_VAR NAME=METADESCRIPTION -->" />
 		<meta name="keywords" content="<!-- TMPL_VAR NAME=METAKEYWORDS -->" />
 		<title>

@@ -564,7 +564,7 @@ sub send_email {
 		'smtp', 
 		'traveljadoo.com', 
 		Timeout => 30,
-		AuthUser => 'admin+traveljadoo.com',
+		AuthUser => 'webmaster@travellers-palm.com',
 		AuthPass => 'ip31415',
 		Debug => 1,
 	);

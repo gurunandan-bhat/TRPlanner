@@ -5,7 +5,7 @@ use warnings;
 
 use lib qw{../};
 
-use base qw(RailDB);
+use base qw(OdysseyDB);
 
 our $VERSION = '0.01';
 

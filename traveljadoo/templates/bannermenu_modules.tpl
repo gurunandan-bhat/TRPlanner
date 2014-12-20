@@ -12,5 +12,13 @@
 			<li><a href="<!-- TMPL_VAR NAME=BASEPREFIX -->about-us">About Us</a></li>
 			<li><a href="<!-- TMPL_VAR NAME=BASEPREFIX -->contact-us">Contact Us</a></li>
 		</ul>
-	</div>
+        </div>
+
+
+<div id="topcurrency" style="clear: both; float: right;width: 300px; margin: 1.5em 1.5em;">
+  <div style="float: right;">
+    <a href="<!-- TMPL_VAR NAME=BASEPREFIX -->currency.cgi?mode=list&height=200&width=350" title="Currencies" class="thickbox"><!-- TMPL_VAR NAME=CURRENCY --></a>
+  </div>
+</div>
+
 </div>

@@ -1,21 +1,21 @@
 @CHARSET "UTF-8";
 
 body {
-	background: url('../images/bg-repeat.gif') repeat;
+	background: url('../images/style/css/bg-repeat.gif') repeat;
 	font-size: 62.5%;
 	font-family: Arial, Helvetica, sans-serif;
 	margin-bottom: 20px;
 }
 
 .container {
-	background: #fff url('../images/bg-decorative.gif')  right 150px no-repeat;
+	background: #fff url('../images/style/css/bg-decorative.gif')  right 150px no-repeat;
 	padding: 0 10px;
 }
 
 .banner {
 	height: 150px;
 	border-bottom: 1px solid rgb(226, 164, 65);
-	background: #fffdf6 url('../images/new_banner.gif') top left no-repeat;
+	background: #fffdf6 url('../images/style/css/new_banner.gif') top left no-repeat;
 }
 
 #topmenu ul {
@@ -101,7 +101,7 @@ select  {
 }
 
 #imgstack {
-	background: url('../images/photo-stack.gif') no-repeat;
+	background: url('../images/style/css/photo-stack.gif') no-repeat;
 	height: 405px;
 	position: relative;
 }
@@ -120,7 +120,7 @@ select  {
 
 #writeup {
 	height: 410px;
-	background: url('../images/bg-rules.gif') no-repeat;
+	background: url('../images/style/css/bg-rules.gif') no-repeat;
 }
 
 p.leader {
@@ -187,7 +187,7 @@ p.body span {
 }
 
 #footer {
-	background: rgb(77,89,39) url('../images/footer-bottom.gif') bottom center no-repeat;
+	background: rgb(77,89,39) url('../images/style/css/footer-bottom.gif') bottom center no-repeat;
 	float: left;
 	margin: 0 0 0 -10px;
 	width: 970px;
@@ -211,7 +211,7 @@ p.body span {
 }
 
 #footer li {
-	background: url('../images/bullet.jpg') left center no-repeat;
+	background: url('../images/style/css/bullet.jpg') left center no-repeat;
 	padding-left: 13px;
 	line-height: 18px;
 	color: #fff;

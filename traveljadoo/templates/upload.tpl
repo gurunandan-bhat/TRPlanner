@@ -35,7 +35,7 @@
 					<!-- TMPL_IF NAME=mismatch_errors -->
 					<p class="error">
 						The file names must be quotation ids (string of numbers only) and must be the same
-						for the PDF and the TXT file. Please upload correctly matched files.
+						for the PDF and the TXT file. Please upload correctly named files.
 					</p>
 					<!-- /TMPL_IF -->
 					<!-- TMPL_IF NAME=filecp_errors -->
@@ -43,7 +43,7 @@
 						There was an error copying files: <!-- TMPL_VAR NAME=filecp_errors --> 
 					</p>
 					<!-- /TMPL_IF -->
-					<form id="uploadform" name="uploadform" enctype="multipart/form-data" method="post" action="<!-- TMPL_VAR NAME=BASEPREFIX -->upload_quote">
+					<form id="uploadform" name="uploadform" enctype="multipart/form-data" method="post" action="/send_quote">
 						<fieldset>
 							<legend>Upload the PDF and the Quotation File</legend>
 							<p>

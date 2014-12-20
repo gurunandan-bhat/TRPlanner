@@ -20,4 +20,11 @@ __PACKAGE__->columns(Others => qw{
 	merchantid	
 });
 
+__PACKAGE__->set_sql(hdfc => qq{
+   	select 		* 
+   	from 		currencies 
+	where 		hdfccode is true 
+	order by 	currency
+});
+
 1;

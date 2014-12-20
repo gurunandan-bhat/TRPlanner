@@ -12,6 +12,9 @@ use File::Copy;
 use HTTP::BrowserDetect;
 use Config::Simple;
 use Email::Valid;
+use MIME::Entity;
+use Email::Sender::Simple qw{sendmail};
+use Email::Sender::Transport::SMTP::TLS;
 use MIME::Lite;
 use Data::FormValidator;
 use Data::FormValidator::Constraints qw(:closures);
@@ -19,9 +22,10 @@ use Data::FormValidator::Constraints::Upload qw(file_format file_max_bytes);
 use Digest::MD5 qw{md5_hex};
 use POSIX;
 use URI::Escape;
+use Digest::SHA qw{sha256_hex};
 
 use Data::Dumper;
-	
+use Try::Tiny;
 
 use lib qw{../};
 use OdysseyDB::Currency;
@@ -41,6 +45,7 @@ sub setup {
 		index => 'index',
 		upload_quote => 'upload_quote',
 		save_quote => 'save_quote',
+        send_quote => 'send_quote',
 		show_quote => 'show_quote',
 		success => 'success',
 		failure => 'failure',
@@ -65,131 +70,144 @@ sub upload_quote {
 	my $app = shift;
 	my $q = $app->query;
 	
-	if (! $q->param('submit')) {
-		
-		my $tpl = $app->load_tmpl('upload.tpl', die_on_bad_params => 0);
-		return $tpl->output;
-	}
-	
-	my $dfv = {
-		required => [ qw{pdffile txtfile} ],
-		constraint_methods => {
-			pdffile => [
-				file_format(mime_types => ['application/pdf']),
-				file_max_bytes(5*1024*1024),
-			],
-			txtfile => [
-				file_format(mime_types => ['text/plain']),
-				file_max_bytes(100*1024),
-			],
-		},
-		filters => 'trim',
-		msgs => {
-			prefix => 'err_',
-			any_errors => 'some_errors',
-			constraints => {
-				file_format => 'File does not have expected type',
-				file_max_bytes => 'File Size Exceeds Size Limit',
-			},
-		},
-	};
-
-	my $check = Data::FormValidator->check($q, $dfv);
-	my $valids = $check->valid;
-
-	if ($check->has_invalid or $check->has_missing) {
-
-		my $tpl = $app->load_tmpl('upload.tpl', die_on_bad_params => 0);
-		$tpl->param($check->msgs);
-		$tpl->param($valids);
-
-		return $tpl->output;
-	}
-
-	my $browser = HTTP::BrowserDetect->new();
-	my $osstr = $browser->windows ? 'MSWin32' : (
-		$browser->unix ? 'Unix' : (
-			$browser->mac ? 'MacOS' : 'Unknown'
-		)
-	);
-	fileparse_set_fstype($osstr);
-
-	my ($pdfqid, $pdfdir, $pdfsufx) = fileparse($q->param('pdffile'), qr/\.[^.]*/);
-	my ($txtqid, $txtdir, $txtsufx) = fileparse($q->param('txtfile'), qr/\.[^.]*/);
-
-	if (!(($pdfqid =~ /^\d+$/) && ($pdfqid == $txtqid))) {
-
-		my $tpl = $app->load_tmpl('upload.tpl', die_on_bad_params => 0);
-		$tpl->param(
-			mismatch_errors => 1,
-			pdffile => $q->param('pdffile'),
-			txtfile => $q->param('txtfile'),
-		);
-		return $tpl->output;
-	} 
-
-	my $pdfcpy = $app->config_param('default.UserDir') . '/' . "$pdfqid$pdfsufx";
-	my $txtcpy = $app->config_param('default.UserDir') . '/' . "$txtqid$txtsufx";
-
-	my $pdfok = $q->upload('pdffile', $pdfcpy);
-	my $txtok = $q->upload('txtfile', $txtcpy);
-	
-	if (!($pdfok && $txtok)) {
-
-		my $tpl = $app->load_tmpl('upload.tpl', die_on_bad_params => 0);
-		$tpl->param(
-			filecp_errors => 'Error Copying Files: ' . $q->cgi_error(),
-			pdffile => $q->param('pdffile'),
-			txtfile => $q->param('txtfile'),
-		);
-		return $tpl->output;
-	}
-	
-	my %paycfg;
-	Config::Simple->import_from($txtcpy, \%paycfg);
-
-	if (! %paycfg) {
-		
-		my $tpl = $app->load_tmpl('upload.tpl', die_on_bad_params => 0);
-		$tpl->param(
-			invalid_config => 1,
-			pdffile => $q->param('pdffile'),
-			txtfile => $q->param('txtfile'),
-		);
-		return $tpl->output;
-	}
-
-	my $email;
-	if (! ($email = Email::Valid->address($paycfg{'Lead.Email'}))) {
-		
-		my $tpl = $app->load_tmpl('upload.tpl', die_on_bad_params => 0);
-		$tpl->param(
-			invalid_email => 1,
-			pdffile => $q->param('pdffile'),
-			txtfile => $q->param('txtfile'),
-		);
-		return $tpl->output;
-	} 
-
-	my $tpl = $app->load_tmpl('confirm_quote.tpl', die_on_bad_params => 0);
-	$tpl->param(
-		qid 	=> $paycfg{'Quotation.Id'},
-		lead 	=> $paycfg{'Lead.PartyName'},
-		email 	=> $email,
-		pax 	=> $paycfg{'Lead.NumPax'},
-		ratepp 	=> $paycfg{'Quotation.AmountPerPerson'},
-		taxpc 	=> $paycfg{'Quotation.ServiceTaxPercentage'},
-		tax 	=> $paycfg{'Quotation.ServiceTax'},
-		amt 	=> $paycfg{'Quotation.TotalAmt'},
-		advamt 	=> $paycfg{'Payment.AdvanceAmt'},
-		advdate => odyssey_date($paycfg{'Payment.AdvanceDueOn'}),
-		balamt 	=> $paycfg{'Payment.BalanceAmt'},
-		baldate => odyssey_date($paycfg{'Payment.BalanceAmtDueOn'}),
-		curr 	=> $paycfg{'Quotation.Currency'},
-		currency => OdysseyDB::Currency->retrieve(currencies_id => $paycfg{'Quotation.Currency'})->currencycode,
-	);
-
+	print STDERR "Got a GET request\n";
+	my $tpl = $app->load_tmpl('upload.tpl', die_on_bad_params => 0);
 	return $tpl->output;
+}
+
+sub send_quote {
+    
+    my $app = shift;
+    my $q = $app->query;
+    
+    print STDERR "Got a POST request\n";
+    my $dfv = {
+        required => [ qw{pdffile txtfile} ],
+        constraint_methods => {
+            pdffile => [
+                file_format(mime_types => ['application/pdf']),
+                file_max_bytes(5*1024*1024),
+            ],
+            txtfile => [
+                file_format(mime_types => ['text/plain']),
+                file_max_bytes(100*1024),
+            ],
+        },
+        filters => 'trim',
+        msgs => {
+            prefix => 'err_',
+            any_errors => 'some_errors',
+            constraints => {
+                file_format => 'File does not have expected type',
+                file_max_bytes => 'File Size Exceeds Size Limit',
+            },
+        },
+    };
+
+    my $check = Data::FormValidator->check($q, $dfv);
+    my $valids = $check->valid;
+
+    if ($check->has_invalid or $check->has_missing) {
+
+        my $tpl = $app->load_tmpl('upload.tpl', die_on_bad_params => 0);
+        $tpl->param($check->msgs);
+        $tpl->param($valids);
+
+        print STDERR "Messages: " . Dumper($check->msgs) . "\n";
+        print STDERR "Got an invalid form\n";
+        return $tpl->output;
+    }
+
+    print STDERR "Valids: " . Dumper($valids);
+    
+    my $browser = HTTP::BrowserDetect->new();
+    my $osstr = $browser->windows ? 'MSWin32' : (
+        $browser->unix ? 'Unix' : (
+            $browser->mac ? 'MacOS' : 'Unknown'
+        )
+    );
+    fileparse_set_fstype($osstr);
+
+    my ($pdfqid, $pdfdir, $pdfsufx) = fileparse($q->param('pdffile'), qr/\.[^.]*/);
+    my ($txtqid, $txtdir, $txtsufx) = fileparse($q->param('txtfile'), qr/\.[^.]*/);
+
+    if (!(($pdfqid =~ /^\d+$/) && ($pdfqid == $txtqid))) {
+
+        my $tpl = $app->load_tmpl('upload.tpl', die_on_bad_params => 0);
+        $tpl->param(
+            mismatch_errors => 1,
+            pdffile => $q->param('pdffile'),
+            txtfile => $q->param('txtfile'),
+        );
+        print STDERR "Invalid Extensions\n";
+        return $tpl->output;
+    } 
+
+    my $buffer;
+    
+    my $pdfcpy = $app->config_param('default.UserDir') . '/' . "$pdfqid$pdfsufx";
+    my $pdfok = $q->upload('pdffile')->handle;
+    open FH, ">$pdfcpy" or die "Cannot open file at path $pdfcpy $!\n";
+    binmode FH;
+    print FH $buffer while read( $pdfok, $buffer, 4096);
+    close FH;
+    
+    $buffer = undef;
+    my $txtcpy = $app->config_param('default.UserDir') . '/' . "$txtqid$txtsufx";
+    my $txtok = $q->upload('txtfile')->handle;
+    open FH, ">$txtcpy" or die "Cannot open file at path $txtcpy $!\n";
+    binmode FH;
+    print FH $buffer while read( $txtok, $buffer, 4096 );
+    close FH;
+    
+    my %paycfg;
+    Config::Simple->import_from($txtcpy, \%paycfg);
+
+    print STDERR "Uploaded Config: " . Dumper(\%paycfg) . "\n";
+    
+    if (! %paycfg) {
+        
+        my $tpl = $app->load_tmpl('upload.tpl', die_on_bad_params => 0);
+        $tpl->param(
+            invalid_config => 1,
+            pdffile => $q->param('pdffile'),
+            txtfile => $q->param('txtfile'),
+        );
+        return $tpl->output;
+    }
+
+    my $email;
+    if (! ($email = Email::Valid->address($paycfg{'Lead.Email'}))) {
+        
+        my $tpl = $app->load_tmpl('upload.tpl', die_on_bad_params => 0);
+        $tpl->param(
+            invalid_email => 1,
+            pdffile => $q->param('pdffile'),
+            txtfile => $q->param('txtfile'),
+        );
+        print STDERR "Invalid Email: $email\n";
+        return $tpl->output;
+    } 
+
+    my $tpl = $app->load_tmpl('confirm_quote.tpl', die_on_bad_params => 0);
+    $tpl->param(
+        qid     => $paycfg{'Quotation.Id'},
+        lead    => $paycfg{'Lead.PartyName'},
+        email   => $email,
+        pax     => $paycfg{'Lead.NumPax'},
+        ratepp  => $paycfg{'Quotation.AmountPerPerson'},
+        taxpc   => $paycfg{'Quotation.ServiceTaxPercentage'},
+        tax     => $paycfg{'Quotation.ServiceTax'},
+        amt     => $paycfg{'Quotation.TotalAmt'},
+        advamt  => $paycfg{'Payment.AdvanceAmt'},
+        advdate => odyssey_date($paycfg{'Payment.AdvanceDueOn'}),
+        balamt  => $paycfg{'Payment.BalanceAmt'},
+        baldate => odyssey_date($paycfg{'Payment.BalanceAmtDueOn'}),
+        curr    => $paycfg{'Quotation.Currency'},
+        currency => OdysseyDB::Currency->retrieve(currencies_id => $paycfg{'Quotation.Currency'})->currencycode,
+    );
+
+    return $tpl->output;
 }
 
 sub save_quote {
@@ -257,8 +275,8 @@ sub save_quote {
 	$sth->execute($qid, $email, $lead, $pax, $curr, $ratepp, $taxpc, $tax, $amt, $advamt, $advdate, $balamt, $baldate, $digest, POSIX::strftime('%d %b %Y %H:%M:%S', localtime()), $uuid) 
 		or die("Cannot execute insert: " . $app->dbh->errstr);
 
-	my $emailtpl = $app->load_tmpl('email_final_quote.tpl', die_on_bad_params => 0);
-	$emailtpl->param(
+	my $emailtpl = $app->load_tmpl('email_new_quote.tpl', die_on_bad_params => 0);
+	my $tmpl_vars = {
 		qid => $qid,
 		lead => $lead,
 		email => $email,
@@ -275,37 +293,49 @@ sub save_quote {
 		balamt => $balamt,
 		baldate => $baldate,
 		payurl => $app->config_param('default.PayURL') . "$qid/$uuid/$digest",
+		subject => 'Quotation for your Tour (No: ' . $qid . ')',
+	};
+	$emailtpl->param(%{ $tmpl_vars });
+
+	print STDERR Dumper($tmpl_vars);
+	
+	my $msg = MIME::Entity->build(
+	    Type => 'multipart/related',
+	    To => $email,
+	    From => 'Odyssey Tours and Travels <payments@travellers-palm.com>',
+	    Subject => 'Quotation ' . $qid . 'for your Tour',
+	    CC => 'gbhat@pobox.com',
 	);
 	
-	my $msg = MIME::Lite->new(
-		To => 		$email,
-		From => 	'Travellers Palm Administrator <noreply@travellers-palm.com>',
-		Subject => 	'Quotation Sent: ' . $qid,
-		Type => 	'multipart/related',
-		CC => 		'hans@odyssey.co.in',
-		BCC => 		'accounts@odyssey.co.in, ivan@odyssey.co.in', 
-	);
-	
-	
+	# Generate email body and attach
 	$msg->attach(
 		Type => 'text/html',
 		Data => $emailtpl->output,
 	);
-
-	MIME::Lite->send(
-		'smtp', 
-		'travellers-palm.com', 
-		Timeout => 30,
-		AuthUser => 'webmaster+travellers-palm.com',
-		AuthPass => 'ip31415',
-		Debug => 1,
+	# Attach header image
+	$msg->attach(
+		Type => 'image/png',
+		Id => 'tpcom_header',
+		Path => $app->config_param('ImagePath') . 'tpcom_header.png',
+		Disposition => 'inline',
+		Encoding => 'base64',
 	);
-	eval {
-		$msg->send;
+	
+	# Create TLS transport agent for GMail
+	my $transport = Email::Sender::Transport::SMTP::TLS->new(
+    	host => 'smtp.googlemail.com',
+    	port => 587,
+    	username => 'payments@travellers-palm.com',
+    	password => 'ip31415O',
+    	timeout => 300,
+	);
+
+	try {
+    	sendmail($msg, { transport => $transport });
+	} 
+	catch {
+    	die "Error sending email: $_";
 	};
-	if (@$) {
-		die(type => 'error', msg => "Could not send email to recipients: $@. Aborting!")
-	}
 	
 	my $tpl = $app->load_tmpl('quote_saved.tpl', die_on_bad_params => 0);
 	return $tpl->output;
@@ -454,7 +484,8 @@ sub togateway {
 
 # Generate a new Payment ID (same quotation may have more than one Payment attempt)	
 	my $pug = new Data::UUID;
-	my $puuid = $pug->create_str;
+	my $puuid = substr($pug->create_hex, 2);
+	
 
 	my $psth = $app->dbh->prepare("insert into party (
 		qid,
@@ -558,11 +589,23 @@ sub togateway {
 	my $payable = $advamt || $balamt;
 
 # Get the HDFC connection parameters 	
-	my $ottcurrency = OdysseyDB::Currency->retrieve(currencies_id => $quote->{currency});	
-	my $merchantid = $ottcurrency->merchantid;
-	my $hdfccode = $ottcurrency->hdfccode;
-	my $terminalid = $ottcurrency->terminalid;
+# Original Parameters	
+#	my $ottcurrency = OdysseyDB::Currency->retrieve(currencies_id => $quote->{currency});	
+#	my $merchantid = $ottcurrency->merchantid;
+#	my $hdfccode = $ottcurrency->hdfccode;
+#	my $terminalid = $ottcurrency->terminalid;
 	
+	my $id = '90003832';
+	my $action = '1';
+	my $amt = '6.00';
+	my $currency = '356';
+	my $trackid = $puuid;
+	my $langid = 'USA';
+	 
+	my $hash_src = "$id$trackid$amt$currency$action";
+	my $hash_str = lc(sha256_hex($hash_src));
+	print STDERR "$hash_src\n$hash_str\n";
+	 	
 # Replace suspicious charatcters by an underscore	
 	foreach (qw/corraddress1 corraddress2 corrzip corrcity corrcountry/) {
 		$valids->{$_} =~ s/[^a-zA-Z0-9]+/\_/g;
@@ -573,27 +616,37 @@ sub togateway {
 		$valids->{corrzip} . ' ' . 
 		$valids->{corrcountry};
 	
-	my $ua = LWP::UserAgent->new;
-	my $resp = $ua->request(POST $app->config_param('PassthroughURL'), [
-		respurl => $app->config_param('ResponseURL'),
-		errurl => $app->config_param('ErrorURL'),
-		rsrcpath => $app->config_param('ResourcePath') . "$merchantid/",
-		alias => $terminalid,
-		currency => sprintf('%03d', $hdfccode),
-		amount => $payable,
-		trackid => $puuid,
-		udf1 => "Tour Payment Against Quotation $fqid",
-		udf2 => $valids->{corremail},
-		udf3 => '1234567890',
-		udf4 => $addrstr,
-		udf5 => $ottcurrency->currencycode,
-	]);
+	my $ua = LWP::UserAgent->new(ssl_opts => {verify_hostname => 1});
+	my $form = {
+        id => $id,
+        password => 'password1',
+        action => 1,
+        amt => $amt,
+        currencycode => $currency,
+        trackid => $trackid,
+        langid => 'USA',
+        responseURL => $app->config_param('ResponseURL'),
+        errorURL => $app->config_param('ErrorURL'),
+        udf1 => $valids->{corremail},
+        udf2 => $valids->{corraddress1},
+        udf3 => $valids->{corraddress2} || '',
+        udf4 => $valids->{corrcity},
+        udf5 => $hash_str,
+    };
+    print STDERR Dumper($form);
+    
+	my $resp = $ua->post('https://securepgtest.fssnet.co.in/pgway/servlet/PaymentInitHTTPServlet', $form);
 
 # Redirect to Payment Gateway if successful	
 	if ($resp->is_success) {
-		if (my $rdurl = $resp->decoded_content) {
-			if ($rdurl =~ /$RE{URI}{HTTP}{-scheme => 'https'}/) {
-				$app->redirect($rdurl) ;
+	    print STDERR "Succeeded\n";
+		if (my $rdurldata = $resp->decoded_content) {
+		    print STDERR "Response is $rdurldata\n";
+		    my ($payment_id, $redirect_url) = split(/\:/, $rdurldata, 2);
+			if ($redirect_url =~ /$RE{URI}{HTTP}{-scheme => 'https'}/) {
+			    
+			    $redirect_url .= '?PaymentID=' . $payment_id; 
+				$app->redirect($redirect_url) ;
 			}
 			else {
 				die({type => 'error', msg => 'Got an Invalid URL from Gateway. Aborting'});
@@ -772,7 +825,7 @@ sub thanks {
 		'smtp', 
 		'travellers-palm.com', 
 		Timeout => 30,
-		AuthUser => 'webmaster+travellers-palm.com',
+		AuthUser => 'webmaster@travellers-palm.com',
 		AuthPass => 'ip31415',
 		Debug => 1,
 	);
@@ -886,7 +939,7 @@ sub thanks {
 		'smtp', 
 		'travellers-palm.com', 
 		Timeout => 30,
-		AuthUser => 'webmaster+travellers-palm.com',
+		AuthUser => 'webmaster@travellers-palm.com',
 		AuthPass => 'ip31415',
 		Debug => 1,
 	);

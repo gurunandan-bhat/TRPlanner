@@ -5,7 +5,7 @@ use warnings;
 
 use lib qw{../lib};
 
-use base qw(Class::DBI);
+use base qw(Class::DBI::Sybase);
 use Config::Simple;
 use Odyssey::Constants;
 

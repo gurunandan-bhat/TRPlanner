@@ -13,7 +13,7 @@ body {
 .banner {
 	height: 150px;
 	border-bottom: 1px solid rgb(226, 164, 65);
-	background: #fffdf6 url('../images/new_banner.gif') top left no-repeat;
+	background: #fffdf6 url('../images/style/css/new_banner.gif') top left no-repeat;
 }
 
 #topmenu ul {
@@ -43,6 +43,24 @@ body {
 
 #topmenu li#current a {
 	color: #e2a441;
+}
+
+.topmenu {
+    width: 300px;
+    float: right;
+}
+
+
+#topcurrency div {
+        clear: both;
+        margin: 1.5em 1.5em;
+        display:block;
+        float: right;
+        text-decoration: none;
+        font-family: "Times New Roman", Times, serif;
+        font-size: 1.4em;
+        font-weight: bold;
+        color: #000;
 }
 
 #loginbox {
@@ -99,8 +117,8 @@ body {
     width:   608px;  
     padding: 0 6px 6px 0;  
     margin:  0 0 0 10px;  
-	background: url('images/dropshadow.png') no-repeat bottom right !important; 
-	background: url('images/dropshadow.gif') no-repeat bottom right; 
+	background: url('../images/style/css/dropshadow.png') no-repeat bottom right !important; 
+	background: url('../images/style/css/dropshadow.gif') no-repeat bottom right; 
 } 
  
 #slideshow img {  
@@ -127,7 +145,7 @@ body {
 
 #tabs li {
 	float: left;
-	background: url(../images/left_both.gif) no-repeat left top;
+	background: url(../images/style/css/left_both.gif) no-repeat left top;
 	margin: 0;
 	padding: 0 0 0 9px;
 	border-bottom: 1px solid #765;
@@ -138,7 +156,7 @@ body {
 	float: left;
 	display: block;
 	width: .1em;
-	background: url(../images/right_both.gif) no-repeat right top;
+	background: url(../images/style/css/right_both.gif) no-repeat right top;
 	padding: 5px 15px 4px 6px;
 	text-decoration: none;
 	font-weight: bold;
@@ -410,7 +428,7 @@ span.travelmode {
 
 .overview .summary ul li {
 	padding: 0 0 10px 15px;
-	background: url(images/list_comment.png) no-repeat 0 3px;
+	background: url(../images/style/css/list_comment.png) no-repeat 0 3px;
 	font-family: Georgia;
 	color: #ef0505;
 	font-size: 12px;  
@@ -432,7 +450,7 @@ span.travelmode {
 }
 
 #sightseeing .summary ul li {
-	background: url(images/list_splat.png) no-repeat 0 3px;
+	background: url(../images/style/css/list_splat.png) no-repeat 0 3px;
 	padding: 0 0 10px 15px;
 	font-family: Georgia;
 	color: #ef0505;
@@ -440,7 +458,7 @@ span.travelmode {
 }
 
 .accommodation .summary ul li {
-	background: url(images/list_house.png) no-repeat 0 3px;
+	background: url(../images/style/css/list_house.png) no-repeat 0 3px;
 	padding: 0 0 10px 15px;
 	font-family: Georgia;
 	color: #ef0505;
@@ -449,7 +467,7 @@ span.travelmode {
 
 div.imgholder {  
 	float:left;  
-	background: url(images/dropshadow.png) no-repeat bottom  right !important;  
+	background: url(../images/style/css/dropshadow.png) no-repeat bottom  right !important;  
 	margin: 10px 7px 0 10px !important;  
 	margin: 10px 0 0 5px;  
 }
@@ -469,7 +487,7 @@ div.imgholder img {
 }
 
 p.tweak {
-	background: url(images/tweak.png) left center no-repeat;
+	background: url(../images/style/css/tweak.png) left center no-repeat;
 	padding-left: 17px;
 	padding-bottom: 6px;
 	line-height: 16px;

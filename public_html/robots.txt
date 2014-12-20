@@ -8,5 +8,5 @@ Disallow: /region.cgi
 Disallow: /travel.cgi
 Disallow: /register.cgi
 Disallow: /old_index.cgi
-Allow: /
+Disallow: /
 

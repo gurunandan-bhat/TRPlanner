@@ -13,7 +13,7 @@ h1 {
 }
 
 p#schedulethrobber {
-	background: url(../images/ajax-loader.gif) left center no-repeat;
+	background: url(../images/style/css/ajax-loader.gif) left center no-repeat;
 	margin-bottom: 5px;
 	height: 32px;
 	padding: 14px 0 0 32px;

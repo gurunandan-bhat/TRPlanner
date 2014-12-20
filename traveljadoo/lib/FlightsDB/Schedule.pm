@@ -4,7 +4,7 @@ use strict;
 use warnings;
 
 use lib qw(../);
-use base qw(FlightsDB);
+use base qw(OdysseyDB);
 
 our $VERSION = '0.01';
 

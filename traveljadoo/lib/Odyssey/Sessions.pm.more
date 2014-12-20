@@ -1,0 +1,116 @@
+package Odyssey::Sessions;
+
+use strict;
+use warnings;
+
+use lib qw{../};
+
+use base qw(Odyssey);
+
+use Data::Dumper;
+use CGI qw(:standard);
+use URI;
+use URI::Escape;
+use WWW::ipinfo;
+use URI::Split qw(uri_split uri_join);
+
+our $VERSION = '0.01';
+
+# Preloaded methods go here.
+
+sub cookie {
+
+	my $currencies = {
+        au => 'AUD',
+        ca => 'CAD',
+        es => 'EUR',
+        fr => 'EUR',
+        ch => 'EUR',
+        de => 'EUR',
+        it => 'EUR',
+        be => 'EUR',
+        nl => 'EUR',
+        uk => 'GBP',
+        in => 'INR',
+        nz => 'NZD',
+        za => 'ZAR',
+	};
+
+	my $cookie = $cgi->cookie('Currency');
+	if (!$cookie) {
+		my $ipinfo = get_ipinfo();
+	        $country = $ipinfo->{country};
+	  	my $currency = (exists $currencies->{$country}) ? $currencies->{$country} : 'USD';
+
+		my $cgi = new CGI;
+	        my $cookie = $cgi->cookie( -name => 'Currency', -value => $currency, -expires => '+1h' );
+	};
+};   
+
+sub locate_ip {
+ 	my $remote_ip = new CGI; 
+        return $remote_ip->remote_host();
+};
+
+sub locate_country {
+	my $ipinfo = get_ipinfo();
+	return $ipinfo->{country};
+};
+
+sub read_uri {
+	my $uri = shift;
+
+ my ( $query, $params ) = @_;
+   $params ||= {};
+   foreach $var ( split( /&/, $query ) ){
+     my ( $k, $v ) = split( /=/, $var );
+     $k = uri_unescape $k;
+     $v = uri_unescape $v;
+     if( exists $params->{$k} ) {
+        if( 'ARRAY' eq ref $params->{$k} ) {
+           push @{ $params->{$k} }, $v;
+        } else {
+           $params->{$k} = [ $params->{$k}, $v ];
+        }
+     } else {
+        $params->{$k} = $v;
+     }
+   }
+   return $params;
+
+	($scheme, $auth, $path, $query, $frag) = uri_split($uri);
+	$uri = uri_join($scheme, $auth, $path, $query, $frag);
+
+	my ($selected_currency,$currency) = split /=/, $valuta;
+	my ($changed_currency, $changed) = split /=/, $changed;
+
+	if (!$selected_currency = 'selected_currency') {
+	     # problem 
+	};
+};
+
+sub write_cookie {
+	my $name = shift;
+	my $value = shift;
+
+	my $cgi = new CGI; 
+	my $cookie = $cgi->cookie( -name => $name, -value => $value, -expires => '+1h' ); 
+	# print $cgi->header( -cookie => $cookie );
+	return 1;
+};
+
+sub read_cookie {
+	my $name = shift;
+
+	my $value = $cgi->cookie($name) || return 0; 
+	return $value;
+};
+
+#       foreach (param) {
+#          print "Parameter $_ is ", param($), "\n";
+#       }
+   
+# my $uri   = URI->new("http://someaddr.com/index.html?test=FIRST&test=SECOND&code=INT_12345");
+#my %query = $uri->query_form;
+#print Dumper \%query;
+1;
